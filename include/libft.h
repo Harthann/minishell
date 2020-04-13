@@ -64,5 +64,6 @@ char			*ft_strtrim(char const *s1, char const *set);
 char			*ft_ultoa(unsigned long int n);
 char			*ft_ultox(unsigned long int n);
 int				ft_search(char *str, char c);
+void			*ft_ralloc(void *ptr, size_t size, size_t new_size);
 
 #endif
