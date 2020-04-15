@@ -20,7 +20,7 @@ FLAGS = -Wall -Werror -Wextra
 
 ECHO = /bin/echo
 AR = /usr/bin/ar
-CC = /usr/bin/gcc
+CC = /usr/bin/clang
 RM = /bin/rm
 MKDIR = /bin/mkdir
 RANLIB = /usr/bin/ranlib
