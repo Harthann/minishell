@@ -29,7 +29,7 @@ rouge=\033[31m
 #####################
 NAME = minishell
 
-SRC_FILE = minishell.c
+SRC_FILE = minishell.c parser.c
 
 #############################
 #		DIRCTORIES PATH		#

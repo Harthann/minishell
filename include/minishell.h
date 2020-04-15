@@ -16,4 +16,7 @@
 
 # include "libft.h"
 
+
+int	ft_command_parser(char *str);
+
 #endif
