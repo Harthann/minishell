@@ -6,15 +6,16 @@
 #    By: blacking <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/16 10:03:56 by blacking          #+#    #+#              #
-#    Updated: 2020/04/13 16:00:24 by blacking         ###   ########.fr        #
+#    Updated: 2020/04/19 14:58:10 by blacking         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC=gcc
 CFLAGS=-Wall -Werror -Wextra
 INC=-Iinclude
-NAME=minishell
-FILE=minishell.c
+NAME=buildtin_test
+FILE=builtin_test.c \
+	 ./src/builtins/env_funct.c
 OBJ=$(FILE:.c=.o)
 
 all :$(NAME)
