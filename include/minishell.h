@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/04/19 14:41:21 by blacking         ###   ########.fr       */
+/*   Updated: 2020/04/19 16:36:09 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@ typedef struct  env_list
 	char *value;
 	struct env_list *next;
 }				t_env_lst;
+
+typedef struct	s_data
+{
+	t_env_lst	*env_var;
+	char 		*res_prev_cmd;
+}				t_data;
 
 t_env_lst	*ft_envnew(char *name, char *value);
 void		ft_addenv(t_env_lst **alst, t_env_lst *new);
