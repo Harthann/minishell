@@ -13,10 +13,5 @@ int main ()
 
 	ft_delenv(&lst, "ADD");
 	data->env_var = lst;
-	while (data->env_var)
-	{
-		printf("name : %s\n", data->env_var->name);
-		printf("value : %s\n", data->env_var->value);
-		data->env_var = data->env_var->next;
-	}
+	builtins("echo", "Hello_World", data);
 }

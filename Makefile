@@ -6,7 +6,7 @@
 #    By: blacking <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/16 10:03:56 by blacking          #+#    #+#              #
-#    Updated: 2020/04/19 16:27:00 by blacking         ###   ########.fr        #
+#    Updated: 2020/04/19 16:56:16 by blacking         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,9 @@ CFLAGS=-Wall -Werror -Wextra
 INC=-Iinclude
 NAME=buildtin_test
 FILE=builtin_test.c \
-	 ./src/builtins/env_funct.c
+	 ./src/builtins/env_funct.c \
+	 ./src/builtins/builtins.c
+
 OBJ=$(FILE:.c=.o)
 
 all :$(NAME)
