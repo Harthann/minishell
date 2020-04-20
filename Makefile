@@ -6,7 +6,7 @@
 #    By: blacking <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/16 10:03:56 by blacking          #+#    #+#              #
-#    Updated: 2020/04/20 14:43:55 by blacking         ###   ########.fr        #
+#    Updated: 2020/04/20 16:06:31 by blacking         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ libft.a: ./include/libft.h
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 clean:
-	rm -rf *.o ./src/*/*.o
+	rm -rf *.o ./src/*/*.o ./src/*/*/*.o
 	make fclean -C libft/
 
 fclean: clean
