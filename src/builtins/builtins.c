@@ -2,5 +2,6 @@
 
 void builtins(char *params)
 {
-	clean_params(&params);
+	char **clean_params;
+	clean_params = clean_params(&params);
 }

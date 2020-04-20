@@ -38,10 +38,22 @@ int		count_params(char *params)
 }
 
 
-void	clean_params(char **params)
+char	**clean_params(char **params)
 {
 	int n;
+	int i;
+	char **av;
+
 	printf("%s\n", *params);
 	n = count_params(*params);
+	i = 0;
 	printf("params numbers: %d\n", n);
+	if(!(av = ft_calloc(n + 1, sizeof(char *))))
+		return (NULL);
+	while(i < n)
+	{
+
+	}
+	av[i] = NULL;
+	return (av);
 }
