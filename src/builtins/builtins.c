@@ -1,8 +1,6 @@
 #include "../../include/minishell.h"
 
-void builtins(char *cmd, char *params, void *data)
+void builtins(char *params)
 {
-	char **params_tab;
-
-	tab = clean_params(params, data);
+	clean_params(&params);
 }
