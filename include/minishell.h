@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/04/21 15:10:24 by blacking         ###   ########.fr       */
+/*   Updated: 2020/04/21 17:19:45 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct	s_data
 t_env_lst	*ft_envnew(char *name, char *value);
 void		ft_addenv(t_env_lst **alst, t_env_lst *new);
 void		ft_delenv(t_env_lst **alst, char *name);
-void		builtins(char *params);
-char		**clean_params(char *params);
-
+void		builtins(char *params, t_data *data);
+char		**clean_params(char *params, t_env_lst *lst);
+char		*env_value(char *str, int index, t_env_lst *lst);
 #endif

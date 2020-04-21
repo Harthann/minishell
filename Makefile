@@ -6,7 +6,7 @@
 #    By: blacking <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/16 10:03:56 by blacking          #+#    #+#              #
-#    Updated: 2020/04/20 16:06:31 by blacking         ###   ########.fr        #
+#    Updated: 2020/04/21 17:21:46 by blacking         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ NAME=buildtin_test
 FILE=builtin_test.c \
 	 ./src/builtins/env_funct.c \
 	 ./src/builtins/builtins.c \
-	 ./src/builtins/clean_params/clean_params.c
+	 ./src/builtins/clean_params/clean_params.c \
+	 ./src/builtins/clean_params/env_file.c
 
 OBJ=$(FILE:.c=.o)
 

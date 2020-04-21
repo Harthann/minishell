@@ -16,24 +16,34 @@ int		c_p(char *params)
 	return (n);
 }
 
-char *ft_str(const char *s, int count)
+char *ft_str(const char *s, int count, t_env_lst *lst)
 {
 	char *str;
+	char *mem;
+	char *res;
 	int i;
 
 	i = 0;
 	if (!(str = ft_calloc(count + 1, sizeof(char))))
 		return (NULL);
-	while (i < count)
+	while (i < count && s[i] != '$')
 	{
 		str[i] = s[i];
 		i++;
+	}
+	if(s[i] == '$')
+	{
+		mem = env_value((char *)s, i, lst);
+		res = ft_strjoin(str, mem);
+		free(mem);
+		free(str);
+		return (res);
 	}
 	str[i] = '\0';
 	return (str);
 }
 
-char	**clean_params(char *params)
+char	**clean_params(char *params, t_env_lst *lst)
 {
 //	int n;
 	int index;
@@ -51,14 +61,14 @@ char	**clean_params(char *params)
 		if (params[index] == ' ' || params[index] == '|')
 		{
 			if (index != 0)
-				av[j++] = ft_str(params, index);
+				av[j++] = ft_str(params, index, lst);
 //			if (params[index] == '|')
 //				av[j++] = ft_pipe();
 			params = params + index + 1;
 			index = -1;
 		}
 		else if (params[index + 1] == 0)
-			av[j++] = ft_str(params, index + 1);
+			av[j++] = ft_str(params, index + 1, lst);
 		index++;
 	}
 	av[j++] = NULL;
