@@ -1,59 +1,66 @@
 #include "../../../include/minishell.h"
 
-int		count_annexe(char *params, int i)
-{
-	if((params[i] == ' ' && i != 0 && params[i - 1] != ' '
-	&& params[i - 1] != 39 && params[i - 1] != 34)
-	|| (params[i + 1] == '\0' && params[i] !=  ' '))
-		return (1);
-	return (0);
-}
-
-int		count_params(char *params)
+int		c_p(char *params)
 {
 	int n;
 	int i;
-	int mem;
 
 	i = 0;
 	n = 0;
 	while(params[i])
 	{
-		n = (count_annexe(params, i) == 1) ? n + 1 : n;
-		if(params[i] == 34 || params[i] == 39)
-		{
-			mem = params[i];
-			n = (i != 0 && params[i - 1] != ' ') ? n - 1 : n;
-			i++;
-			while(params[i] != mem && params[i])
-				i++;
-			if(i != 0 && (params[i + 1] != ' ' && params[i + 1] != '\0'))
-				n--;
+		if(params[i] == ' ' || params[i] == '|')
 			n++;
-		}
-		n = (params[i] == '|' && params[i - 1] != ' ') ? n + 1 : n;
 		i++;
 	}
 	return (n);
 }
 
-
-char	**clean_params(char **params)
+char *ft_str(const char *s, int count)
 {
-	int n;
+	char *str;
 	int i;
+
+	i = 0;
+	if (!(str = ft_calloc(count + 1, sizeof(char))))
+		return (NULL);
+	while (i < count)
+	{
+		str[i] = s[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}
+
+char	**clean_params(char *params)
+{
+//	int n;
+	int index;
+	int j;
 	char **av;
 
-	printf("%s\n", *params);
-	n = count_params(*params);
-	i = 0;
-	printf("params numbers: %d\n", n);
-	if(!(av = ft_calloc(n + 1, sizeof(char *))))
+//	n = count_params(*params);
+	index = 0;
+	j = 0;
+//	printf("params numbers: %d\n", n);
+	if (!(av = ft_calloc(c_p(params) + 1, sizeof(char *))))
 		return (NULL);
-	while(i < n)
+	while (params[index])
 	{
-
+		if (params[index] == ' ' || params[index] == '|')
+		{
+			if (index != 0)
+				av[j++] = ft_str(params, index);
+//			if (params[index] == '|')
+//				av[j++] = ft_pipe();
+			params = params + index + 1;
+			index = -1;
+		}
+		else if (params[index + 1] == 0)
+			av[j++] = ft_str(params, index + 1);
+		index++;
 	}
-	av[i] = NULL;
+	av[j++] = NULL;
 	return (av);
 }
