@@ -13,13 +13,16 @@ int main ()
 
 	ft_delenv(&lst, "ADD");
 	data->env_var = lst;
-	builtins("Hello_World", data);
+/*	builtins("Hello_World", data);
 	builtins("Hello World ", data);
 	builtins("Hello\"World\" ", data);
 	builtins("'Hello'World", data);
-	builtins("Hello 'World' \"dddsd\"", data);
-	builtins("Hello$USER", data);
-	builtins("Hello$USER |", data);
+	builtins("Hello 'World' \"dddsd\"", data);*/
+	builtins("Hello \"$USER\"", data);
+	builtins("Hello\"$USER\" |", data);
+	builtins("Hello '$USER'", data);
+	builtins("Hello'$USER' |", data);
+
 	builtins("Hello$USER|", data);
 	builtins("$USER", data);
 

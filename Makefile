@@ -6,7 +6,7 @@
 #    By: blacking <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/16 10:03:56 by blacking          #+#    #+#              #
-#    Updated: 2020/04/21 17:21:46 by blacking         ###   ########.fr        #
+#    Updated: 2020/04/22 17:14:14 by blacking         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ FILE=builtin_test.c \
 	 ./src/builtins/env_funct.c \
 	 ./src/builtins/builtins.c \
 	 ./src/builtins/clean_params/clean_params.c \
-	 ./src/builtins/clean_params/env_file.c
+	 ./src/builtins/clean_params/env_file.c \
+	 ./src/builtins/clean_params/ft_quote.c
 
 OBJ=$(FILE:.c=.o)
 

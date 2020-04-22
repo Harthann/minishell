@@ -58,7 +58,14 @@ char	**clean_params(char *params, t_env_lst *lst)
 		return (NULL);
 	while (params[index])
 	{
-		if (params[index] == ' ' || params[index] == '|')
+		if ((params[index] == 39 || params[index] == 34)
+			&& (params[index + 1] == ' ' || params[index + 1] == 0))
+		{
+			av[j++] = ft_quote(params, index, lst);
+			params = params + index + 1;
+			index = -1;
+		}
+		else if (params[index] == ' ')
 		{
 			if (index != 0)
 				av[j++] = ft_str(params, index, lst);
