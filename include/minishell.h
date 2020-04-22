@@ -6,12 +6,13 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/04/22 17:14:29 by blacking         ###   ########.fr       */
+/*   Updated: 2020/04/22 18:27:48 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #ifndef MINISHELL_H
+
 # define MINISHELL_H
 
 # include "libft.h"
@@ -35,5 +36,7 @@ void		ft_delenv(t_env_lst **alst, char *name);
 void		builtins(char *params, t_data *data);
 char		**clean_params(char *params, t_env_lst *lst);
 char		*env_value(char *str, int index, t_env_lst *lst);
+char		*env_value2(char *str, t_env_lst *lst);
 char		*ft_quote(char *params, int index, t_env_lst *lst);
+
 #endif
