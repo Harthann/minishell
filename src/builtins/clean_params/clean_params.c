@@ -43,23 +43,15 @@ char *ft_str(const char *s, int count, t_env_lst *lst)
 	return (str);
 }
 
-char	**clean_params(char *params, t_env_lst *lst)
+char **clean_loop(char **av, char *params, t_env_lst *lst, int index)
 {
-//	int n;
-	int index;
 	int j;
-	char **av;
 
-//	n = count_params(*params);
-	index = 0;
 	j = 0;
-//	printf("params numbers: %d\n", n);
-	if (!(av = ft_calloc(c_p(params) + 1, sizeof(char *))))
-		return (NULL);
 	while (params[index])
 	{
 		if ((params[index] == 39 || params[index] == 34)
-			&& (params[index + 1] == ' ' || params[index + 1] == 0))
+				&& (params[index + 1] == ' ' || params[index + 1] == 0))
 		{
 			av[j++] = ft_quote(params, index, lst);
 			params = params + index + 1;
@@ -69,8 +61,6 @@ char	**clean_params(char *params, t_env_lst *lst)
 		{
 			if (index != 0)
 				av[j++] = ft_str(params, index, lst);
-//			if (params[index] == '|')
-//				av[j++] = ft_pipe();
 			params = params + index + 1;
 			index = -1;
 		}
@@ -80,4 +70,13 @@ char	**clean_params(char *params, t_env_lst *lst)
 	}
 	av[j++] = NULL;
 	return (av);
+}
+
+char	**clean_params(char *params, t_env_lst *lst)
+{
+	char **av;
+
+	if (!(av = ft_calloc(c_p(params) + 1, sizeof(char *))))
+		return (NULL);
+	return (clean_loop(av, params, lst, 0));
 }
