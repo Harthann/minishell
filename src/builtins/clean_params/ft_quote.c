@@ -49,6 +49,7 @@ void	dollar_quote(char *params, char **res, int *i, t_env_lst *lst)
 	mem = env_value2(params + 1, lst);
 	while(mem[j])
 		(*res)[(*i)++] = mem[j++];
+	free(mem);
 }
 
 char	*ft_quote(char *params, int index, t_env_lst *lst)
