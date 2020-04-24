@@ -18,6 +18,9 @@ void builtins(char *command, char *params, t_data *data)
 				ft_echo(command, params_cl, data);
 		else if(ft_memcmp(command, "pwd", 3) == 0)
 				pwd(data);
+		else if(ft_memcmp(command, "cd", 2) == 0)
+				cd(data, params_cl);
+
 		command++;
 	}
 //	printf("data_res : %s\n", data->res_prev_cmd);

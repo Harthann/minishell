@@ -9,3 +9,11 @@ void	pwd(t_data *data)
 	ft_putstr(res);
 	data->res_prev_cmd = res;
 }
+
+void	cd(t_data *data, char **params_cl)
+{
+		pwd(data);
+		printf("\n");
+		chdir(params_cl[0]);
+		pwd(data);
+}
