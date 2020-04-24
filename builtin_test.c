@@ -14,9 +14,11 @@ int main ()
 	ft_delenv(&lst, "ADD");
 	data->env_var = lst;
 	builtins("echo -n", "Hello_World", data);
-printf("data_res : %s", data->res_prev_cmd);
+printf("data_res : %s\n", data->res_prev_cmd);
+	builtins("pwd", NULL, data);
+printf("data_res : %s\n", data->res_prev_cmd);
 
-	builtins("echo", "Hello World ", data);
+/*	builtins("echo", "Hello World ", data);
 	builtins("echo", "Hello\"World\" ", data);
 	builtins("echo", "'Hello'World", data);
 	builtins("echo", "Hello 'World' \"dddsd\"", data);
@@ -30,6 +32,6 @@ printf("data_res : %s", data->res_prev_cmd);
 	builtins("echo -n", "Hello \"$USER\"", data);
 	builtins("echo -n", "Hello\"$USER\" |", data);
 	builtins("echo -n", "Hello '$USER'", data);
-	builtins("echo -n", "Hello'$USER' |", data);
+	builtins("echo -n", "Hello'$USER' |", data); */
 
 }
