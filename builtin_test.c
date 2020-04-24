@@ -13,17 +13,23 @@ int main ()
 
 	ft_delenv(&lst, "ADD");
 	data->env_var = lst;
-/*	builtins("Hello_World", data);
-	builtins("Hello World ", data);
-	builtins("Hello\"World\" ", data);
-	builtins("'Hello'World", data);
-	builtins("Hello 'World' \"dddsd\"", data);*/
-	builtins("Hello \"$USER\"", data);
-	builtins("Hello\"$USER\" |", data);
-	builtins("Hello '$USER'", data);
-	builtins("Hello'$USER' |", data);
+	builtins("echo -n", "Hello_World", data);
+printf("data_res : %s", data->res_prev_cmd);
 
-	builtins("Hello$USER|", data);
-	builtins("$USER", data);
+	builtins("echo", "Hello World ", data);
+	builtins("echo", "Hello\"World\" ", data);
+	builtins("echo", "'Hello'World", data);
+	builtins("echo", "Hello 'World' \"dddsd\"", data);
+	builtins("echo", "Hello \"$USER\"", data);
+	builtins("echo", "Hello\"$USER\" |", data);
+	builtins("echo", "Hello '$USER'", data);
+	builtins("echo", "Hello'$USER' |", data);
+
+	builtins("echo", "Hello$USER|", data);
+	builtins("echo", "$USER", data);
+	builtins("echo -n", "Hello \"$USER\"", data);
+	builtins("echo -n", "Hello\"$USER\" |", data);
+	builtins("echo -n", "Hello '$USER'", data);
+	builtins("echo -n", "Hello'$USER' |", data);
 
 }
