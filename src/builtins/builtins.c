@@ -19,7 +19,7 @@ void builtins(char *command, char *params, t_data *data)
 		else if(ft_memcmp(command, "pwd", 3) == 0)
 				pwd(data);
 		else if(ft_memcmp(command, "cd", 2) == 0)
-				cd(data, params_cl);
+				cd(params_cl);
 
 		command++;
 	}
