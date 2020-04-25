@@ -2,16 +2,9 @@
 
 void builtins(char *command, char *params, t_data *data)
 {
-//	int i = 0;
-//	int j = 0;
 	char **params_cl;
 	if (params != NULL)
 		params_cl = clean_params(params, data->env_var);
-/*	while(params_cl[i] != NULL)
-	{
-		printf("av[%d] : %s\n", i,  params_cl[i]);
-		i++;
-	}*/
 	while(*command)
 	{
 		if(ft_memcmp(command, "echo", 4) == 0)
@@ -28,6 +21,4 @@ void builtins(char *command, char *params, t_data *data)
 				ft_delenv(&(data->env_var), params_cl[0]);
 		command++;
 	}
-//	printf("data_res : %s\n", data->res_prev_cmd);
-//	data->res_prev_cmd = NULL;
 }
