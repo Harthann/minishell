@@ -58,3 +58,18 @@ void	ft_delenv(t_env_lst **alst, char *name)
 	}
 	*alst = mem;
 }
+
+void	env_list(t_data *data)
+{
+	t_env_lst *lst;
+
+	lst = data->env_var;
+	while(lst)
+	{
+		ft_putstr(lst->name);
+		ft_putstr("=");
+		ft_putstr(lst->value);
+		ft_putstr("\n");
+		lst = lst->next;
+	}
+}
