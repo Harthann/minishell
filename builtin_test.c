@@ -21,8 +21,8 @@ printf("data_res : %s\n", data->res_prev_cmd);
 	builtins("env",  NULL, data);
 	builtins("export",  "BB=5", data);
 	builtins("env",  NULL, data);
-
-
+	builtins("unset",  "BB", data);
+	builtins("env",  NULL, data);
 /*	builtins("echo", "Hello World ", data);
 	builtins("echo", "Hello\"World\" ", data);
 	builtins("echo", "'Hello'World", data);

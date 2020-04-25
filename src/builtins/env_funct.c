@@ -24,7 +24,7 @@ void	add_env(char *str, t_data *data)
 	name = ft_calloc(ft_strlen(str), sizeof(char));
 	value = ft_calloc(ft_strlen(str), sizeof(char));
 
-	while (*str!= '=')
+	while (*str != '=' && *str)
 	{
 		name[i++] = *str;
 		str++;
@@ -36,7 +36,8 @@ void	add_env(char *str, t_data *data)
 		value[i++] = *str;
 		str++;
 	}
-	ft_addenv(&(data->env_var), ft_envnew(name, value));
+	if(*value != '\0')
+		ft_addenv(&(data->env_var), ft_envnew(name, value));
 }
 
 void	ft_addenv(t_env_lst **alst, t_env_lst *new)
