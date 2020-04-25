@@ -66,10 +66,10 @@ void	env_list(t_data *data)
 	lst = data->env_var;
 	while(lst)
 	{
-		ft_putstr(lst->name);
-		ft_putstr("=");
-		ft_putstr(lst->value);
-		ft_putstr("\n");
+		display(lst->name, data);
+		display("=", data);
+		display(lst->value, data);
+		display("\n", data);
 		lst = lst->next;
 	}
 }

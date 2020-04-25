@@ -19,6 +19,8 @@ printf("data_res : %s\n", data->res_prev_cmd);
 printf("data_res : %s\n", data->res_prev_cmd);
 	builtins("cd", "/home", data);
 	builtins("env",  NULL, data);
+printf("data_res : %s\n", data->res_prev_cmd);
+
 /*	builtins("echo", "Hello World ", data);
 	builtins("echo", "Hello\"World\" ", data);
 	builtins("echo", "'Hello'World", data);
