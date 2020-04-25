@@ -14,6 +14,31 @@ t_env_lst	*ft_envnew(char *name, char *value)
 	return (new);
 }
 
+void	add_env(char *str, t_data *data)
+{
+	char *name;
+	char *value;
+	int	 i;
+
+	i = 0;
+	name = ft_calloc(ft_strlen(str), sizeof(char));
+	value = ft_calloc(ft_strlen(str), sizeof(char));
+
+	while (*str!= '=')
+	{
+		name[i++] = *str;
+		str++;
+	}
+	str++;
+	i = 0;
+	while(*str)
+	{
+		value[i++] = *str;
+		str++;
+	}
+	ft_addenv(&(data->env_var), ft_envnew(name, value));
+}
+
 void	ft_addenv(t_env_lst **alst, t_env_lst *new)
 {
 	t_env_lst *lst;

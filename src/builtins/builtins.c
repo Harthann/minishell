@@ -22,6 +22,8 @@ void builtins(char *command, char *params, t_data *data)
 				cd(params_cl);
 		else if(ft_memcmp(command, "env", 3) == 0)
 				env_list(data);
+		else if(ft_memcmp(command, "export", 6) == 0)
+				add_env(params_cl[0], data);
 		command++;
 	}
 //	printf("data_res : %s\n", data->res_prev_cmd);

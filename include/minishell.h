@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/04/25 15:00:13 by blacking         ###   ########.fr       */
+/*   Updated: 2020/04/25 15:20:49 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void		ft_echo(char *command, char **params_cl, t_data *data);
 void		ft_putstr(char *str);
 void		pwd(t_data *data);
 void		cd(char **params_cl);
-void	env_list(t_data *data);
-void	display(char *str, t_data *data);
+void		env_list(t_data *data);
+void		display(char *str, t_data *data);
+void		add_env(char *str, t_data *data);
 #endif
