@@ -19,6 +19,8 @@ void builtins(char *command, char *params, t_data *data)
 				add_env(params_cl[0], data);
 		else if(ft_memcmp(command, "unset", 5) == 0)
 				ft_delenv(&(data->env_var), params_cl[0]);
+		else if(ft_memcmp(command, "exit", 4) == 0)
+				ft_free(data, params_cl);
 		command++;
 	}
 }

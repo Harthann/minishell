@@ -7,22 +7,26 @@ int main ()
 	lst = 0;
 	data = ft_calloc(1, sizeof(t_data));
 	data->res_prev_cmd = NULL;
-	ft_addenv(&lst, ft_envnew("USER", "stbaleba"));
-	ft_addenv(&lst, ft_envnew("ADD", "bobo"));
-	ft_addenv(&lst, ft_envnew("NEW", "form"));
+//	ft_addenv(&lst, ft_envnew("USER", "stbaleba"));
+//	ft_addenv(&lst, ft_envnew("ADD", "bobo"));
+//	ft_addenv(&lst, ft_envnew("NEW", "form"));
 
-	ft_delenv(&lst, "ADD");
+//	ft_delenv(&lst, "ADD");
 	data->env_var = lst;
-	builtins("echo -n", "Hello_World", data);
-printf("data_res : %s\n", data->res_prev_cmd);
-	builtins("pwd", NULL, data);
-printf("data_res : %s\n", data->res_prev_cmd);
+//	builtins("echo -n", "Hello_World", data);
+//printf("data_res : %s\n", data->res_prev_cmd);
+//	builtins("pwd", NULL, data);
+//printf("data_res : %s\n", data->res_prev_cmd);
 	builtins("cd", "/home", data);
 	builtins("env",  NULL, data);
+	builtins("export",  "USER=stbaleba", data);
+
 	builtins("export",  "BB=5", data);
 	builtins("env",  NULL, data);
 	builtins("unset",  "BB", data);
 	builtins("env",  NULL, data);
+	builtins("exit",  NULL, data);
+
 /*	builtins("echo", "Hello World ", data);
 	builtins("echo", "Hello\"World\" ", data);
 	builtins("echo", "'Hello'World", data);
