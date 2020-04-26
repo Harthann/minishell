@@ -17,7 +17,7 @@ int main ()
 //printf("data_res : %s\n", data->res_prev_cmd);
 //	builtins("pwd", NULL, data);
 //printf("data_res : %s\n", data->res_prev_cmd);
-	builtins("cd", "/home", data);
+/*	builtins("cd", "/home", data);
 	builtins("env",  NULL, data);
 	builtins("export",  "USER=stbaleba", data);
 
@@ -25,8 +25,14 @@ int main ()
 	builtins("env",  NULL, data);
 	builtins("unset",  "BB", data);
 	builtins("env",  NULL, data);
-	builtins("exit",  NULL, data);
-
+	builtins("exit",  NULL, data); */
+ char *argv[] = { "/bin/cat", "builtin_test.c", 0};
+    char *envp[] =
+    {
+        0
+    };
+    execve(argv[0], &argv[0], envp);
+	perror("execve");
 /*	builtins("echo", "Hello World ", data);
 	builtins("echo", "Hello\"World\" ", data);
 	builtins("echo", "'Hello'World", data);

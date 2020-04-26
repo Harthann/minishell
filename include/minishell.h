@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/04/25 15:49:19 by blacking         ###   ########.fr       */
+/*   Updated: 2020/04/26 13:34:36 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 
 # include "libft.h"
 # include <stdio.h>
+# include <sys/types.h>
+
 typedef struct  env_list
 {
 	char *name;
