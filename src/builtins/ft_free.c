@@ -23,7 +23,6 @@ void	ft_free(t_data *data, char **params_cl)
 	int i;
 
 	i = 0;
-
 	while(params_cl[i])
 	{
 		free(params_cl[i]);
