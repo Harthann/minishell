@@ -23,7 +23,6 @@ void	add_env(char *str, t_data *data)
 	i = 0;
 	name = ft_calloc(ft_strlen(str), sizeof(char));
 	value = ft_calloc(ft_strlen(str), sizeof(char));
-
 	while (*str != '=' && *str)
 	{
 		name[i++] = *str;
