@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/04/26 13:34:36 by blacking         ###   ########.fr       */
+/*   Updated: 2020/04/26 15:52:31 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,5 @@ void		env_list(t_data *data);
 void		display(char *str, t_data *data);
 void		add_env(char *str, t_data *data);
 void		ft_free(t_data *data, char **params_cl);
+void		ft_exec(char *exec, t_data *data);
 #endif

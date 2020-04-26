@@ -6,7 +6,7 @@
 #    By: blacking <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/16 10:03:56 by blacking          #+#    #+#              #
-#    Updated: 2020/04/25 15:49:58 by blacking         ###   ########.fr        #
+#    Updated: 2020/04/26 15:56:47 by blacking         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ FILE=builtin_test.c \
 	 ./src/builtins/ft_echo.c \
 	 ./src/builtins/pwd_cd.c \
 	 ./src/builtins/ft_free.c \
+	 ./src/ft_exec.c \
 
 
 
@@ -40,7 +41,7 @@ libft.a: ./include/libft.h
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 clean:
-	rm -rf *.o ./src/*/*.o ./src/*/*/*.o
+	rm -rf *.o ./src/*.o ./src/*/*.o ./src/*/*/*.o
 	make fclean -C libft/
 
 fclean: clean

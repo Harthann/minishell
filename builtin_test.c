@@ -26,13 +26,9 @@ int main ()
 	builtins("unset",  "BB", data);
 	builtins("env",  NULL, data);
 	builtins("exit",  NULL, data); */
- char *argv[] = { "/bin/cat", "builtin_test.c", 0};
-    char *envp[] =
-    {
-        0
-    };
-    execve(argv[0], &argv[0], envp);
-	perror("execve");
+//	ft_exec("/bin/ls", data);
+	ft_exec("/bin/cat builtin_test.c", data);
+
 /*	builtins("echo", "Hello World ", data);
 	builtins("echo", "Hello\"World\" ", data);
 	builtins("echo", "'Hello'World", data);
