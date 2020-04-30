@@ -1,33 +1,38 @@
 #include "minishell.h"
 
-int	main_loop(void)
+int	main_loop(t_all *all)
 {
-	char *buffer;
-	int status;
-	int ret;
+	char	*buffer;
+	int	ret;
 
 	if (!(buffer = ft_calloc(sizeof(char), 4096)))
 		return (-1);
-	status = 1;
-	while(status)
+	all->status = 1;
+	while(all->status)
 	{
 		write(1, "Minishell> ", 11);
 		ret = read(0, buffer, 4096);
 		buffer[ret]= '\0';
-		status = ft_command_parser(buffer);
+		all->status = ft_command_parser(buffer);
 	}
 	free(buffer);
 	return (0);
 }
 
 
-int main()
+int main(int ac, char **av)
 {
+	t_all	*all;
+
+	(void)ac;
+	(void)av;
 	write(1, "\n\n\n\n****************", 22);
 	write(1, "********************", 21);
 	write(1, "\n\n\n\t****MINISHELL****",22);
 	write(1, "\n\n\n\n****************", 22);
 	write(1, "********************\n\n\n\n", 25);
-	main_loop();
+	if (!(all = ft_calloc(sizeof(t_all), 1)))
+		return (1);
+	main_loop(all);
 	return (0);
 }
