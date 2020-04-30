@@ -22,7 +22,7 @@ int main()
 		if(ft_memcmp(buf, "a", 1) == 0 && fork() == 0)
 		{
 			execve(argv[0], &argv[0], envp);
-			perror("execve");
+//			perror("execve");
 		}
 		else
 			wait(NULL);
