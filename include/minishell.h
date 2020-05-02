@@ -10,11 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
 # include "libft.h"
+# include "builtin.h"
+# include "get_next_line.h"
 
 typedef struct	s_all
 {
@@ -36,7 +37,8 @@ typedef struct s_cmd
 }		t_cmd;
 
 
-int	ft_command_parser(char *str);
+int	ft_command_parser(char *str, t_data *data);
 void	print_cmd(t_cmd *list);
+int		cmd_director(t_cmd *list, t_data *data);
 
 #endif

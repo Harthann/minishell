@@ -61,7 +61,7 @@ void	add_back(t_cmd **list, t_cmd *new)
 		*list = new;
 }
 
-int	ft_command_parser(char *str)
+int	ft_command_parser(char *str, t_data *data)
 {
 	t_cmd	*commands;
 	int	i;
@@ -76,8 +76,6 @@ int	ft_command_parser(char *str)
 		while ((str[i] == ';' || str[i] == ' ') && str[i])
 			i++;
 	}
-	print_cmd(commands);
-	if (!ft_strncmp("exit", commands->command, 4))
-		return (0);
+	cmd_director(commands, data);
 	return (1);
 }

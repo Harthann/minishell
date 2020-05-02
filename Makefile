@@ -29,7 +29,12 @@ rouge=\033[31m
 #####################
 NAME = minishell
 
-SRC_FILE = minishell.c parser.c print_cmd.c
+SRC_FILE = 	minishell.c parser.c print_cmd.c \
+			builtins.c env_funct.c ft_echo.c \
+			ft_free.c pwd_cd.c ft_exec.c \
+			cmd_director.c clean_params.c \
+			env_file.c ft_quote.c \
+			get_next_line.c
 
 #############################
 #		DIRCTORIES PATH		#
