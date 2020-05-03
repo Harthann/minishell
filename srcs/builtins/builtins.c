@@ -3,7 +3,9 @@
 void builtins(char *command, char *params, t_data *data)
 {
 	char **params_cl;
+	char *mem;
 
+	mem = ft_strjoin(command, " ");
 	if (params != NULL)
 		params_cl = clean_params(params, data->env_var, data);
 	// while(*command)
@@ -23,7 +25,7 @@ void builtins(char *command, char *params, t_data *data)
 		else if(ft_memcmp(command, "exit", 4) == 0)
 			ft_free(data, params_cl);
 		else
-			ft_exec(command, data);
+			ft_exec(ft_strjoin(mem, params), data);
 		// command++;
 	// }
 }
