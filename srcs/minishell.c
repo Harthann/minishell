@@ -17,12 +17,13 @@ int	main_loop(t_data *data)
 	return (0);
 }
 
-int main(int ac, char **av)
+int main(int ac, char **av, char **env)
 {
 	t_data	*data;
 
 	(void)ac;
 	(void)av;
+	(void)env;
 	write(1, "\n\n\n\n****************", 22);
 	write(1, "********************", 21);
 	write(1, "\n\n\n\t****MINISHELL****",22);

@@ -18,11 +18,12 @@ void	display(char *str, t_data *data)
 	char *mem;
 
 	mem = data->res_prev_cmd;
-	ft_putstr_fd(str, 1);
 	if (!mem)
 		data->res_prev_cmd = ft_strdup(str);
 	else
 		data->res_prev_cmd = ft_strjoin(data->res_prev_cmd, str);
+	ft_putstr_fd(str, 1);
+	data->res_prev_cmd = ft_strjoin(data->res_prev_cmd, str);
 	free(mem);
 }
 

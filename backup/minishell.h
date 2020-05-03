@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/04/26 15:52:31 by blacking         ###   ########.fr       */
+/*   Updated: 2020/04/13 15:53:29 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_cmd
 {
 	char	*command;
 	char	*param;
+	char	**split_param;
 	void	*next;
 }		t_cmd;
 
@@ -40,21 +41,4 @@ int		ft_command_parser(char *str, t_data *data);
 void	print_cmd(t_cmd *list);
 int		cmd_director(t_cmd *list, t_data *data);
 
-t_env_lst	*ft_envnew(char *name, char *value);
-void		ft_addenv(t_env_lst **alst, t_env_lst *new);
-void		ft_delenv(t_env_lst **alst, char *name);
-void		builtins(char *command, char *params, t_data *data);
-char		**clean_params(char *params, t_env_lst *lst, t_data *data);
-char		*env_value(char *str, int index, t_env_lst *lst);
-char		*env_value2(char *str, t_env_lst *lst);
-char		*ft_quote(char *params, int index, t_env_lst *lst);
-void		ft_echo(char *command, char **params_cl, t_data *data);
-void		ft_putstr(char *str);
-void		pwd(t_data *data);
-void		cd(char **params_cl);
-void		env_list(t_data *data);
-void		display(char *str, t_data *data);
-void		add_env(char *str, t_data *data);
-void		ft_free(t_data *data, char **params_cl);
-void		ft_exec(char *exec, t_data *data);
 #endif

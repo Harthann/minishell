@@ -6,8 +6,8 @@ void builtins(char *command, char *params, t_data *data)
 
 	if (params != NULL)
 		params_cl = clean_params(params, data->env_var, data);
-	//while(*command)
-	//{
+	// while(*command)
+	// {
 		if(ft_memcmp(command, "echo", 4) == 0)
 			ft_echo(command, params_cl, data);
 		else if(ft_memcmp(command, "pwd", 3) == 0)
@@ -24,6 +24,6 @@ void builtins(char *command, char *params, t_data *data)
 			ft_free(data, params_cl);
 		else
 			ft_exec(command, data);
-	//	command++;
-	//}
+		// command++;
+	// }
 }
