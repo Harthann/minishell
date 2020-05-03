@@ -102,8 +102,9 @@ clean :
 	@$(RM) -rf ${OBJ_PATH}
 	@/usr/bin/make clean -C libft
 
-run : ${NAME}
-	@./${NAME} scenes/square.rt
+run : all
+	@$(ECHO) $(neutre)
+	@./${NAME}
 
 fclean : clean
 	@$(ECHO) "${rose}Removing ${NAME}"

@@ -1,4 +1,4 @@
-#include "../../include/minishell.h"
+#include "minishell.h"
 
 void	pwd(t_data *data)
 {
@@ -12,5 +12,5 @@ void	pwd(t_data *data)
 
 void	cd(char **params_cl)
 {
-		chdir(params_cl[0]);
+	chdir(params_cl[0]);
 }

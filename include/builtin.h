@@ -30,6 +30,7 @@ typedef struct	s_data
 {
 	t_env_lst	*env_var;
 	char 		*res_prev_cmd;
+	int			last_return;
 	int			status;
 }				t_data;
 
@@ -37,7 +38,7 @@ t_env_lst	*ft_envnew(char *name, char *value);
 void		ft_addenv(t_env_lst **alst, t_env_lst *new);
 void		ft_delenv(t_env_lst **alst, char *name);
 void		builtins(char *command, char *params, t_data *data);
-char		**clean_params(char *params, t_env_lst *lst);
+char		**clean_params(char *params, t_env_lst *lst, t_data *data);
 char		*env_value(char *str, int index, t_env_lst *lst);
 char		*env_value2(char *str, t_env_lst *lst);
 char		*ft_quote(char *params, int index, t_env_lst *lst);

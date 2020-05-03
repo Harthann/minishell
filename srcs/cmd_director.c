@@ -8,6 +8,6 @@ int     cmd_director(t_cmd *list, t_data *data)
 	{
         builtins(list->command, list->param, data);
 		list = list->next;
-	}
+    }
     return (data->status);
 }
