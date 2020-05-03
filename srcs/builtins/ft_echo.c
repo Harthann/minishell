@@ -4,7 +4,7 @@
 
 int		check_option(char *command)
 {
-	while(*command)
+	while(*command && command)
 	{
 		if(ft_memcmp(command, "-n", 2) == 0)
 			return (0);

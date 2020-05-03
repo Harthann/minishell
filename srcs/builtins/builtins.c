@@ -8,8 +8,9 @@ void builtins(char *command, char *params, t_data *data)
 	mem = ft_strjoin(command, " ");
 	if (params != NULL)
 		params_cl = clean_params(params, data->env_var, data);
-	// while(*command)
-	// {
+//	 while(*command)
+//	 {
+//		 printf("%s\n", command);
 		if(ft_memcmp(command, "echo", 4) == 0)
 			ft_echo(command, params_cl, data);
 		else if(ft_memcmp(command, "pwd", 3) == 0)
@@ -26,6 +27,6 @@ void builtins(char *command, char *params, t_data *data)
 			ft_free(data, params_cl);
 		else
 			ft_exec(ft_strjoin(mem, params), data);
-		// command++;
-	// }
+//		 command++;
+//	}
 }
