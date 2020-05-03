@@ -8,6 +8,7 @@ void	pwd(t_data *data)
 	res = getcwd(res, 1000);
 	ft_putstr_fd(res, 1);
 	data->res_prev_cmd = res;
+	write(1, "\n", 2);
 }
 
 void	cd(char **params_cl)

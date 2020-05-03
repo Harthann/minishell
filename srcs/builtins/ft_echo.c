@@ -32,8 +32,9 @@ void	ft_echo(char *command, char **params_cl, t_data *data)
 	int n;
 	int i;
 
-	n = check_option(command);
-	i = 0;
+	(void)command;
+	n = check_option(params_cl[0]);
+	i = (n == 0) ? 1 : 0;
 	while(params_cl[i])
 	{
 		display(params_cl[i], data);
