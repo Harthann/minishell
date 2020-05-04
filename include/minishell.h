@@ -57,4 +57,6 @@ void		display(char *str, t_data *data);
 void		add_env(char *str, t_data *data);
 void		ft_free(t_data *data, char **params_cl);
 void		ft_exec(char *exec, t_data *data);
+void		init_env(t_data *data, char **env);
+
 #endif
