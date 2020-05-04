@@ -8,7 +8,6 @@ int	is_separator(char c, t_quote quote)
 	return (0);
 }
 
-
 t_cmd	*new_command(char *str, int *start)
 {
 	t_cmd	*cmd;
@@ -68,8 +67,6 @@ int	ft_command_parser(char *str, t_data *data)
 
 	i = 0;
 	commands = NULL;
-	//if (!(commands = ft_calloc(sizeof(t_cmd), 1)))
-	//	return (1);
 	while (str[i])
 	{
 		add_back(&commands, new_command(str + i, &i));
