@@ -1,12 +1,13 @@
 #include "minishell.h"
 
 
-int	main_loop(t_data *data)
+int	main_loop(t_data *data, char **env)
 {
 	char	*line;
 	int		ret;
 
 	data->status = 1;
+	init_env(data, env);
 	while(data->status)
 	{
 		write(1, "Minishell> ", 11);
@@ -31,6 +32,6 @@ int main(int ac, char **av, char **env)
 	write(1, "********************\n\n\n\n", 25);
 	if (!(data = ft_calloc(sizeof(t_data), 1)))
 		return (1);
-	main_loop(data);
+	main_loop(data, env);
 	return (0);
 }

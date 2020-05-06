@@ -39,6 +39,8 @@ typedef struct s_cmd
 int		ft_command_parser(char *str, t_data *data);
 void	print_cmd(t_cmd *list);
 int		cmd_director(t_cmd *list, t_data *data);
+int		is_separator(char c, t_quote quote);
+void	add_back(t_cmd **list, t_cmd *new);
 
 t_env_lst	*ft_envnew(char *name, char *value);
 void		ft_addenv(t_env_lst **alst, t_env_lst *new);
@@ -57,4 +59,6 @@ void		display(char *str, t_data *data);
 void		add_env(char *str, t_data *data);
 void		ft_free(t_data *data, char **params_cl);
 void		ft_exec(char *exec, t_data *data);
+void		init_env(t_data *data, char **env);
+
 #endif
