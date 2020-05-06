@@ -3,13 +3,12 @@
 void builtins(char *command, char *params, t_data *data)
 {
 	char **params_cl;
-	char *mem;
-
-	mem = ft_strjoin(command, " ");
+//	char *mem;
+//	mem = ft_strjoin(command, " ");
 	if (params != NULL)
 		params_cl = clean_params(params, data->env_var, data);
-	 while(*command)
-	 {
+//	 while(*command)
+//	 {
 		if(ft_memcmp(command, "echo", 4) == 0)
 			ft_echo(command, params_cl, data);
 		else if(ft_memcmp(command, "pwd", 3) == 0)
@@ -25,7 +24,7 @@ void builtins(char *command, char *params, t_data *data)
 		else if(ft_memcmp(command, "exit", 4) == 0)
 			ft_free(data, params_cl);
 		else
-			ft_exec(ft_strjoin(mem, params), data);
-		 command++;
-	}
+			ft_exec(command, data);
+//		 command++;
+//	}
 }
