@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/04/26 15:52:31 by blacking         ###   ########.fr       */
+/*   Updated: 2020/05/07 16:46:15 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "libft.h"
 # include "builtin.h"
 # include "get_next_line.h"
-
+# include <sys/wait.h>
 typedef struct	s_all
 {
 	int status;
@@ -60,5 +60,7 @@ void		add_env(char *str, t_data *data);
 void		ft_free(t_data *data, char **params_cl);
 void		ft_exec(char *exec, t_data *data);
 void		init_env(t_data *data, char **env);
-
+int			fork_parsing(t_cmd *list, t_data *data, int *count);
+char		*prs_mem(int fd);
+char		*normal_fork(t_cmd *lst, t_data *data);
 #endif

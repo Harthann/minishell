@@ -3,13 +3,20 @@
 
 int     cmd_director(t_cmd *list, t_data *data)
 {
+	int count;
 
+	count = 0;
     while (list)
 	{
 //		printf("Command : [%s]\n", list->command);
 //		printf("Parameter : [%s]\n", list->param);
-        builtins(list->command, list->param, data);
-		list = list->next;
+//        builtins(list->command, list->param, data);
+        fork_parsing(list, data, &count);
+		while(count > 0 && list)
+		{
+			list = list->next;
+			count--;
+		}
     }
     return (data->status);
 }

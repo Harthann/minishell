@@ -6,7 +6,7 @@
 #    By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/10 16:28:15 by nieyraud          #+#    #+#              #
-#    Updated: 2020/01/29 09:42:13 by nieyraud         ###   ########.fr        #
+#    Updated: 2020/05/07 16:41:56 by blacking         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ SRC_FILE = 	minishell.c parser.c print_cmd.c \
 			ft_free.c pwd_cd.c ft_exec.c \
 			cmd_director.c clean_params.c \
 			env_file.c ft_quote.c get_next_line.c \
-			init_env.c parse_utils.c
+			init_env.c parse_utils.c \
+			fork_parser.c fork_utils.c normal_fork.c
 
 #############################
 #		DIRCTORIES PATH		#
