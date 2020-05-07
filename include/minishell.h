@@ -62,5 +62,5 @@ void		ft_exec(char *exec, t_data *data);
 void		init_env(t_data *data, char **env);
 int			fork_parsing(t_cmd *list, t_data *data, int *count);
 char		*prs_mem(int fd);
-char		*normal_fork(t_cmd *lst, t_data *data);
+void		normal_fork(t_cmd *lst, t_data *data, char **mem);
 #endif
