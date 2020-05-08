@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/05/07 16:46:15 by blacking         ###   ########.fr       */
+/*   Updated: 2020/05/08 15:04:45 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,7 @@ void		ft_exec(char *exec, t_data *data);
 void		init_env(t_data *data, char **env);
 int			fork_parsing(t_cmd *list, t_data *data, int *count);
 char		*prs_mem(int fd);
+int		left_redir(t_cmd *list);
 void		normal_fork(t_cmd *lst, t_data *data, char **mem);
+void		reverse_red_fork(t_cmd *list, t_data *data, char **mem);
 #endif

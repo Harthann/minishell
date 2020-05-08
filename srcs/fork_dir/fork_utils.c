@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-char *prs_mem(int fd)
+char	*prs_mem(int fd)
 {
 	char *buf;
 	char *cumul;
@@ -21,4 +21,14 @@ char *prs_mem(int fd)
 //	read(fd, buf, 10);
 //	printf("buf : [%s]\n", buf);
 	return (cumul);
+}
+
+int		left_redir(t_cmd *list)
+{
+	if(!list)
+		return (0);
+	else if(ft_memcmp(list->command, "<", 1) == 0)
+		return (1);
+	else
+		return (0);
 }

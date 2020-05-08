@@ -26,11 +26,21 @@ int		fork_parsing(t_cmd *list, t_data *data, int *count)
 	params_mem = NULL;
 	while(res == 1 && list)
 	{
-		printf("error\n");
-		normal_fork(list, data, &params_mem);
-		printf("success\n");
-		list = list->next;
-		*count += 1;
+		if(left_redir(list->next) == 1)
+		{
+			reverse_red_fork(list, data, &params_mem);
+			res = 0;
+			*count += 2;
+//			break;
+			list = list->next;
+			list = list->next;
+		}
+		else
+		{
+			normal_fork(list, data, &params_mem);
+			list = list->next;
+			*count += 1;
+		}
 		if (!list || ft_separate(list->command) == 0)
 		{
 			ft_putstr_fd(params_mem, 1);
