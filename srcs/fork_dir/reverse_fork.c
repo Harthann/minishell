@@ -7,8 +7,7 @@ void	reverse_red_fork(t_cmd *list, t_data *data, char **mem)
 	int fd[2];
 	int f;
 	int fds[2];
-//printf("hello\n");
-	(void)data;
+//	(void)data;
 	pipe(fd);
 	
 	command = list->command;
@@ -49,6 +48,7 @@ void	reverse_red_fork(t_cmd *list, t_data *data, char **mem)
 			*mem = prs_mem(fds[0]);
 //			printf("[%s]\n", *mem);
 		}
+//	printf("[%s]\n", *mem);
 	}
 //	printf("Good\n");
 }

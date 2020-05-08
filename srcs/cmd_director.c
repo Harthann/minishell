@@ -10,6 +10,7 @@ int     cmd_director(t_cmd *list, t_data *data)
 	{
 //		printf("Command : [%s]\n", list->command);
 //		printf("Parameter : [%s]\n", list->param);
+//		list = list->next;
 //        builtins(list->command, list->param, data);
 //
 	if(ft_memcmp(list->command, "exit", 4) == 0)

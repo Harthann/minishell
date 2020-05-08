@@ -41,6 +41,16 @@ int		fork_parsing(t_cmd *list, t_data *data, int *count)
 			list = list->next;
 			*count += 1;
 		}
+//		printf("[%s]\n", params_mem);
+		if(right_redir(list) == 1)
+		{
+				redirection_fork(list, &params_mem);
+				list = list->next;
+				*count += 1;
+				printf("[%s]\n", params_mem);
+				if(!list)
+					break;
+		}
 		if (!list || ft_separate(list->command) == 0)
 		{
 			ft_putstr_fd(params_mem, 1);
@@ -48,6 +58,7 @@ int		fork_parsing(t_cmd *list, t_data *data, int *count)
 		}
 	//	res = 0;
 	}
+	free(params_mem);
 //	printf("[%s]\n", params_mem);
 	return (*count);
 }
