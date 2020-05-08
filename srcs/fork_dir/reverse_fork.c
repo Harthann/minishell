@@ -6,7 +6,7 @@ void	reverse_red_fork(t_cmd *list, t_data *data, char **mem)
 	pid_t p;
 	int fd[2];
 	int f;
-//	int fds[2];
+	int fds[2];
 //printf("hello\n");
 	(void)data;
 	pipe(fd);
@@ -28,8 +28,8 @@ void	reverse_red_fork(t_cmd *list, t_data *data, char **mem)
 	{
 		wait(NULL);
 		close(fd[1]);
-		*mem = prs_mem(fd[0]);
-/*		pipe(fds);
+//		*mem = prs_mem(fd[0]);
+		pipe(fds);
 		p = fork();
 		if (p == 0)
 		{
@@ -48,7 +48,7 @@ void	reverse_red_fork(t_cmd *list, t_data *data, char **mem)
 			free(*mem);
 			*mem = prs_mem(fds[0]);
 //			printf("[%s]\n", *mem);
-		}*/
+		}
 	}
 //	printf("Good\n");
 }

@@ -2,21 +2,31 @@
 
 char	*prs_mem(int fd)
 {
-	char *buf;
+	char *line;
 	char *cumul;
 	char *mem;
+	int	ret;
 
 	cumul = NULL;
-	if(!(buf = ft_calloc(100, sizeof(char))))
-		return (NULL);
-	while (read(fd, buf, 100)  != 0)
+	ret = 1;
+//	if(!(buf = ft_calloc(100, sizeof(char))))
+//		return (NULL);
+	while (ret > 0)
 	{
+		
 //		printf("iii");
+		ret = get_next_line(fd, &line);
 		mem = cumul;
-		cumul = ft_strjoin(cumul, buf);
+		cumul = ft_strjoin(cumul, line);
+		if(ret > 0)
+		{
+			free(mem);
+			mem = cumul;
+			cumul = ft_strjoin(cumul, "\n");
+		}
 		free(mem);
 	}
-	free(buf);
+	free(line);
 	close(fd); 
 //	read(fd, buf, 10);
 //	printf("buf : [%s]\n", buf);
