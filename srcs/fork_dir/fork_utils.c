@@ -53,3 +53,13 @@ int		right_redir(t_cmd *list)
 	else
 		return (0);
 }
+
+int		check_pipe(t_cmd *list)
+{
+	if(!list)
+		return (0);
+	else if(ft_memcmp(list->command, "|", 1) == 0)
+		return (1);
+	else
+		return (0);
+}

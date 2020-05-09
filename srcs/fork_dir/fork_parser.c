@@ -51,6 +51,13 @@ int		fork_parsing(t_cmd *list, t_data *data, int *count)
 				if(!list)
 					break;
 		}
+		while(check_pipe(list) == 1)
+		{
+			pipe_fork(list->next, data, &params_mem);
+			list = list->next;
+			list = list->next;
+			*count += 2;
+		}
 		if (!list || ft_separate(list->command) == 0)
 		{
 			ft_putstr_fd(params_mem, 1);
