@@ -13,7 +13,7 @@ void	normal_fork(t_cmd *lst, t_data *data, char **mem)
 //if (!(fd = malloc(sizeof(int) * 2)))
 //		return (NULL);
 //	mem = NULL;
-	pipe(fd); 
+	pipe(fd);
 	p = fork();
 	if (p == 0)
 	{

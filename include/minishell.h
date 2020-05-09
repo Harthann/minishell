@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/05/08 16:31:00 by blacking         ###   ########.fr       */
+/*   Updated: 2020/05/09 15:51:26 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void		env_list(t_data *data);
 void		display(char *str, t_data *data);
 void		add_env(char *str, t_data *data);
 void		ft_free(t_data *data, char **params_cl);
-void		ft_exec(char *exec, t_data *data);
+void		ft_exec(char *exec, char *params, t_data *data);
 void		init_env(t_data *data, char **env);
 int			fork_parsing(t_cmd *list, t_data *data, int *count);
 char		*prs_mem(int fd);
