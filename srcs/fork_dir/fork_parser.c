@@ -76,11 +76,6 @@ int		fork_parsing(t_cmd *list, t_data *data, int *count)
 			if(!list)
 			break;
 		}
-/*		while(check_pipe(list) == 1)
-		{
-			pipe_fork(list->next, data, &params_mem, &n);
-			advance_list(&list, count, n);
-		}*/
 		pipe_loop(&list, &params_mem, data, count);
 		ft_display(list, params_mem, &res);
 	}
