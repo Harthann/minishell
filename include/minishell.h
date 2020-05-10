@@ -16,6 +16,7 @@
 # include "libft.h"
 # include "builtin.h"
 # include "get_next_line.h"
+# include <signal.h>
 
 typedef struct	s_all
 {
@@ -35,12 +36,12 @@ typedef struct s_cmd
 	void	*next;
 }		t_cmd;
 
-
 int		ft_command_parser(char *str, t_data *data);
 void	print_cmd(t_cmd *list);
 int		cmd_director(t_cmd *list, t_data *data);
 int		is_separator(char c, t_quote quote);
 void	add_back(t_cmd **list, t_cmd *new);
+void	sigquit_handler(int signal);
 
 t_env_lst	*ft_envnew(char *name, char *value);
 void		ft_addenv(t_env_lst **alst, t_env_lst *new);

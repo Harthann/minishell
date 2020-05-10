@@ -11,8 +11,15 @@ int	is_separator(char c, t_quote quote)
 void	add_back(t_cmd **list, t_cmd *new)
 {
 	t_cmd *tmp;
+	char *to_free;
 
 	tmp = *list;
+	to_free = new->command;
+	new->command = ft_strtrim(to_free, " ");
+	free(to_free);
+	to_free = new->param;
+	new->param = ft_strtrim(to_free, " ");
+	free(to_free);
 	while (tmp && tmp->next)
 		tmp = tmp->next;
 	if (*list)
