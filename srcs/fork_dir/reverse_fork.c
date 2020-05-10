@@ -2,9 +2,11 @@
 
 void	reverse_red_fork2(char *command, t_data *data, char **mem, int fd)
 {
-	int fds[2];
+	int *fds;
 	pid_t p;
 
+	if(!(fds = malloc(sizeof(int) * 2)))
+		fds = 0;
 	pipe(fds);
 	p = fork();
 	if (p == 0)
