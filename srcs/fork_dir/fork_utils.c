@@ -1,35 +1,31 @@
 #include "minishell.h"
 
+void	prs_mem2(char **cumul, char *line)
+{
+	char *mem;
+
+	mem = *cumul;
+	*cumul =  ft_strjoin(*cumul, line);
+	free(mem);
+}
+
 char	*prs_mem(int fd)
 {
-	char *line;
-	char *cumul;
-	char *mem;
-	int	ret;
+	char	*line;
+	char	*cumul;
+	int		ret;
 
 	cumul = NULL;
 	ret = 1;
-//	if(!(buf = ft_calloc(100, sizeof(char))))
-//		return (NULL);
 	while (ret > 0)
 	{
-		
-//		printf("iii");
 		ret = get_next_line(fd, &line);
-		mem = cumul;
-		cumul = ft_strjoin(cumul, line);
+		prs_mem2(&cumul, line);
 		if(ret > 0)
-		{
-			free(mem);
-			mem = cumul;
-			cumul = ft_strjoin(cumul, "\n");
-		}
-		free(mem);
+			prs_mem2(&cumul, "\n");
 	}
 	free(line);
-	close(fd); 
-//	read(fd, buf, 10);
-//	printf("buf : [%s]\n", buf);
+	close(fd);
 	return (cumul);
 }
 
