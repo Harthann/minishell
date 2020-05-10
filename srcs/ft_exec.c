@@ -40,26 +40,42 @@ char	*get_path(char *exec, t_env_lst *env)
 		fd = open(cmd, O_RDONLY);
 	}
 	close(fd);
-	free(exec);
 	return (cmd);
+}
+
+void	exec_params(char **exec, char *temp, char *params)
+{
+	char *mem;
+
+	mem = ft_strjoin(temp, " ");
+	*exec = ft_strjoin(mem, params);
+	free(mem);
 }
 
 void	ft_exec(char *exec, char *params, t_data *data)
 {
 	char **argv;
 	char **env;
-	char *mem;
+	char *path;
 
-//	if (*exec != '/')
-//		exec = get_path(exec, data->env_var);
-	if(params != NULL)
+	path = NULL;
+	if (*exec != '/')
+		path = get_path(exec, data->env_var);
+	if (path)
 	{
-		mem = ft_strjoin(exec, " ");
-		exec = ft_strjoin(mem, params);
-		free(mem);
+		if(params != NULL)
+			exec_params(&exec, path, params);
+		argv = clean_params(exec, data->env_var, data);
 	}
-	argv = clean_params(exec, data->env_var, data);
+	else
+	{
+		if(params != NULL)
+			exec_params(&exec, exec, params);
+		argv = clean_params(exec, data->env_var, data);
+	}
 	env = ft_calloc(1, sizeof(char *));
 	execve(argv[0], &argv[0], env);
-	perror("execve");
+	perror(argv[0]);
+	free(exec);
+	free(path);
 }

@@ -41,7 +41,6 @@ t_cmd	*new_command(char *str, int *start)
 	i = 0;
 	while (str[i] != ' ' && str[i] && !is_separator(str[i], quote))
 		i++;
-//	printf("[%d]\n", i);
 	if (*str == '|' || *str == '<' || *str == '>')
 		i += (*str == '>' && *(str + 1) == '>') ? 2 : 1;
 	cmd->command = ft_substr(str , 0, i);

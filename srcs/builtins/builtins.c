@@ -1,4 +1,4 @@
-#include "../../include/minishell.h"
+#include "minishell.h"
 
 void builtins(char *command, char *params, t_data *data)
 {

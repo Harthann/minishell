@@ -8,7 +8,10 @@ int	main_loop(t_data *data, char **env)
 
 	data->status = 1;
 	init_env(data, env);
-	while(data->status)
+	signal(SIGINT, sigquit_handler);
+	signal(SIGQUIT, sigquit_handler);
+	ret = 1;
+	while(data->status && ret > 0)
 	{
 		write(1, "Minishell> ", 11);
 		ret = get_next_line(0, &line);
