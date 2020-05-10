@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void	reverse_red_fork(t_cmd *list, t_data *data, char **mem)
+void	reverse_red_fork(t_cmd *list, t_data *data, char **mem, int *count)
 {
 	char *command;
 	pid_t p;
@@ -10,6 +10,7 @@ void	reverse_red_fork(t_cmd *list, t_data *data, char **mem)
 //	(void)data;
 	pipe(fd);
 	
+	*count = 2;
 	command = list->command;
 	list = list->next;
 	p = fork();
@@ -46,7 +47,7 @@ void	reverse_red_fork(t_cmd *list, t_data *data, char **mem)
 			close(fds[1]);
 			free(*mem);
 			*mem = prs_mem(fds[0]);
-//			printf("[%s]\n", *mem);
+	//		printf("[%s]\n", *mem);
 		}
 //	printf("[%s]\n", *mem);
 	}

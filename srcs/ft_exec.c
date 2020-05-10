@@ -52,9 +52,12 @@ void	ft_exec(char *exec, char *params, t_data *data)
 
 //	if (*exec != '/')
 //		exec = get_path(exec, data->env_var);
-	mem = ft_strjoin(exec, " ");
-	exec = ft_strjoin(mem, params);
-	free(mem);
+	if(params != NULL)
+	{
+		mem = ft_strjoin(exec, " ");
+		exec = ft_strjoin(mem, params);
+		free(mem);
+	}
 	argv = clean_params(exec, data->env_var, data);
 	env = ft_calloc(1, sizeof(char *));
 	execve(argv[0], &argv[0], env);

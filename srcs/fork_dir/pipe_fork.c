@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void	pipe_fork(t_cmd *lst, t_data *data,char **mem)
+void	pipe_fork(t_cmd *lst, t_data *data, char **mem, int *count)
 {
 	pid_t p;
 	int fd[2];
@@ -8,7 +8,7 @@ void	pipe_fork(t_cmd *lst, t_data *data,char **mem)
 
 	pipe(fd);
 	p = fork();
-
+	*count = 2;
 	if(p == 0)
 	{
 		close(fd[0]);

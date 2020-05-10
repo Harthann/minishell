@@ -1,8 +1,10 @@
 #include "minishell.h"
 
-void	redirection_fork(t_cmd *list, char **mem)
+void	redirection_fork(t_cmd *list, char **mem, int *count)
 {
 	int f;
+
+	*count = 1;
 
 	if(ft_memcmp(list->command, ">>", 2) == 0)
 	{

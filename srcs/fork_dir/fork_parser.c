@@ -14,58 +14,76 @@ int		ft_separate(char *command)
 		return (0);
 }
 
+void	advance_list(t_cmd **alist, int *count, int n)
+{
+	int i;
+	t_cmd *lst;
 
+	lst = *alist;
 
+	i = 0;
+	while(i < n)
+	{
+		lst = lst->next;
+		*count += 1;
+		i++;
+	}
+	*alist = lst;
+}
+
+void	ft_display(t_cmd *list, char *params_mem, int *res)
+{
+	if (!list || ft_separate(list->command) == 0)
+	{
+		ft_putstr_fd(params_mem, 1);
+		*res = 0;
+	}
+}
+
+void pipe_loop(t_cmd **alist, char **mem, t_data *data, int *count)
+{
+	int n;
+	t_cmd *list;
+
+	list = *alist;
+	while(check_pipe(list) == 1)
+	{
+		pipe_fork(list->next, data, mem, &n);
+		advance_list(&list, count, n);
+	}
+	*alist = list;
+}
 
 int		fork_parsing(t_cmd *list, t_data *data, int *count)
 {
 	char	*params_mem;
 	int		res;
-//(void)data;
+	int		n;
+
 	res = 1;
 	params_mem = NULL;
 	while(res == 1 && list)
 	{
 		if(left_redir(list->next) == 1)
-		{
-			reverse_red_fork(list, data, &params_mem);
-			res = 0;
-			*count += 2;
-//			break;
-			list = list->next;
-			list = list->next;
-		}
+			reverse_red_fork(list, data, &params_mem, &n);
 		else
-		{
-			normal_fork(list, data, &params_mem);
-			list = list->next;
-			*count += 1;
-		}
-//		printf("[%s]\n", params_mem);
+			normal_fork(list, data, &params_mem, &n);
+		advance_list(&list, count, n);
 		if(right_redir(list) == 1)
 		{
-				redirection_fork(list, &params_mem);
-				list = list->next;
-				*count += 1;
-				printf("[%s]\n", params_mem);
-				if(!list)
-					break;
+			redirection_fork(list, &params_mem, &n);
+			advance_list(&list, count, n);
+			if(!list)
+			break;
 		}
-		while(check_pipe(list) == 1)
+/*		while(check_pipe(list) == 1)
 		{
-			pipe_fork(list->next, data, &params_mem);
-			list = list->next;
-			list = list->next;
-			*count += 2;
-		}
-		if (!list || ft_separate(list->command) == 0)
-		{
-			ft_putstr_fd(params_mem, 1);
-			res = 0;
-		}
-	//	res = 0;
+			pipe_fork(list->next, data, &params_mem, &n);
+			advance_list(&list, count, n);
+		}*/
+		pipe_loop(&list, &params_mem, data, count);
+		ft_display(list, params_mem, &res);
 	}
 	free(params_mem);
-//	printf("[%s]\n", params_mem);
 	return (*count);
 }

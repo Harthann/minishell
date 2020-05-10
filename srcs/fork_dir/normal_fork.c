@@ -1,9 +1,11 @@
 #include "minishell.h"
 
-void	normal_fork(t_cmd *lst, t_data *data, char **mem)
+void	normal_fork(t_cmd *lst, t_data *data, char **mem, int *count)
 {
 	int fd[2];
 	int save_fd;
+
+	*count = 1;
 //	char *mem;
 //	printf("hello\n");
 	pid_t p;
