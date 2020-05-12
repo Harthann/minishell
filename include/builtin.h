@@ -19,6 +19,8 @@
 # include <stdio.h>
 # include <sys/types.h>
 
+pid_t		child_process;
+
 typedef struct  env_list
 {
 	char *name;

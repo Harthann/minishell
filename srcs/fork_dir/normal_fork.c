@@ -14,14 +14,13 @@ void	normal_fork(t_cmd *lst, t_data *data, char **mem, int *count)
 {
 	int		*fd;
 	int		save_fd;
-	pid_t	p;
 
 	*count = 1;
 	if(!(fd = malloc(sizeof(int) * 2)))
 		fd = 0;
 	pipe(fd);
-	p = fork();
-	if (p == 0)
+	child_process = fork();
+	if (child_process == 0)
 	{
 		save_fd = dup(1);
 		close(fd[0]);
