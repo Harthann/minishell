@@ -47,9 +47,14 @@ void	exec_params(char **exec, char *temp, char *params)
 {
 	char *mem;
 
-	mem = ft_strjoin(temp, " ");
-	*exec = ft_strjoin(mem, params);
-	free(mem);
+	if (params == NULL)
+		*exec = temp;
+	else
+	{
+		mem = ft_strjoin(temp, " ");
+		*exec = ft_strjoin(mem, params);
+		free(mem);
+	}
 }
 
 void	ft_exec(char *exec, char *params, t_data *data)
@@ -63,14 +68,12 @@ void	ft_exec(char *exec, char *params, t_data *data)
 		path = get_path(exec, data->env_var);
 	if (path)
 	{
-		if(params != NULL)
-			exec_params(&exec, path, params);
+		exec_params(&exec, path, params);
 		argv = clean_params(exec, data->env_var, data);
 	}
 	else
 	{
-		if(params != NULL)
-			exec_params(&exec, exec, params);
+		exec_params(&exec, exec, params);
 		argv = clean_params(exec, data->env_var, data);
 	}
 	env = ft_calloc(1, sizeof(char *));
