@@ -11,6 +11,7 @@ void	reverse_red_fork2(char *command, t_data *data, char **mem, int fd)
 	p = fork();
 	if (p == 0)
 	{
+		
 		close(fds[0]);
 		dup2(fds[1], 1);
 		dup2(fd, 0);

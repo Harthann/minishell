@@ -1,0 +1,12 @@
+Makefile
+a.out
+backup
+builtin_test.c
+include
+lib
+libft
+main.c
+minishell
+objs
+srcs
+test.txt

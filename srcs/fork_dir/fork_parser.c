@@ -66,7 +66,7 @@ int		fork_parsing(t_cmd *list, t_data *data, int *count)
 	{
 		if(left_redir(list->next) == 1)
 			reverse_red_fork(list, data, &params_mem, &n);
-		else
+		else if(params_mem == NULL)
 			normal_fork(list, data, &params_mem, &n);
 		advance_list(&list, count, n);
 		if(right_redir(list) == 1)
