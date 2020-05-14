@@ -86,17 +86,26 @@ void	ft_delenv(t_env_lst **alst, char *name)
 	*alst = mem;
 }
 
-void	env_list(t_data *data)
+void	env_list(t_data *data, char *params)
 {
 	t_env_lst *lst;
 
 	lst = data->env_var;
-	while(lst)
+	if(*params ==  '\0')
 	{
-		display(lst->name, data);
-		display("=", data);
-		display(lst->value, data);
-		display("\n", data);
-		lst = lst->next;
+		while(lst)
+		{
+			display(lst->name, data);
+			display("=", data);
+			display(lst->value, data);
+			display("\n", data);
+			lst = lst->next;
+		}
+	}
+	else
+	{
+		errno = 2;
+		ft_putstr_fd(strerror(errno), 2);
+		write(2, "\n", 2);
 	}
 }

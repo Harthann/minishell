@@ -25,7 +25,7 @@ int		length(char **params)
 	int count;
 
 	count = 0;
-	while(params[count])
-	count++;
+	while (params[count])
+		count++;
 	return (count);
 }

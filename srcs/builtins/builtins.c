@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 16:56:11 by user42            #+#    #+#             */
-/*   Updated: 2020/05/14 23:36:22 by blacking         ###   ########.fr       */
+/*   Updated: 2020/05/15 00:54:18 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	builtins(char *command, char *params, t_data *data)
 		cd(params_cl);
 	else if (ft_memcmp(command, "env", 4) == 0 ||
 	(ft_memcmp(command, "export", 7) == 0 && *params == '\0'))
-		env_list(data);
+		env_list(data, params);
 	else if (ft_memcmp(command, "export", 7) == 0)
 		add_env(params_cl[0], data);
 	else if (ft_memcmp(command, "unset", 6) == 0)
