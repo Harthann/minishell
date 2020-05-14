@@ -37,7 +37,7 @@ char *ft_str(const char *s, int count, t_env_lst *lst, t_data *data)
 			mem = ft_itoa(data->last_return);
 		else
 			mem = env_value((char *)s, i, lst);
-		mem = env_value((char *)s, i, lst);
+//		mem = env_value((char *)s, i, lst);
 		res = ft_strjoin(str, mem);
 		free(mem);
 		free(str);

@@ -7,6 +7,7 @@ int	main_loop(t_data *data, char **env)
 	int		ret;
 
 	data->status = 1;
+	data->last_return = 0;
 	init_env(data, env);
 	signal(SIGINT, sigquit_handler);
 	signal(SIGQUIT, sigquit_handler);

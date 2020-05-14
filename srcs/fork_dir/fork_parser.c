@@ -64,6 +64,7 @@ int		fork_parsing(t_cmd *list, t_data *data, int *count)
 	params_mem = NULL;
 	while(res == 1 && list)
 	{
+		errno = 0;
 		if(left_redir(list->next) == 1)
 			reverse_red_fork(list, data, &params_mem, &n);
 		else if(params_mem == NULL)

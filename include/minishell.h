@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/05/10 18:39:23 by blacking         ###   ########.fr       */
+/*   Updated: 2020/05/14 23:52:21 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 # include "get_next_line.h"
 # include <sys/wait.h>
 # include <signal.h>
-
+# include <string.h>
+# include <errno.h>
 typedef struct	s_all
 {
 	int status;
@@ -54,7 +55,7 @@ char		*env_value2(char *str, t_env_lst *lst);
 char		*ft_quote(char *params, int index, t_env_lst *lst);
 void		ft_echo(char *command, char **params_cl, t_data *data);
 void		ft_putstr(char *str);
-void		pwd(t_data *data);
+void		pwd(t_data *data, char *params);
 void		cd(char **params_cl);
 void		env_list(t_data *data);
 void		display(char *str, t_data *data);
@@ -71,4 +72,7 @@ void		normal_fork(t_cmd *lst, t_data *data, char **mem, int *count);
 void		reverse_red_fork(t_cmd *list, t_data *data, char **memi, int *count);
 void		redirection_fork(t_cmd *list, char **mem, int *count);
 void		pipe_fork(t_cmd *list, t_data *data,char **mem, int *count);
+void		error_child(int fd);
+void		last_return(t_data *data);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 16:56:11 by user42            #+#    #+#             */
-/*   Updated: 2020/05/13 16:57:16 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/14 23:36:22 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	builtins(char *command, char *params, t_data *data)
 	if (ft_memcmp(command, "echo", 5) == 0)
 		ft_echo(command, params_cl, data);
 	else if (ft_memcmp(command, "pwd", 4) == 0)
-		pwd(data);
+		pwd(data, params);
 	else if (ft_memcmp(command, "cd", 3) == 0)
 		cd(params_cl);
 	else if (ft_memcmp(command, "env", 4) == 0 ||
