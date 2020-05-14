@@ -20,3 +20,12 @@ void	last_return(t_data *data)
 		data->last_return = 127;
 }
 
+int		length(char **params)
+{
+	int count;
+
+	count = 0;
+	while(params[count])
+	count++;
+	return (count);
+}

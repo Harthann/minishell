@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/05/14 23:52:21 by blacking         ###   ########.fr       */
+/*   Updated: 2020/05/15 00:23:11 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,10 @@ int			left_redir(t_cmd *list);
 int			right_redir(t_cmd *list);
 int			check_pipe(t_cmd *list);
 void		normal_fork(t_cmd *lst, t_data *data, char **mem, int *count);
-void		reverse_red_fork(t_cmd *list, t_data *data, char **memi, int *count);
+void		reverse_red_fork(t_cmd *list, t_data *data, char **mem, int *count);
 void		redirection_fork(t_cmd *list, char **mem, int *count);
 void		pipe_fork(t_cmd *list, t_data *data,char **mem, int *count);
 void		error_child(int fd);
 void		last_return(t_data *data);
-
+int			length(char **params);
 #endif
