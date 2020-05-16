@@ -35,7 +35,8 @@ void	ft_display(t_cmd *list, char *params_mem, int *res)
 {
 	if (!list || ft_separate(list->command) == 0)
 	{
-		ft_putstr_fd(params_mem, 1);
+		if(params_mem != NULL)
+			ft_putstr_fd(params_mem, 1);
 		*res = 0;
 	}
 }

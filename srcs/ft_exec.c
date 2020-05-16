@@ -73,8 +73,11 @@ void	ft_exec(char *exec, char *params, t_data *data)
 	argv = clean_params(exec, data->env_var, data);
 	env = ft_calloc(1, sizeof(char *));
 	execve(argv[0], &argv[0], env);
-	ft_putstr_fd(strerror(errno), 2);
-	ft_putstr_fd("\n", 2);
+	if(errno != 0)
+	{
+		ft_putstr_fd(strerror(errno), 2);
+		ft_putstr_fd("\n", 2);
+	}
 	free(exec);
 	free(path);
 }
