@@ -2,7 +2,7 @@
 
 void	unset_export(t_cmd *list, t_data *data)
 {
- 	if(ft_memcmp(list->command, "export", 6) == 0 && list->param != NULL)
+ 	if(ft_memcmp(list->command, "export", 7) == 0 && *(list->param) != '\0')
 		builtins(list->command, list->param, data);
 	else if(ft_memcmp(list->command, "unset", 5) == 0)
 		builtins(list->command, list->param, data);
