@@ -20,7 +20,6 @@ void	advance_list(t_cmd **alist, int *count, int n)
 	t_cmd *lst;
 
 	lst = *alist;
-
 	i = 0;
 	while(i < n)
 	{
@@ -73,7 +72,7 @@ int		fork_parsing(t_cmd *list, t_data *data, int *count)
 		advance_list(&list, count, n);
 		if(right_redir(list) == 1)
 		{
-			redirection_fork(list, &params_mem, &n);
+			redirection_fork(list, &params_mem, &n, data);
 			advance_list(&list, count, n);
 			if(!list)
 			break;
