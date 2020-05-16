@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 15:40:10 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/16 20:57:39 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/05/16 12:34:10 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <string.h>
 # include "libft.h"
 
-# define BUFFER_SIZE 32
+# define BUFFER_SIZE 1
 
 typedef struct		s_stock
 {

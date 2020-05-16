@@ -28,7 +28,7 @@ int main(int ac, char **av, char **env)
 	(void)ac;
 	(void)av;
 	(void)env;
-	child_process = -1;
+	fg_process = -1;
 	write(1, "\n\n\n\n****************", 22);
 	write(1, "********************", 21);
 	write(1, "\n\n\n\t****MINISHELL****",22);

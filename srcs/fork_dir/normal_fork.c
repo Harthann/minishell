@@ -19,8 +19,8 @@ void	normal_fork(t_cmd *lst, t_data *data, char **mem, int *count)
 	if(!(fd = malloc(sizeof(int) * 2)))
 		fd = 0;
 	pipe(fd);
-	child_process = fork();
-	if (child_process == 0)
+	fg_process = fork();
+	if (fg_process == 0)
 	{
 		save_fd = dup(1);
 		close(fd[0]);
