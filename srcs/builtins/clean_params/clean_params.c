@@ -16,22 +16,36 @@ int		c_p(char *params)
 	return (n);
 }
 
-char *ft_str(const char *s, int count, t_env_lst *lst, t_data *data)
+char *ft_str(char *s, int count, t_env_lst *lst, t_data *data)
 {
 	char *str;
-	char *mem;
+//	char *mem;
 	char *res;
 	int i;
+	int j;
 
+	j = 0;
 	i = 0;
 	if (!(str = ft_calloc(count + 1, sizeof(char))))
 		return (NULL);
-	while (i < count && s[i] != '$')
+	while (i < count)
 	{
-		str[i] = s[i];
+		if (s[i] == '$')
+		{
+			res = dollar_check(data, s, lst, i);
+			str = ft_strjoin(str, res);
+			while(str[j])
+				j++;
+			if (s[i + 1] == '?')
+				i += 1;
+			else
+				i += count_char(s + i + 1);
+		}
+		else
+			str[j++] = s[i];
 		i++;
 	}
-	if(s[i] == '$')
+/*	if(s[i] == '$')
 	{
 		if (s[i + 1] == '?')
 			mem = ft_itoa(data->last_return);
@@ -42,8 +56,8 @@ char *ft_str(const char *s, int count, t_env_lst *lst, t_data *data)
 		free(mem);
 		free(str);
 		return (res);
-	}
-	str[i] = '\0';
+	}*/
+//	str[j++] = '\0';
 	return (str);
 }
 

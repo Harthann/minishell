@@ -5,7 +5,7 @@ int		count_char(char *str)
 	int count;
 
 	count = 0;
-	while(str[count] != ' ' && str[count])
+	while(str[count] != ' ' && str[count] != '$' && str[count])
 		count++;
 	return (count);
 }
@@ -23,7 +23,7 @@ char	*env_value(char *str, int index, t_env_lst *lst)
 			return (ft_strdup(lst->value));
 		lst = lst->next;
 	}
-	return (ft_strdup("\n"));
+	return (ft_strdup("\0"));
 }
 
 
