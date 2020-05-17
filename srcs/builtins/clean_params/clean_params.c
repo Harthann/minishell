@@ -30,7 +30,15 @@ char *ft_str(char *s, int count, t_env_lst *lst, t_data *data)
 		return (NULL);
 	while (i < count)
 	{
-		if (s[i] == '$')
+		if(s[i] == 39 || s[i] == 34)
+		{
+			res = quote_check(s, lst, i);
+			str = ft_strjoin(str, res);
+			while(str[j])
+				j++;
+			i += count_quotechar(s, i);
+		}
+		else if (s[i] == '$')
 		{
 			res = dollar_check(data, s, lst, i);
 			str = ft_strjoin(str, res);
@@ -57,7 +65,7 @@ char *ft_str(char *s, int count, t_env_lst *lst, t_data *data)
 		free(str);
 		return (res);
 	}*/
-//	str[j++] = '\0';
+	str[j++] = '\0';
 	return (str);
 }
 
@@ -68,14 +76,14 @@ char **clean_loop(char **av, char *params, t_env_lst *lst, int index, t_data *da
 	j = 0;
 	while (params[index])
 	{
-		if ((params[index] == 39 || params[index] == 34)
+/*		if ((params[index] == 39 || params[index] == 34)
 				&& (params[index + 1] == ' ' || params[index + 1] == 0))
 		{
 			av[j++] = ft_quote(params, index, lst);
 			params = params + index + 1;
 			index = -1;
-		}
-		else if (params[index] == ' ')
+		}*/
+		if (params[index] == ' ')
 		{
 			if (index != 0)
 				av[j++] = ft_str(params, index, lst, data);

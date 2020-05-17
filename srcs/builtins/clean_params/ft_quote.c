@@ -69,10 +69,10 @@ char	*ft_quote(char *params, int index, t_env_lst *lst)
 		if (params[j] == '$' && params[index] == 34)
 		{
 			dollar_quote(params + j, &res, &i, lst);
-			while(params[j + 1] != 34)
+			while(params[j + 1] != 34 && params[j + 1] != '$')
 				j++;
 		}
-		else if(params[j] != 34)
+		else if(params[j] != params[index])
 			res[i++] = params[j];
 		j++;
 	}

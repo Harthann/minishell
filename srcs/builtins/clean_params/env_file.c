@@ -32,7 +32,7 @@ int		count_char2(char *str)
 	int count;
 
 	count = 0;
-	while(str[count] != 34 && str[count])
+	while(str[count] != 34 && str[count] != '$' &&str[count])
 		count++;
 	return (count);
 }

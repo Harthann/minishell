@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/05/17 17:29:37 by blacking         ###   ########.fr       */
+/*   Updated: 2020/05/17 18:44:59 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,6 @@ int			lst_size(t_data *data);
 void		order_tab(char ***tab, int length);
 char		*dollar_check(t_data *data, char *s, t_env_lst *lst, int index);
 int			count_char(char *str);
+char		*quote_check(char *s, t_env_lst *lst, int index);
+int			count_quotechar(char *str, int index);
 #endif

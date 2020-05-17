@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 16:56:11 by user42            #+#    #+#             */
-/*   Updated: 2020/05/16 16:11:22 by blacking         ###   ########.fr       */
+/*   Updated: 2020/05/17 19:09:55 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,11 @@ void	export_display(t_data *data)
 void	builtins(char *command, char *params, t_data *data)
 {
 	char **params_cl;
+	char **mem;
 
+	mem = clean_params(command, data->env_var, data);
+
+	command = mem[0];
 	if (params != NULL)
 		params_cl = clean_params(params, data->env_var, data);
 	if (ft_memcmp(command, "echo", 5) == 0)
