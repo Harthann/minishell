@@ -4,6 +4,7 @@ void	reverse_red_fork2(t_cmd *list, t_data *data, char **mem, int fd)
 {
 	int *fds;
 	int fdb[2];
+	char *m;
 	pid_t p;
 
 	if(!(fds = malloc(sizeof(int) * 2)))
@@ -17,18 +18,21 @@ void	reverse_red_fork2(t_cmd *list, t_data *data, char **mem, int fd)
 		close(fds[0]);
 		dup2(fds[1], 1);
 		dup2(fd, 0);
+		dup2(fdb[1], 2);
 		builtins(list->command, list->param, data);
-		write(fdb[1], ft_itoa(errno), ft_strlen(ft_itoa(errno)));
+//		write(fdb[1], ft_itoa(errno), ft_strlen(ft_itoa(errno)));
 		_exit(0);
 	}
 	else
 	{
 		wait(NULL);
 		close(fdb[1]);
-		error_child(fdb[0]);
+//		error_child(fdb[0]);
 		close(fds[1]);
+		m = prs_mem(fdb[0]);
 		free(*mem);
 		*mem = prs_mem(fds[0]);
+		last_return(data, m);
 	}
 }
 
@@ -55,7 +59,7 @@ void	reverse_red_fork(t_cmd *list, t_data *data, char **mem, int *count)
 		errno = 2;
 		ft_putstr_fd(strerror(errno), 2);
 		write(2, "\n", 2);
-		last_return(data);
+		last_return(data, "\0");
 		return ;
 	}
 	p = fork();
@@ -72,6 +76,6 @@ void	reverse_red_fork(t_cmd *list, t_data *data, char **mem, int *count)
 		wait(NULL);
 		close(fd[1]);
 		reverse_red_fork2(list, data, mem, fd[0]);
-		last_return(data);
+//		last_return(data);
 	}
 }

@@ -26,7 +26,14 @@ void	cd(char **params_cl)
 
 	n = length(params_cl);
 	if(n == 1)
+	{
 		chdir(params_cl[0]);
+		if(errno != 0)
+		{
+			ft_putstr_fd(strerror(errno), 2);
+			write(2, "\n", 2);
+		}
+	}
 	else
 	{
 		errno = 7;

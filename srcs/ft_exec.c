@@ -62,7 +62,9 @@ void	ft_exec(char *exec, char *params, t_data *data)
 	char **argv;
 	char **env;
 	char *path;
+	int ret;
 
+	ret = 0;
 	path = NULL;
 	if (*exec != '/')
 		path = get_path(exec, data->env_var);
