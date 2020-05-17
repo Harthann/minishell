@@ -5,7 +5,7 @@ void	redirection_fork(t_cmd *list, char **mem, int *count, t_data *data)
 	int f;
 
 	*count = 1;
-	(void)data;
+//	(void)data;
 	if(ft_memcmp(list->command, ">>", 2) == 0)
 	{
 			f = open(list->param, O_CREAT | O_APPEND | O_RDWR, 00600);

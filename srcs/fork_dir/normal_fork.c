@@ -53,6 +53,5 @@ void	normal_fork(t_cmd *lst, t_data *data, char **mem, int *count)
 //		free(fds);
 		unset_export(lst, data);
 		last_return(data, m);
-
 	}
 }
