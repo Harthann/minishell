@@ -53,7 +53,7 @@ char *ft_str(char *s, int count, t_env_lst *lst, t_data *data)
 		if(s[i] == 39 || s[i] == 34 || s[i] == '$')
 		{
 			res = ft_exception(s, lst, data, &i);
-			str = ft_strjoin(str, res);
+			str = ft_strjoin_free(str, res, 3);
 			while(str[j])
 				j++;
 		}
