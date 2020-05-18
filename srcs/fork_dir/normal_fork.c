@@ -40,6 +40,7 @@ void	normal_fork(t_cmd *lst, t_data *data, char **mem, int *count)
 		wait(NULL);
 		close(fde[1]);
 		close(fd[1]);
+		free(*mem);
 		*mem = prs_mem(fd[0]);
 		free(fd);
 		unset_export(lst, data);

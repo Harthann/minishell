@@ -5,6 +5,7 @@ void	parent_function(int *fds, int *fdb, char **mem, t_data *data)
 	wait(NULL);
 	close(fdb[1]);
 	close(fds[1]);
+	free(*mem);
 	*mem = prs_mem(fds[0]);
 	last_return(data, prs_mem(fdb[0]));
 	free(fds);

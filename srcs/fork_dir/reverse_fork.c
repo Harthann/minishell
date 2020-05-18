@@ -3,6 +3,7 @@
 void	child_function2(int f, int *fd, char **mem)
 {
 	close(fd[0]);
+	free(*mem);
 	*mem = prs_mem(f);
 	dup2(fd[1], 1);
 	ft_putstr_fd(*mem, 1);

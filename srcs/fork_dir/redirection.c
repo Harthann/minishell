@@ -26,6 +26,7 @@ void	redirection_fork(t_cmd *list, char **mem, int *count, t_data *data)
 			write(f, *mem, ft_strlen(*mem));
 			close(f);
 			f = open(list->param, O_RDWR);
+			free(*mem);
 			*mem = prs_mem(f);
 			close(f);
 	}
