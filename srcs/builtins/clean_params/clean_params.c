@@ -16,10 +16,30 @@ int		c_p(char *params)
 	return (n);
 }
 
+char *ft_exception(char *s, t_env_lst *lst, t_data *data, int *index)
+{
+	char *res;
+
+	if(s[*index] == 39 || s[*index] == 34)
+	{
+		res = quote_check(s, lst, *index);
+		*index += count_quotechar(s, *index);
+		return (res);
+	}
+	else
+	{
+		res = dollar_check(data, s, lst, *index);
+		if (s[*index + 1] == '?')
+			*index += 1;
+		else
+			*index += count_char(s + *index + 1);
+		return (res);
+	}
+}
+
 char *ft_str(char *s, int count, t_env_lst *lst, t_data *data)
 {
 	char *str;
-//	char *mem;
 	char *res;
 	int i;
 	int j;
@@ -30,41 +50,17 @@ char *ft_str(char *s, int count, t_env_lst *lst, t_data *data)
 		return (NULL);
 	while (i < count)
 	{
-		if(s[i] == 39 || s[i] == 34)
+		if(s[i] == 39 || s[i] == 34 || s[i] == '$')
 		{
-			res = quote_check(s, lst, i);
+			res = ft_exception(s, lst, data, &i);
 			str = ft_strjoin(str, res);
 			while(str[j])
 				j++;
-			i += count_quotechar(s, i);
-		}
-		else if (s[i] == '$')
-		{
-			res = dollar_check(data, s, lst, i);
-			str = ft_strjoin(str, res);
-			while(str[j])
-				j++;
-			if (s[i + 1] == '?')
-				i += 1;
-			else
-				i += count_char(s + i + 1);
 		}
 		else
 			str[j++] = s[i];
 		i++;
 	}
-/*	if(s[i] == '$')
-	{
-		if (s[i + 1] == '?')
-			mem = ft_itoa(data->last_return);
-		else
-			mem = env_value((char *)s, i, lst);
-//		mem = env_value((char *)s, i, lst);
-		res = ft_strjoin(str, mem);
-		free(mem);
-		free(str);
-		return (res);
-	}*/
 	str[j++] = '\0';
 	return (str);
 }
@@ -76,13 +72,6 @@ char **clean_loop(char **av, char *params, t_env_lst *lst, int index, t_data *da
 	j = 0;
 	while (params[index])
 	{
-/*		if ((params[index] == 39 || params[index] == 34)
-				&& (params[index + 1] == ' ' || params[index + 1] == 0))
-		{
-			av[j++] = ft_quote(params, index, lst);
-			params = params + index + 1;
-			index = -1;
-		}*/
 		if (params[index] == ' ')
 		{
 			if (index != 0)
