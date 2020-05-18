@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 16:56:11 by user42            #+#    #+#             */
-/*   Updated: 2020/05/17 19:09:55 by blacking         ###   ########.fr       */
+/*   Updated: 2020/05/18 11:47:16 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 void	ft_display_export(t_env_lst *lst, char **tab, t_data *data)
 {
-	
 	int i;
 	t_env_lst *mem;
 
@@ -56,13 +55,6 @@ void	export_display(t_data *data)
 	}
 	str[i++] = NULL;
 	order_tab(&str, length);
-//	i = 0;
-//	while(str[i])
-//	{
-//		ft_putstr_fd(str[i], 1);
-//		write(1, "\n", 1);
-//		i++;
-//	}
 	ft_display_export(data->env_var, str, data);
 }
 
@@ -74,7 +66,6 @@ void	builtins(char *command, char *params, t_data *data)
 	char **mem;
 
 	mem = clean_params(command, data->env_var, data);
-
 	command = mem[0];
 	if (params != NULL)
 		params_cl = clean_params(params, data->env_var, data);

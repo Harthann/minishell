@@ -21,7 +21,7 @@ char	*prs_mem(int fd)
 	{
 		ret = get_next_line(fd, &line);
 		prs_mem2(&cumul, line);
-		if(ret > 0)
+		if (ret > 0)
 			prs_mem2(&cumul, "\n");
 	}
 	free(line);
@@ -31,7 +31,7 @@ char	*prs_mem(int fd)
 
 int		left_redir(t_cmd *list)
 {
-	if(!list)
+	if (!list)
 		return (0);
 	else if(ft_memcmp(list->command, "<", 1) == 0)
 		return (1);
@@ -41,9 +41,9 @@ int		left_redir(t_cmd *list)
 
 int		right_redir(t_cmd *list)
 {
-	if(!list)
+	if (!list)
 		return (0);
-	else if(ft_memcmp(list->command, ">", 1) == 0
+	else if (ft_memcmp(list->command, ">", 1) == 0
 			|| ft_memcmp(list->command, ">>", 2) == 0)
 		return (1);
 	else
@@ -52,9 +52,9 @@ int		right_redir(t_cmd *list)
 
 int		check_pipe(t_cmd *list)
 {
-	if(!list)
+	if (!list)
 		return (0);
-	else if(ft_memcmp(list->command, "|", 1) == 0)
+	else if (ft_memcmp(list->command, "|", 1) == 0)
 		return (1);
 	else
 		return (0);

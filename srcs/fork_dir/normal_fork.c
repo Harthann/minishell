@@ -10,48 +10,40 @@ void	unset_export(t_cmd *list, t_data *data)
 		builtins(list->command, list->param, data);
 }
 
+void	child_function(int *fd, int *fde, t_cmd *lst, t_data *data)
+{
+	close(fde[0]);
+	close(fd[0]);
+	dup2(fd[1], 1);
+	dup2(fde[1], 2);
+	builtins(lst->command, lst->param, data);
+	_exit(0);
+}
 
 void	normal_fork(t_cmd *lst, t_data *data, char **mem, int *count)
 {
 	int		*fd;
-//	int 	fds[2];
-	int fde[2];
-	int		save_fd;
-	char *m;
+	int		*fde;
+
 	*count = 1;
-	pipe(fde);
-//	pipe(fds);
-	if(!(fd = malloc(sizeof(int) * 2)))
+	if (!(fd = malloc(sizeof(int) * 2)))
 		fd = 0;
+	if (!(fde = malloc(sizeof(int) * 2)))
+		fde = 0;
 	pipe(fd);
+	pipe(fde);
 	child_process = fork();
 	if (child_process == 0)
-	{
-		close(fde[0]);
-//		close(fds[0]);
-		save_fd = dup(1);
-		close(fd[0]);
-		dup2(fd[1], 1);
-		dup2(fde[1], 2);
-		builtins(lst->command, lst->param, data);
-		dup2(save_fd, 1);
-		close(save_fd);
-//		write(fds[1], ft_itoa(errno), ft_strlen(ft_itoa(errno)));
-		_exit(0);
-	}
+		child_function(fd, fde, lst, data);
 	else
 	{
 		wait(NULL);
 		close(fde[1]);
 		close(fd[1]);
-//		close(fds[1]);
-		m = prs_mem(fde[0]);
-//		printf("m : [%s]\n", m);
 		*mem = prs_mem(fd[0]);
-//		error_child(fds[0]);
 		free(fd);
-//		free(fds);
 		unset_export(lst, data);
-		last_return(data, m);
+		last_return(data, prs_mem(fde[0]));
+		free(fde);
 	}
 }
