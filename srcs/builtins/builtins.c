@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 16:56:11 by user42            #+#    #+#             */
-/*   Updated: 2020/05/18 11:47:16 by blacking         ###   ########.fr       */
+/*   Updated: 2020/05/18 22:10:22 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	export_display(t_data *data)
 	str[i++] = NULL;
 	order_tab(&str, length);
 	ft_display_export(data->env_var, str, data);
+	free(str);
 }
 
 
