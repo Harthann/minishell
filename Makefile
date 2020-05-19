@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+         #
+#    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/10 16:28:15 by nieyraud          #+#    #+#              #
-#    Updated: 2020/05/17 17:26:25 by blacking         ###   ########.fr        #
+#    Updated: 2020/05/19 15:18:49 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,6 +100,11 @@ ${OBJ_PATH}/%.o: %.c ${INCLUDE}
 	@$(MKDIR) -p ${OBJ_PATH}
 	@$(ECHO) "${cyanfonce}Compiling ${notdir $(basename $@)}"
 	@$(CC) $(FLAGS) -c -o $@ -I include/ $<
+
+sanitize: ${LIBS} ${OBJ} ${INCLUDE} 
+	@$(ECHO) "${vertclair}Creating ${NAME}"
+	@$(CC) ${FLAGS} ${OPT_FLAGS} ${SAN} -I include -g -L ${LIB} ${OBJ} lib/${LIBFT} -o ${NAME}
+	@$(ECHO) "${vertclair}[Minishell ready to use]"
 
 clean :
 	@$(ECHO) "${rouge}Removing objects files"
