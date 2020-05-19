@@ -61,6 +61,8 @@ int	ft_command_parser(char *str, t_data *data)
 
 	i = 0;
 	commands = NULL;
+	while (str[i] && str[i] == ' ')
+		i++;
 	while (str[i])
 	{
 		add_back(&commands, new_command(str + i, &i));
@@ -68,5 +70,6 @@ int	ft_command_parser(char *str, t_data *data)
 			i++;
 	}
 	cmd_director(commands, data);
+	free_command(&commands);
 	return (1);
 }

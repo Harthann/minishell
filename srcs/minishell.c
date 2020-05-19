@@ -17,6 +17,7 @@ int	main_loop(t_data *data, char **env)
 		write(1, "Minishell> ", 11);
 		ret = get_next_line(0, &line);
 		data->status = ft_command_parser(line, data);
+		free(line);
 	}
 	free(line);
 	return (0);

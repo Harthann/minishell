@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/05/18 12:30:46 by blacking         ###   ########.fr       */
+/*   Updated: 2020/05/19 15:06:13 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int		cmd_director(t_cmd *list, t_data *data);
 int		is_separator(char c, t_quote quote);
 void	add_back(t_cmd **list, t_cmd *new);
 void	sigquit_handler(int signal);
+void	free_command(t_cmd **list);
 
 t_env_lst	*ft_envnew(char *name, char *value);
 void		ft_addenv(t_env_lst **alst, t_env_lst *new);
