@@ -23,7 +23,9 @@ char	*get_path(char *exec, t_env_lst *env)
 	char	*path;
 	char	*cmd;
 	int		fd;
+	int		i;
 
+	i = 0;
 	while (env && ft_strncmp("PATH", env->name, 4))
 		env = env->next;
 	fd = -1;
@@ -31,6 +33,8 @@ char	*get_path(char *exec, t_env_lst *env)
 	cmd = path;
 	while (fd < 0 && cmd)
 	{
+		if(i > 0)
+			free(cmd);
 		cmd = extract_path(&path);
 		if (cmd)
 		{
@@ -38,6 +42,7 @@ char	*get_path(char *exec, t_env_lst *env)
 			cmd = ft_strjoin_free(cmd, exec, 1);
 		}
 		fd = open(cmd, O_RDONLY);
+		i++;
 	}
 	close(fd);
 	return (cmd);
