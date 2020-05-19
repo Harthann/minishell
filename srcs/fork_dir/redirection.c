@@ -7,7 +7,7 @@ int		ft_error_fd(t_data *data, int fd)
 		errno = 2;
 		ft_putstr_fd(strerror(errno), 2);
 		write(2, "\n", 2);
-		last_return(data, "\0");
+		last_return(data, ft_calloc(2, sizeof(char)));
 		return (-1);
 	}
 	return (1);
