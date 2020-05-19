@@ -17,12 +17,15 @@ char	*prs_mem(int fd)
 
 	cumul = NULL;
 	ret = 1;
+	line = NULL;
 	while (ret > 0)
 	{
 		ret = get_next_line(fd, &line);
 		prs_mem2(&cumul, line);
 		if (ret > 0)
 			prs_mem2(&cumul, "\n");
+		free(line);
+		line = NULL;
 	}
 	free(line);
 	close(fd);

@@ -29,7 +29,6 @@ void	ft_free(t_data *data, char **params_cl)
 		i++;
 	}
 	free(params_cl);
-	free(data->res_prev_cmd);
 	free_lst(&(data->env_var));
 	data->status = 0;
 //	free(data);

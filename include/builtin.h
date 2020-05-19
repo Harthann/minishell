@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/05/16 11:35:30 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/19 15:08:15 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct  env_list
 typedef struct	s_data
 {
 	t_env_lst	*env_var;
-	char 		*res_prev_cmd;
+//	char 		*res_prev_cmd;
 	int			last_return;
 	int			status;
 }				t_data;

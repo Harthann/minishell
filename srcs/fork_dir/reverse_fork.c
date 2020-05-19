@@ -7,7 +7,7 @@ void	child_function2(int f, int *fd, char **mem)
 	*mem = prs_mem(f);
 	dup2(fd[1], 1);
 	ft_putstr_fd(*mem, 1);
-	_exit(0);
+	exit(0);
 
 }
 
@@ -44,7 +44,7 @@ void	reverse_red_fork2(t_cmd *list, t_data *data, char **mem, int fd)
 		dup2(fd, 0);
 		dup2(fdb[1], 2);
 		builtins(list->command, list->param, data);
-		_exit(0);
+		exit(0);
 	}
 	else
 		parent_function2(fds, fdb, mem, data);

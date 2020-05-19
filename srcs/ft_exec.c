@@ -82,4 +82,13 @@ void	ft_exec(char *exec, char *params, t_data *data)
 	}
 	free(exec);
 	free(path);
+	free(env);
+	free(path);
+	int i = 0;
+	while(argv[i])
+	{
+		free(argv[i]);
+		i++;
+	}
+	free(argv);
 }

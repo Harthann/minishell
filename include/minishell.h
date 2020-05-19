@@ -6,7 +6,7 @@
 /*   By: blacking <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/05/18 12:30:46 by blacking         ###   ########.fr       */
+/*   Updated: 2020/05/19 16:06:35 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <signal.h>
 # include <string.h>
 # include <errno.h>
+# include <stdlib.h>
 typedef struct	s_all
 {
 	int status;
@@ -53,12 +54,12 @@ char		**clean_params(char *params, t_env_lst *lst, t_data *data);
 char		*env_value(char *str, int index, t_env_lst *lst);
 char		*env_value2(char *str, t_env_lst *lst);
 char		*ft_quote(char *params, int index, t_env_lst *lst);
-void		ft_echo(char *command, char **params_cl, t_data *data);
+void		ft_echo(char **params_cl);
 void		ft_putstr(char *str);
-void		pwd(t_data *data, char *params);
+void		pwd(char *params);
 void		cd(char **params_cl);
 void		env_list(t_data *data, char *params);
-void		display(char *str, t_data *data);
+void		display(char *str);
 void		add_env(char *str, t_data *data);
 void		ft_free(t_data *data, char **params_cl);
 void		ft_exec(char *exec, char *params, t_data *data);

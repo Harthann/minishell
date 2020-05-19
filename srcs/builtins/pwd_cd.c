@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void	pwd(t_data *data, char *params)
+void	pwd(char *params)
 {
 	char *res;
 
@@ -9,8 +9,8 @@ void	pwd(t_data *data, char *params)
 		res = ft_calloc(1000, sizeof(char));
 		res = getcwd(res, 1000);
 		ft_putstr_fd(res, 1);
-		data->res_prev_cmd = res;
 		write(1, "\n", 2);
+		free(res);
 	}
 	else
 	{

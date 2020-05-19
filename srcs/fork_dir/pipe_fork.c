@@ -33,7 +33,7 @@ void	pipe_fork2(t_cmd *lst, t_data *data, char **mem, int fd)
 		dup2(fdb[1], 2);
 		builtins(lst->command, lst->param, data);
 		fg_process = -1;
-		_exit(0);
+		exit(0);
 	}
 	else
 		parent_function(fds, fdb, mem, data);
@@ -55,7 +55,7 @@ void	pipe_fork(t_cmd *lst, t_data *data, char **mem, int *count)
 		dup2(fd[1], 1);
 		ft_putstr_fd(*mem, 1);
 		fg_process = -1;
-		_exit(0);
+		exit(0);
 	}
 	else
 	{

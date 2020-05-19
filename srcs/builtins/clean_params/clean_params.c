@@ -7,13 +7,13 @@ int		c_p(char *params)
 
 	i = 0;
 	n = 0;
-	while(params[i])
+	while(params && params[i])
 	{
 		if(params[i] == ' ' || params[i] == '|')
 			n++;
 		i++;
 	}
-	return (n);
+	return (n + 1);
 }
 
 char *ft_exception(char *s, t_env_lst *lst, t_data *data, int *index)
@@ -83,7 +83,7 @@ char **clean_loop(char **av, char *params, t_env_lst *lst, int index, t_data *da
 			av[j++] = ft_str(params, index + 1, lst, data);
 		index++;
 	}
-	av[j++] = NULL;
+	av[j] = NULL;
 	return (av);
 }
 
@@ -91,7 +91,8 @@ char	**clean_params(char *params, t_env_lst *lst, t_data *data)
 {
 	char **av;
 
-	if (!(av = ft_calloc(c_p(params) + 1, sizeof(char *))))
+	if (!(av = ft_calloc((c_p(params) + 1), sizeof(char *))))
 		return (NULL);
+
 	return (clean_loop(av, params, lst, 0, data));
 }

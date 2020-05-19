@@ -6,14 +6,14 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 16:56:11 by user42            #+#    #+#             */
-/*   Updated: 2020/05/18 22:10:22 by blacking         ###   ########.fr       */
+/*   Updated: 2020/05/19 16:48:52 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 
-void	ft_display_export(t_env_lst *lst, char **tab, t_data *data)
+void	ft_display_export(t_env_lst *lst, char **tab)
 {
 	int i;
 	t_env_lst *mem;
@@ -24,11 +24,11 @@ void	ft_display_export(t_env_lst *lst, char **tab, t_data *data)
 	{
 		if(ft_memcmp(tab[i], lst->name, ft_strlen(tab[i]) + 1) == 0)
 		{
-			display("declare -x ", data);
-			display(lst->name, data);
-			display("=", data);
-			display(lst->value, data);
-			display("\n", data);
+			display("declare -x ");
+			display(lst->name);
+			display("=");
+			display(lst->value);
+			display("\n");
 			lst = mem;
 			i++;
 		}
@@ -55,7 +55,7 @@ void	export_display(t_data *data)
 	}
 	str[i++] = NULL;
 	order_tab(&str, length);
-	ft_display_export(data->env_var, str, data);
+	ft_display_export(data->env_var, str);
 	free(str);
 }
 
@@ -68,15 +68,15 @@ void	builtins(char *command, char *params, t_data *data)
 
 	mem = clean_params(command, data->env_var, data);
 	command = mem[0];
-	if (params != NULL)
+//	if (params != NULL)
 		params_cl = clean_params(params, data->env_var, data);
 	if (ft_memcmp(command, "echo", 5) == 0)
-		ft_echo(command, params_cl, data);
+		ft_echo(params_cl);
 	else if (ft_memcmp(command, "pwd", 4) == 0)
-		pwd(data, params);
+		pwd(params);
 	else if (ft_memcmp(command, "cd", 3) == 0)
 		cd(params_cl);
-	else if((ft_memcmp(command, "export", 7) == 0 && *params == '\0'))
+	else if ((ft_memcmp(command, "export", 7) == 0 && *params == '\0'))
 		export_display(data);
 	else if (ft_memcmp(command, "env", 4) == 0)
 		env_list(data, params);
@@ -88,4 +88,15 @@ void	builtins(char *command, char *params, t_data *data)
 		ft_free(data, params_cl);
 	else
 		ft_exec(command, params, data);
+	int i;
+
+	i = 0;
+	while(params_cl && params_cl[i] != NULL)
+	{
+		free(params_cl[i]);
+		i++;
+	}
+	free(params_cl);
+	free(mem[0]);
+	free(mem);
 }

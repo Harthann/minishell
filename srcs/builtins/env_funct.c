@@ -37,6 +37,11 @@ void	add_env(char *str, t_data *data)
 	}
 	if(*value != '\0')
 		ft_addenv(&(data->env_var), ft_envnew(name, value));
+	else
+	{
+		free(value);
+		free(name);
+	}
 }
 
 void	ft_addenv(t_env_lst **alst, t_env_lst *new)
@@ -69,6 +74,8 @@ void	ft_delenv(t_env_lst **alst, char *name)
 		next_elem = lst->next;
 		if(ft_memcmp(name, lst->name, ft_strlen(name) + 1) == 0)
 		{
+			free(lst->name);
+			free(lst->value);
 			free(lst);
 			lst = 0;
 			if(prev_elem == 0)
@@ -95,10 +102,10 @@ void	env_list(t_data *data, char *params)
 	{
 		while(lst)
 		{
-			display(lst->name, data);
-			display("=", data);
-			display(lst->value, data);
-			display("\n", data);
+			display(lst->name);
+			display("=");
+			display(lst->value);
+			display("\n");
 			lst = lst->next;
 		}
 	}
