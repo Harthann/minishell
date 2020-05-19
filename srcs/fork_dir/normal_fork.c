@@ -32,8 +32,8 @@ void	normal_fork(t_cmd *lst, t_data *data, char **mem, int *count)
 		fde = 0;
 	pipe(fd);
 	pipe(fde);
-	child_process = fork();
-	if (child_process == 0)
+	fg_process = fork();
+	if (fg_process == 0)
 		child_function(fd, fde, lst, data);
 	else
 	{
