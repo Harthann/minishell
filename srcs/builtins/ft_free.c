@@ -23,13 +23,14 @@ void	ft_free(t_data *data, char **params_cl)
 	int i;
 
 	i = 0;
-	while(params_cl[i])
-	{
-		free(params_cl[i]);
-		i++;
-	}
-	free(params_cl);
-	free_lst(&(data->env_var));
+	(void)params_cl;
+//	while(params_cl[i])
+//	{
+//		free(params_cl[i]);
+//		i++;
+//	}
+//	free(params_cl);
+//	free_lst(&(data->env_var));
 	data->status = 0;
 //	free(data);
 	exit(0);
