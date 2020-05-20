@@ -57,14 +57,14 @@ void	reverse_red_fork(t_cmd *list, t_data *data, char **mem, int *count)
 	int *fd;
 	int f;
 
-	if (!(fd = malloc(sizeof(int) * 2)))
-		fd = 0;
-	pipe(fd);
 	*count = 2;
 	m = list->next;
 	f = open(m->param, O_RDWR);
 	if (ft_error_fd(data, f) == -1)
 		return ;
+	if (!(fd = malloc(sizeof(int) * 2)))
+		return ;
+	pipe(fd);
 	p = fork();
 	if (p == 0)
 		child_function2(f, fd, mem);

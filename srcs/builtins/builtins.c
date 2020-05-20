@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 16:56:11 by user42            #+#    #+#             */
-/*   Updated: 2020/05/19 16:48:52 by blacking         ###   ########.fr       */
+/*   Updated: 2020/05/20 14:12:47 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,7 @@ void	builtins(char *command, char *params, t_data *data)
 
 	mem = clean_params(command, data->env_var, data);
 	command = mem[0];
-//	if (params != NULL)
-		params_cl = clean_params(params, data->env_var, data);
+	params_cl = clean_params(params, data->env_var, data);
 	if (ft_memcmp(command, "echo", 5) == 0)
 		ft_echo(params_cl);
 	else if (ft_memcmp(command, "pwd", 4) == 0)
@@ -85,18 +84,8 @@ void	builtins(char *command, char *params, t_data *data)
 	else if (ft_memcmp(command, "unset", 6) == 0)
 		ft_delenv(&(data->env_var), params_cl[0]);
 	else if (ft_memcmp(command, "exit", 5) == 0)
-		ft_free(data, params_cl);
+		ft_free(data);
 	else
 		ft_exec(command, params, data);
-	int i;
-
-	i = 0;
-	while(params_cl && params_cl[i] != NULL)
-	{
-		free(params_cl[i]);
-		i++;
-	}
-	free(params_cl);
-	free(mem[0]);
-	free(mem);
+	free_builtin(params_cl, mem);
 }

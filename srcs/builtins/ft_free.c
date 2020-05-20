@@ -17,21 +17,39 @@ void	free_lst(t_env_lst **alst)
 	free(alst);
 }
 
-
-void	ft_free(t_data *data, char **params_cl)
+void	free_builtin(char **params_cl, char **mem)
 {
 	int i;
 
 	i = 0;
-	(void)params_cl;
-//	while(params_cl[i])
-//	{
-//		free(params_cl[i]);
-//		i++;
-//	}
-//	free(params_cl);
-//	free_lst(&(data->env_var));
+	while(params_cl && params_cl[i] != NULL)
+	{
+		free(params_cl[i]);
+		i++;
+	}
+	free(params_cl);
+	free(mem[0]);
+	free(mem);
+}
+
+void	free_exec(char *exec, char *path, char **env, char **argv)
+{
+	int i;
+
+	i = 0;
+	free(exec);
+	free(path);
+	free(env);
+	while(argv[i])
+	{
+		free(argv[i]);
+		i++;
+	}
+	free(argv);
+}
+
+void	ft_free(t_data *data)
+{
 	data->status = 0;
-//	free(data);
 	exit(0);
 }

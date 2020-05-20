@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 14:49:21 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/10/17 13:03:12 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/05/20 14:28:03 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,8 @@ char			*ft_itoa(int n)
 		nb_length = 1 + ft_count_length(-n);
 	else
 		nb_length = ft_count_length(n);
-	if (!(number = (char*)malloc(sizeof(char) * (nb_length + 1))))
+	if (!(number = ft_calloc(sizeof(char), (nb_length + 1))))
 		return (0);
 	ft_fill_number(number, n, nb_length);
-	number[nb_length] = '\0';
 	return (number);
 }
