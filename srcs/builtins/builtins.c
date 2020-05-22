@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 16:56:11 by user42            #+#    #+#             */
-/*   Updated: 2020/05/20 14:12:47 by blacking         ###   ########.fr       */
+/*   Updated: 2020/05/22 16:10:30 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	builtins(char *command, char *params, t_data *data)
 	else if (ft_memcmp(command, "unset", 6) == 0)
 		ft_delenv(&(data->env_var), params_cl[0]);
 	else if (ft_memcmp(command, "exit", 5) == 0)
-		ft_free(data);
+		ft_free(data, params_cl);
 	else
 		ft_exec(command, params, data);
 	free_builtin(params_cl, mem);

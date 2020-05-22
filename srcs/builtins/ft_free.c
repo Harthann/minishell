@@ -48,8 +48,33 @@ void	free_exec(char *exec, char *path, char **env, char **argv)
 	free(argv);
 }
 
-void	ft_free(t_data *data)
+void	ft_free(t_data *data, char **params)
 {
-	data->status = 0;
-	exit(0);
+	int i;
+	char *str;
+
+	i = 0;
+	errno = 0;
+	while (params[i])
+		i++;
+	if(i > 1)
+	{
+		ft_putstr_fd("Too many arguments\n", 2);
+		errno = 7;
+		data->last_return = 127;
+	}
+	else
+	{
+		str = params[0];
+		while(str && *str)
+		{
+			if (ft_isdigit(*str) == 0)
+				errno = 1;
+			str++;
+		}
+		if (errno != 0)
+			ft_putstr_fd("numeric argument required\n", 2);
+		data->status = 0;
+		exit(0);
+	}
 }

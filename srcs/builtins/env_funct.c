@@ -53,9 +53,14 @@ void	ft_addenv(t_env_lst **alst, t_env_lst *new)
 		*alst = new;
 	else
 	{
-		while (lst->next)
-			lst = lst->next;
-		lst->next = new;
+		if(env_exist(lst, new) == 1)
+			return ;
+		else
+		{
+			while (lst->next)
+				lst = lst->next;
+			lst->next = new;
+		}
 	}
 }
 
@@ -69,6 +74,8 @@ void	ft_delenv(t_env_lst **alst, char *name)
 	lst = *alst;
 	mem = lst;
 	prev_elem = 0;
+	if(name == NULL)
+		return ;
 	while (lst)
 	{
 		next_elem = lst->next;
