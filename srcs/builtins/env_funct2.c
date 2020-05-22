@@ -63,3 +63,17 @@ int		env_exist(t_env_lst *lst, t_env_lst *new)
 	return (0);
 }
 
+void	ft_delst(t_env_lst *lst, t_env_lst *prev_elem, t_env_lst *next_elem, t_env_lst *mem)
+{
+	free(lst->name);
+	free(lst->value);
+	free(lst);
+	lst = 0;
+	if (prev_elem == 0)
+	{
+		lst = next_elem;
+		mem = next_elem;
+	}
+	else
+		prev_elem->next = next_elem;
+}

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/05/22 16:10:03 by blacking         ###   ########.fr       */
+/*   Updated: 2020/05/22 17:39:46 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,5 @@ int			ft_error_fd(t_data *data, int fd);
 void		free_exec(char *exec, char *path, char **env, char **argv);
 void		free_builtin(char **params_cl, char **mem);
 int			env_exist(t_env_lst *lst, t_env_lst *new);
+void		ft_delst(t_env_lst *lst, t_env_lst *prev_elem, t_env_lst *next_elem, t_env_lst *mem);
 #endif

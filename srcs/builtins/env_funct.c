@@ -80,19 +80,7 @@ void	ft_delenv(t_env_lst **alst, char *name)
 	{
 		next_elem = lst->next;
 		if(ft_memcmp(name, lst->name, ft_strlen(name) + 1) == 0)
-		{
-			free(lst->name);
-			free(lst->value);
-			free(lst);
-			lst = 0;
-			if(prev_elem == 0)
-			{
-				lst = next_elem;
-				mem = next_elem;
-			}
-			else
-				prev_elem->next = next_elem;
-		}
+			ft_delst(lst, prev_elem, next_elem, mem);
 		prev_elem = lst;
 		if (lst)
 			lst = lst->next;
