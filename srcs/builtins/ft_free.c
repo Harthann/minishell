@@ -72,6 +72,7 @@ void	ft_free(t_data *data, char **params)
 				errno = 1;
 			str++;
 		}
+		ft_putstr_fd("exit\n", 1);
 		if (errno != 0)
 			ft_putstr_fd("numeric argument required\n", 2);
 		data->status = 0;
