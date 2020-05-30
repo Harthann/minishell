@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/05/20 13:55:11 by blacking         ###   ########.fr       */
+/*   Updated: 2020/05/22 17:39:46 by blacking         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void		cd(char **params_cl);
 void		env_list(t_data *data, char *params);
 void		display(char *str);
 void		add_env(char *str, t_data *data);
-void		ft_free(t_data *data);
+void		ft_free(t_data *data, char **params);
 void		ft_exec(char *exec, char *params, t_data *data);
 void		init_env(t_data *data, char **env);
 int			fork_parsing(t_cmd *list, t_data *data, int *count);
@@ -86,4 +86,6 @@ int			count_quotechar(char *str, int index);
 int			ft_error_fd(t_data *data, int fd);
 void		free_exec(char *exec, char *path, char **env, char **argv);
 void		free_builtin(char **params_cl, char **mem);
+int			env_exist(t_env_lst *lst, t_env_lst *new);
+void		ft_delst(t_env_lst *lst, t_env_lst *prev_elem, t_env_lst *next_elem, t_env_lst *mem);
 #endif
