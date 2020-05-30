@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cmd_director.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/20 08:51:49 by nieyraud          #+#    #+#             */
+/*   Updated: 2020/05/26 10:37:02 by user42           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 #include "builtin.h"
 
@@ -8,8 +20,6 @@ int     cmd_director(t_cmd *list, t_data *data)
 	count = 0;
     while (list)
 	{
-		// printf("Command : [%s]\n", list->command);
-		// printf("Parameter : [%s]\n", list->param);
 		if(ft_memcmp(list->command, "exit", 5) == 0)
 	        builtins(list->command, list->param, data);
         fork_parsing(list, data, &count);
