@@ -6,23 +6,22 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 16:56:11 by user42            #+#    #+#             */
-/*   Updated: 2020/05/30 16:08:38 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/30 17:05:13 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-
 void	ft_display_export(t_env_lst *lst, char **tab)
 {
-	int i;
-	t_env_lst *mem;
+	int			i;
+	t_env_lst	*mem;
 
 	mem = lst;
 	i = 0;
-	while(tab[i])
+	while (tab[i])
 	{
-		if(ft_memcmp(tab[i], lst->name, ft_strlen(tab[i]) + 1) == 0)
+		if (ft_memcmp(tab[i], lst->name, ft_strlen(tab[i]) + 1) == 0)
 		{
 			display("declare -x ");
 			display(lst->name);
@@ -39,10 +38,10 @@ void	ft_display_export(t_env_lst *lst, char **tab)
 
 void	export_display(t_data *data)
 {
-	char **str;
-	int	i;
-	int length;
-	t_env_lst *mem;
+	char		**str;
+	int			i;
+	int			length;
+	t_env_lst	*mem;
 
 	mem = data->env_var;
 	length = lst_size(data);
@@ -58,8 +57,6 @@ void	export_display(t_data *data)
 	ft_display_export(data->env_var, str);
 	free(str);
 }
-
-
 
 void	builtins(char *command, char *params, t_data *data)
 {

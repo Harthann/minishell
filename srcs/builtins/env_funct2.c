@@ -1,5 +1,16 @@
-#include "minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   env_funct2.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/30 16:27:50 by user42            #+#    #+#             */
+/*   Updated: 2020/05/30 16:28:50 by user42           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "minishell.h"
 
 int		lst_size(t_data *data)
 {
@@ -7,7 +18,7 @@ int		lst_size(t_data *data)
 	int			count;
 
 	count = 0;
-	lst  = data->env_var;
+	lst = data->env_var;
 	while (lst)
 	{
 		lst = lst->next;
@@ -63,7 +74,8 @@ int		env_exist(t_env_lst *lst, t_env_lst *new)
 	return (0);
 }
 
-void	ft_delst(t_env_lst *lst, t_env_lst *prev_elem, t_env_lst *next_elem, t_env_lst *mem)
+void	ft_delst(t_env_lst *lst, t_env_lst *prev_elem,
+				t_env_lst *next_elem, t_env_lst *mem)
 {
 	free(lst->name);
 	free(lst->value);

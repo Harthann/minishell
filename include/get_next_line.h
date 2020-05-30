@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 15:40:10 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/05/16 12:34:10 by user42           ###   ########.fr       */
+/*   Updated: 2020/05/26 13:34:05 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <string.h>
 # include "libft.h"
 
-# define BUFFER_SIZE 1
+# define BUFFER_SIZE 4096
 
 typedef struct		s_stock
 {

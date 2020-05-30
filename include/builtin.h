@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/05/19 15:08:15 by blacking         ###   ########.fr       */
+/*   Updated: 2020/05/30 16:15:38 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ pid_t		fg_process;
 
 typedef struct  env_list
 {
-	char *name;
-	char *value;
+	char			*name;
+	char			*value;
 	struct env_list *next;
 }				t_env_lst;
 

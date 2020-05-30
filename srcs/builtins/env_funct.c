@@ -1,4 +1,16 @@
-#include "../../include/minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   env_funct.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/30 16:38:24 by user42            #+#    #+#             */
+/*   Updated: 2020/05/30 17:00:46 by user42           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "minishell.h"
 #include <stdio.h>
 
 t_env_lst	*ft_envnew(char *name, char *value)
@@ -14,11 +26,11 @@ t_env_lst	*ft_envnew(char *name, char *value)
 	return (new);
 }
 
-void	add_env(char *str, t_data *data)
+void		add_env(char *str, t_data *data)
 {
-	char *name;
-	char *value;
-	int	 i;
+	char	*name;
+	char	*value;
+	int		i;
 
 	i = 0;
 	name = ft_calloc(ft_strlen(str), sizeof(char));
@@ -30,21 +42,15 @@ void	add_env(char *str, t_data *data)
 	}
 	str++;
 	i = 0;
-	while(*str)
+	while (*str)
 	{
 		value[i++] = *str;
 		str++;
 	}
-	if(*value != '\0')
-		ft_addenv(&(data->env_var), ft_envnew(name, value));
-	else
-	{
-		free(value);
-		free(name);
-	}
+	ft_addenv(&(data->env_var), ft_envnew(name, value));
 }
 
-void	ft_addenv(t_env_lst **alst, t_env_lst *new)
+void		ft_addenv(t_env_lst **alst, t_env_lst *new)
 {
 	t_env_lst *lst;
 
@@ -53,7 +59,7 @@ void	ft_addenv(t_env_lst **alst, t_env_lst *new)
 		*alst = new;
 	else
 	{
-		if(env_exist(lst, new) == 1)
+		if (env_exist(lst, new) == 1)
 			return ;
 		else
 		{
@@ -64,7 +70,7 @@ void	ft_addenv(t_env_lst **alst, t_env_lst *new)
 	}
 }
 
-void	ft_delenv(t_env_lst **alst, char *name)
+void		ft_delenv(t_env_lst **alst, char *name)
 {
 	t_env_lst *lst;
 	t_env_lst *mem;
@@ -74,12 +80,12 @@ void	ft_delenv(t_env_lst **alst, char *name)
 	lst = *alst;
 	mem = lst;
 	prev_elem = 0;
-	if(name == NULL)
+	if (name == NULL)
 		return ;
 	while (lst)
 	{
 		next_elem = lst->next;
-		if(ft_memcmp(name, lst->name, ft_strlen(name) + 1) == 0)
+		if (ft_memcmp(name, lst->name, ft_strlen(name) + 1) == 0)
 			ft_delst(lst, prev_elem, next_elem, mem);
 		prev_elem = lst;
 		if (lst)
@@ -88,14 +94,14 @@ void	ft_delenv(t_env_lst **alst, char *name)
 	*alst = mem;
 }
 
-void	env_list(t_data *data, char *params)
+void		env_list(t_data *data, char *params)
 {
 	t_env_lst *lst;
 
 	lst = data->env_var;
-	if(*params ==  '\0')
+	if (*params == '\0')
 	{
-		while(lst)
+		while (lst)
 		{
 			display(lst->name);
 			display("=");

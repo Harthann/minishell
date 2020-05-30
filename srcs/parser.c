@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/20 08:41:08 by nieyraud          #+#    #+#             */
+/*   Updated: 2020/05/20 08:45:49 by user42           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 #include "libft.h"
 
-char *extract_param(char *str, t_quote quote, int *i)
+char	*extract_param(char *str, t_quote quote, int *i)
 {
-	int length;
-	char *param;
+	int		length;
+	char	*param;
 
 	length = 0;
 	while (str[length])
@@ -14,12 +26,12 @@ char *extract_param(char *str, t_quote quote, int *i)
 		if (str[length] == 27 && quote.dquote == 0)
 		{
 			quote.quote++;
-			quote.quote -= quote.quote == 2 ? 2 : 0; 
+			quote.quote -= quote.quote == 2 ? 2 : 0;
 		}
 		if (str[length] == 22 && quote.quote == 0)
 		{
 			quote.dquote++;
-			quote.dquote -= quote.dquote == 2 ? 2 : 0; 
+			quote.dquote -= quote.dquote == 2 ? 2 : 0;
 		}
 		length++;
 	}
@@ -31,9 +43,9 @@ char *extract_param(char *str, t_quote quote, int *i)
 t_cmd	*new_command(char *str, int *start)
 {
 	t_cmd	*cmd;
-	t_quote quote;
-	int	i;
-	
+	t_quote	quote;
+	int		i;
+
 	if (!(cmd = ft_calloc(sizeof(t_cmd), 1)))
 		return (NULL);
 	quote.dquote = 0;
@@ -43,7 +55,7 @@ t_cmd	*new_command(char *str, int *start)
 		i++;
 	if (*str == '|' || *str == '<' || *str == '>')
 		i += (*str == '>' && *(str + 1) == '>') ? 2 : 1;
-	cmd->command = ft_substr(str , 0, i);
+	cmd->command = ft_substr(str, 0, i);
 	while (str[i] == ' ' && str[i])
 		i++;
 	if (str[i] == '|' || str[i] == '<' || str[i] == '>' || *str == '|')
@@ -54,10 +66,10 @@ t_cmd	*new_command(char *str, int *start)
 	return (cmd);
 }
 
-int	ft_command_parser(char *str, t_data *data)
+int		ft_command_parser(char *str, t_data *data)
 {
 	t_cmd	*commands;
-	int	i;
+	int		i;
 
 	i = 0;
 	commands = NULL;

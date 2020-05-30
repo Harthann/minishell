@@ -1,4 +1,16 @@
-#include "../../include/minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/30 16:29:36 by user42            #+#    #+#             */
+/*   Updated: 2020/05/30 16:29:39 by user42           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "minishell.h"
 
 void	free_lst(t_env_lst **alst)
 {
@@ -69,7 +81,7 @@ void	ft_free(t_data *data, char **params)
 	else
 	{
 		str = params[0];
-		while(str && *str)
+		while (str && *str)
 		{
 			if (ft_isdigit(*str) == 0)
 				errno = 1;
