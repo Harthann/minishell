@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fork_utils.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/06/24 09:00:19 by nieyraud          #+#    #+#             */
+/*   Updated: 2020/06/24 09:01:14 by nieyraud         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 void	prs_mem2(char **cumul, char *line)
@@ -5,7 +17,7 @@ void	prs_mem2(char **cumul, char *line)
 	char *mem;
 
 	mem = *cumul;
-	*cumul =  ft_strjoin(*cumul, line);
+	*cumul = ft_strjoin(*cumul, line);
 	free(mem);
 }
 
@@ -36,7 +48,7 @@ int		left_redir(t_cmd *list)
 {
 	if (!list)
 		return (0);
-	else if(ft_memcmp(list->command, "<", 1) == 0)
+	else if (ft_memcmp(list->command, "<", 1) == 0)
 		return (1);
 	else
 		return (0);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_exec.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/06/24 09:01:47 by nieyraud          #+#    #+#             */
+/*   Updated: 2020/06/24 09:28:32 by nieyraud         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 char	*extract_path(char **path)
@@ -23,9 +35,7 @@ char	*get_path(char *exec, t_env_lst *env)
 	char	*path;
 	char	*cmd;
 	int		fd;
-	int		i;
 
-	i = 0;
 	while (env && ft_strncmp("PATH", env->name, 4))
 		env = env->next;
 	fd = -1;
@@ -33,8 +43,6 @@ char	*get_path(char *exec, t_env_lst *env)
 	cmd = path;
 	while (fd < 0 && cmd)
 	{
-		if(i > 0)
-			free(cmd);
 		cmd = extract_path(&path);
 		if (cmd)
 		{
@@ -42,7 +50,8 @@ char	*get_path(char *exec, t_env_lst *env)
 			cmd = ft_strjoin_free(cmd, exec, 1);
 		}
 		fd = open(cmd, O_RDONLY);
-		i++;
+		if (fd < 0)
+			free(cmd);
 	}
 	close(fd);
 	return (cmd);
@@ -64,10 +73,10 @@ void	exec_params(char **exec, char *temp, char *params)
 
 void	ft_exec(char *exec, char *params, t_data *data)
 {
-	char **argv;
-	char **env;
-	char *path;
-	int ret;
+	char	**argv;
+	char	**env;
+	char	*path;
+	int		ret;
 
 	ret = 0;
 	path = NULL;

@@ -1,13 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   normal_fork.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/06/24 09:13:22 by nieyraud          #+#    #+#             */
+/*   Updated: 2020/06/24 09:36:27 by nieyraud         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 int		unset_export(t_cmd *list, t_data *data)
 {
- 	if(ft_memcmp(list->command, "export", 7) == 0 && *(list->param) != '\0')
+	if (ft_memcmp(list->command, "export", 7) == 0 && *(list->param) != '\0')
 	{
 		builtins(list->command, list->param, data);
 		return (1);
 	}
-	else if(ft_memcmp(list->command, "unset", 5) == 0)
+	else if (ft_memcmp(list->command, "unset", 5) == 0)
 	{
 		builtins(list->command, list->param, data);
 		return (1);
@@ -42,8 +54,8 @@ void	normal_fork(t_cmd *lst, t_data *data, char **mem, int *count)
 		return ;
 	pipe(fd);
 	pipe(fde);
-	fg_process = fork();
-	if (fg_process == 0)
+	g_fg_process = fork();
+	if (g_fg_process == 0)
 		child_function(fd, fde, lst, data);
 	else
 	{

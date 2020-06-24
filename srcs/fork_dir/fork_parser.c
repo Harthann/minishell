@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fork_parser.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/06/24 09:15:39 by nieyraud          #+#    #+#             */
+/*   Updated: 2020/06/24 09:17:26 by nieyraud         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 int		ft_separate(char *command)
@@ -16,8 +28,8 @@ int		ft_separate(char *command)
 
 void	advance_list(t_cmd **alist, int *count, int n)
 {
-	int i;
-	t_cmd *lst;
+	int		i;
+	t_cmd	*lst;
 
 	lst = *alist;
 	i = 0;
@@ -40,10 +52,10 @@ void	ft_display(t_cmd *list, char *params_mem, int *res)
 	}
 }
 
-void pipe_loop(t_cmd **alist, char **mem, t_data *data, int *count)
+void	pipe_loop(t_cmd **alist, char **mem, t_data *data, int *count)
 {
-	int n;
-	t_cmd *list;
+	int		n;
+	t_cmd	*list;
 
 	list = *alist;
 	while (check_pipe(list) == 1)
@@ -54,7 +66,7 @@ void pipe_loop(t_cmd **alist, char **mem, t_data *data, int *count)
 	*alist = list;
 }
 
-int		fork_parsing(t_cmd *list, t_data *data, int *count)
+void	fork_parsing(t_cmd *list, t_data *data, int *count)
 {
 	char	*params_mem;
 	int		res;
@@ -75,11 +87,10 @@ int		fork_parsing(t_cmd *list, t_data *data, int *count)
 			redirection_fork(list, &params_mem, &n, data);
 			advance_list(&list, count, n);
 			if (!list)
-				break;
+				break ;
 		}
 		pipe_loop(&list, &params_mem, data, count);
 		ft_display(list, params_mem, &res);
 	}
 	free(params_mem);
-	return (*count);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   reverse_fork.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/06/24 09:11:48 by nieyraud          #+#    #+#             */
+/*   Updated: 2020/06/24 09:12:10 by nieyraud         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 void	child_function2(int f, int *fd, char **mem)
@@ -8,7 +20,6 @@ void	child_function2(int f, int *fd, char **mem)
 	dup2(fd[1], 1);
 	ft_putstr_fd(*mem, 1);
 	exit(0);
-
 }
 
 void	parent_function2(int *fds, int *fdb, char **mem, t_data *data)
@@ -25,9 +36,9 @@ void	parent_function2(int *fds, int *fdb, char **mem, t_data *data)
 
 void	reverse_red_fork2(t_cmd *list, t_data *data, char **mem, int fd)
 {
-	int *fds;
-	int *fdb;
-	pid_t p;
+	int		*fds;
+	int		*fdb;
+	pid_t	p;
 
 	if (!(fds = malloc(sizeof(int) * 2)))
 		fds = 0;
@@ -52,10 +63,10 @@ void	reverse_red_fork2(t_cmd *list, t_data *data, char **mem, int fd)
 
 void	reverse_red_fork(t_cmd *list, t_data *data, char **mem, int *count)
 {
-	t_cmd *m;
-	pid_t p;
-	int *fd;
-	int f;
+	t_cmd	*m;
+	pid_t	p;
+	int		*fd;
+	int		f;
 
 	*count = 2;
 	m = list->next;
