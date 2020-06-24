@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/05/30 16:14:56 by user42           ###   ########.fr       */
+/*   Updated: 2020/06/24 08:46:46 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,16 @@
 # define MINISHELL_H
 
 # include "libft.h"
-# include "builtin.h"
 # include "get_next_line.h"
 # include <sys/wait.h>
+# include <sys/types.h>
 # include <signal.h>
 # include <string.h>
-# include <errno.h>
 # include <stdlib.h>
+# include <errno.h>
+# include <stdio.h>
+
+pid_t		fg_process;
 
 typedef struct	s_all
 {
@@ -39,6 +42,20 @@ typedef struct s_cmd
 	char	*param;
 	void	*next;
 }		t_cmd;
+
+typedef struct  env_list
+{
+	char			*name;
+	char			*value;
+	struct env_list *next;
+}				t_env_lst;
+
+typedef struct	s_data
+{
+	t_env_lst	*env_var;
+	int			last_return;
+	int			status;
+}				t_data;
 
 int		ft_command_parser(char *str, t_data *data);
 void	print_cmd(t_cmd *list);

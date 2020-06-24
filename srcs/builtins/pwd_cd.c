@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd_cd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/30 16:36:30 by user42            #+#    #+#             */
-/*   Updated: 2020/05/30 16:37:38 by user42           ###   ########.fr       */
+/*   Updated: 2020/06/24 08:48:14 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	pwd(char *params)
 
 	if (*params == '\0')
 	{
+		errno = 0;
 		res = ft_calloc(1000, sizeof(char));
 		res = getcwd(res, 1000);
 		ft_putstr_fd(res, 1);
@@ -39,6 +40,7 @@ void	cd(char **params_cl)
 	n = length(params_cl);
 	if (n == 1)
 	{
+		errno = 0;
 		chdir(params_cl[0]);
 		if (errno != 0)
 		{
