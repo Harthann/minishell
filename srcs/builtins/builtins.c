@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 16:56:11 by user42            #+#    #+#             */
-/*   Updated: 2020/05/30 17:05:13 by user42           ###   ########.fr       */
+/*   Updated: 2020/06/25 10:10:31 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,9 @@ void	builtins(char *command, char *params, t_data *data)
 	else if (ft_memcmp(command, "env", 4) == 0)
 		env_list(data, params);
 	else if (ft_memcmp(command, "export", 7) == 0)
-		add_env(params_cl[0], data);
+		add_env(params_cl, data);
 	else if (ft_memcmp(command, "unset", 6) == 0)
-		ft_delenv(&(data->env_var), params_cl[0]);
+		ft_delenv(&(data->env_var), params_cl);
 	else if (ft_memcmp(command, "exit", 5) == 0)
 		ft_free(data, params_cl);
 	else

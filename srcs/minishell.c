@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:55:18 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/06/24 09:36:27 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/06/25 10:13:34 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ int	main_loop(t_data *data, char **env)
 	int		ret;
 
 	data->status = 1;
-	data->last_return = 0;
-	init_env(data, env);
+	add_env(env, data);
 	signal(SIGINT, sigquit_handler);
 	signal(SIGQUIT, sigquit_handler);
 	ret = 1;

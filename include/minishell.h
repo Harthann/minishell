@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/06/24 09:36:30 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/06/25 10:13:42 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,6 @@
 
 pid_t			g_fg_process;
 
-typedef struct	s_all
-{
-	int status;
-}				t_all;
-
 typedef struct	s_quote
 {
 	int dquote;
@@ -45,16 +40,17 @@ typedef struct	s_cmd
 
 typedef	struct	s_env_list
 {
-	char			*name;
-	char			*value;
-	struct env_list *next;
+	char				*name;
+	char				*value;
+	struct s_env_list	*next;
 }				t_env_lst;
 
 typedef struct	s_data
 {
-	t_env_lst	*env_var;
-	int			last_return;
-	int			status;
+	t_env_lst		*env_var;
+	int				last_return;
+	int				status;
+	unsigned char	exit_code;
 }				t_data;
 
 int				ft_command_parser(char *str, t_data *data);
@@ -67,7 +63,7 @@ void			free_command(t_cmd **list);
 
 t_env_lst		*ft_envnew(char *name, char *value);
 void			ft_addenv(t_env_lst **alst, t_env_lst *new);
-void			ft_delenv(t_env_lst **alst, char *name);
+void			ft_delenv(t_env_lst **alst, char **name);
 void			builtins(char *command, char *params, t_data *data);
 char			**clean_params(char *params, t_env_lst *lst, t_data *data);
 char			*env_value(char *str, int index, t_env_lst *lst);
@@ -79,10 +75,9 @@ void			pwd(char *params);
 void			cd(char **params_cl);
 void			env_list(t_data *data, char *params);
 void			display(char *str);
-void			add_env(char *str, t_data *data);
+void			add_env(char **str, t_data *data);
 void			ft_free(t_data *data, char **params);
 void			ft_exec(char *exec, char *params, t_data *data);
-void			init_env(t_data *data, char **env);
 void			fork_parsing(t_cmd *list, t_data *data, int *count);
 char			*prs_mem(int fd);
 int				left_redir(t_cmd *list);

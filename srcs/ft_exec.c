@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 09:01:47 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/06/24 09:28:32 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/06/25 09:00:24 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	ft_exec(char *exec, char *params, t_data *data)
 	ret = 0;
 	path = NULL;
 	errno = 0;
-	if (*exec != '/')
+	if (*exec != '/' && *exec != '.')
 		path = get_path(exec, data->env_var);
 	if (path)
 		exec_params(&exec, path, params);

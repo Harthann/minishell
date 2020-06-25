@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/30 16:29:36 by user42            #+#    #+#             */
-/*   Updated: 2020/05/30 16:29:39 by user42           ###   ########.fr       */
+/*   Updated: 2020/06/25 08:49:10 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,11 @@ void	ft_free(t_data *data, char **params)
 				errno = 1;
 			str++;
 		}
+		if (params[0])
+			data->exit_code = (unsigned char)ft_atoi(params[0]);
 		ft_putstr_fd("exit\n", 1);
 		if (errno != 0)
 			ft_putstr_fd("numeric argument required\n", 2);
-		data->status = 0;
-		exit(0);
+		exit(data->exit_code);
 	}
 }
