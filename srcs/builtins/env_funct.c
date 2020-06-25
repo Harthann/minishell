@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/30 16:38:24 by user42            #+#    #+#             */
-/*   Updated: 2020/06/25 10:14:46 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/06/25 10:27:17 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,13 @@ void		add_env(char **str, t_data *data)
 		i = 0;
 		while (*(*str + i) != '=' && *(*str + i))
 			i++;
-		name = ft_substr(*str, 0, i);
-		value = ft_strdup(*str + i + 1);
+		if (*(*str + i) == '=')
+		{
+			name = ft_substr(*str, 0, i);
+			value = ft_strdup(*str + i + 1);
+			ft_addenv(&(data->env_var), ft_envnew(name, value));
+		}
 		str++;
-		ft_addenv(&(data->env_var), ft_envnew(name, value));
 	}
 }
 
