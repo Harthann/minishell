@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:41:08 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/05/20 08:45:49 by user42           ###   ########.fr       */
+/*   Updated: 2020/06/26 10:40:07 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "libft.h"
 
 char	*extract_param(char *str, t_quote quote, int *i)
 {
@@ -19,16 +18,19 @@ char	*extract_param(char *str, t_quote quote, int *i)
 	char	*param;
 
 	length = 0;
+	quote.escp = 0;
 	while (str[length])
 	{
-		if (is_separator(str[length], quote))
+		if (is_separator(str[length], &quote))
 			break ;
-		if (str[length] == 27 && quote.dquote == 0)
+		if (str[length] == '\\' && !quote.quote)
+			!quote.escp ? quote.escp++ : quote.escp--;
+		if (str[length] == '\'' && !quote.dquote && !quote.escp)
 		{
 			quote.quote++;
 			quote.quote -= quote.quote == 2 ? 2 : 0;
 		}
-		if (str[length] == 22 && quote.quote == 0)
+		if (str[length] == '"' && !quote.quote && !quote.escp)
 		{
 			quote.dquote++;
 			quote.dquote -= quote.dquote == 2 ? 2 : 0;
@@ -50,9 +52,10 @@ t_cmd	*new_command(char *str, int *start)
 		return (NULL);
 	quote.dquote = 0;
 	quote.quote = 0;
-	i = 0;
-	while (str[i] != ' ' && str[i] && !is_separator(str[i], quote))
-		i++;
+	quote.escp = 0;
+	i = -1;
+	while (str[++i] != ' ' && str[i] && !is_separator(str[i], &quote))
+		str[i] == '\\' && !quote.escp ? quote.escp++ : 0;
 	if (*str == '|' || *str == '<' || *str == '>')
 		i += (*str == '>' && *(str + 1) == '>') ? 2 : 1;
 	cmd->command = ft_substr(str, 0, i);

@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/30 16:36:30 by user42            #+#    #+#             */
-/*   Updated: 2020/06/24 08:48:14 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/06/26 09:06:36 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ void	cd(char **params_cl)
 		chdir(params_cl[0]);
 		if (errno != 0)
 		{
+			write(2, "Minishell: cd: ", 16);
+			ft_putstr_fd(params_cl[0], 2);
+			write(2, ": ", 2);
 			ft_putstr_fd(strerror(errno), 2);
 			write(2, "\n", 2);
 		}

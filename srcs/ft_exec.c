@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 09:01:47 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/06/25 09:00:24 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/06/26 09:04:05 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,7 @@ void	ft_exec(char *exec, char *params, t_data *data)
 	char	**argv;
 	char	**env;
 	char	*path;
-	int		ret;
 
-	ret = 0;
 	path = NULL;
 	errno = 0;
 	if (*exec != '/' && *exec != '.')
@@ -92,8 +90,9 @@ void	ft_exec(char *exec, char *params, t_data *data)
 	execve(argv[0], &argv[0], env);
 	if (errno != 0)
 	{
-		ft_putstr_fd(strerror(errno), 2);
-		ft_putstr_fd("\n", 2);
+		ft_putstr_fd("Minishell: ", 1);
+		write(1, exec, ft_strlen(exec));
+		ft_putstr_fd(": command not found\n", 1);
 	}
 	free_exec(exec, path, env, argv);
 }
