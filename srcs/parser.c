@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:41:08 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/06/26 10:40:07 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/06/30 09:08:23 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,27 +19,26 @@ char	*extract_param(char *str, t_quote quote, int *i)
 
 	length = 0;
 	quote.escp = 0;
-	while (str[length])
+	while (str[length] && !is_separator(str[length], &quote))
 	{
-		if (is_separator(str[length], &quote))
-			break ;
 		if (str[length] == '\\' && !quote.quote)
 			!quote.escp ? quote.escp++ : quote.escp--;
-		if (str[length] == '\'' && !quote.dquote && !quote.escp)
+		else if (str[length] == '\'' && !quote.dquote && !quote.escp)
 		{
 			quote.quote++;
 			quote.quote -= quote.quote == 2 ? 2 : 0;
 		}
-		if (str[length] == '"' && !quote.quote && !quote.escp)
+		else if (str[length] == '"' && !quote.quote && !quote.escp)
 		{
 			quote.dquote++;
 			quote.dquote -= quote.dquote == 2 ? 2 : 0;
 		}
+		else
+			quote.escp > 0 ? quote.escp-- : 0;
 		length++;
 	}
-	param = ft_substr(str, 0, length);
 	*i += length;
-	return (param);
+	return (param = ft_substr(str, 0, length));
 }
 
 t_cmd	*new_command(char *str, int *start)

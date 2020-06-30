@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:48:02 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/06/26 10:43:35 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/06/30 09:08:30 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,28 +20,30 @@ int		is_separator(char c, t_quote *quote)
 	return (0);
 }
 
-char	*rmv_escp(char *str, int length)
+void	rmv_escp(char *str, int length, char **res, t_quote quote)
 {
-	
-	if (!(res = ft_calloc(sizeof(char), length + 1)))
-		return (0);
+	int		i;
+
 	i = 0;
-	escp = 0;
-	while (str[length])
+	while (str[length + i])
 	{
-		if (is_separator(str[length], &quote))
-			break ;
-		if (str[length] == '\\' && !quote.quote)
-			!quote.escp ? quote.escp++ : quote.escp--;
-		if (str[length] == '\'' && !quote.dquote && !quote.escp)
+		if (str[length + i] == '\'' && !quote.dquote && !quote.escp)
 		{
 			quote.quote++;
 			quote.quote -= quote.quote == 2 ? 2 : 0;
 		}
-		if (str[length] == '"' && !quote.quote && !quote.escp)
+		if (str[length + i] == '"' && !quote.quote && !quote.escp)
 		{
 			quote.dquote++;
 			quote.dquote -= quote.dquote == 2 ? 2 : 0;
+		}
+		if (str[length + i] == '\\' && !quote.quote && !quote.escp)
+			length += ++quote.escp;
+		else
+		{
+			(*res)[i] = str[length + i];
+			i++;
+			quote.escp > 0 ? quote.escp-- : 0;
 		}
 	}
 }
@@ -51,7 +53,11 @@ char	*escp_trim(char *str)
 	char	*res;
 	int		i;
 	int		escp;
+	t_quote	quote;
 
+	quote.dquote = 0;
+	quote.quote = 0;
+	quote.escp = 0;
 	i = 0;
 	escp = 0;
 	while (str[i])
@@ -64,7 +70,9 @@ char	*escp_trim(char *str)
 	}
 	if (escp == 0)
 		return (str);
-	res = rmv_escp(str, i - escp);
+	if (!(res = ft_calloc(sizeof(char), i - escp + 1)))
+		return (0);
+	rmv_escp(str, 0, &res, quote);
 	free(str);
 	return (res);
 }
