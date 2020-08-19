@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/06/25 10:13:42 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/06/26 09:31:23 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct	s_quote
 {
 	int dquote;
 	int quote;
+	int	escp;
 }				t_quote;
 
 typedef struct	s_cmd
@@ -56,7 +57,7 @@ typedef struct	s_data
 int				ft_command_parser(char *str, t_data *data);
 void			print_cmd(t_cmd *list);
 int				cmd_director(t_cmd *list, t_data *data);
-int				is_separator(char c, t_quote quote);
+int				is_separator(char c, t_quote *quote);
 void			add_back(t_cmd **list, t_cmd *new);
 void			sigquit_handler(int signal);
 void			free_command(t_cmd **list);
