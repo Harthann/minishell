@@ -37,7 +37,8 @@ SRC_FILE = 	minishell.c parser.c print_cmd.c \
 			parse_utils.c fork_parser.c fork_utils.c normal_fork.c \
 			reverse_fork.c redirection.c pipe_fork.c \
 			signal.c error_utils.c env_funct2.c \
-			clean_params_utils.c
+			clean_params_utils.c \
+			display_built.c
 
 #############################
 #		DIRCTORIES PATH		#

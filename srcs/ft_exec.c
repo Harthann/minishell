@@ -74,7 +74,7 @@ void	exec_params(char **exec, char *temp, char *params)
 void	ft_exec(char *exec, char *params, t_data *data)
 {
 	char	**argv;
-	char	**env;
+//	char	**env;
 	char	*path;
 
 	path = NULL;
@@ -86,13 +86,13 @@ void	ft_exec(char *exec, char *params, t_data *data)
 	else
 		exec_params(&exec, exec, params);
 	argv = clean_params(exec, data->env_var, data);
-	env = ft_calloc(1, sizeof(char *));
-	execve(argv[0], &argv[0], env);
+//	env = ft_calloc(1, sizeof(char *));
+	execve(argv[0], argv, 0);
 	if (errno != 0)
 	{
 		ft_putstr_fd("Minishell: ", 1);
 		write(1, exec, ft_strlen(exec));
 		ft_putstr_fd(": command not found\n", 1);
 	}
-	free_exec(exec, path, env, argv);
+	free_exec(exec, path, 0, argv);
 }

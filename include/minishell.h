@@ -105,4 +105,7 @@ void			free_builtin(char **params_cl, char **mem);
 int				env_exist(t_env_lst *lst, t_env_lst *new);
 void			ft_delst(t_env_lst *lst, t_env_lst *prev_elem,
 					t_env_lst *next_elem, t_env_lst *mem);
+int				unset_export(t_cmd *list, t_data *data);
+void			display_parse(t_cmd *list, t_data *data, int *count);
+
 #endif

@@ -42,7 +42,7 @@ void	pipe_fork2(t_cmd *lst, t_data *data, char **mem, int fd)
 		close(fds[0]);
 		dup2(fd, 0);
 		dup2(fds[1], 1);
-		dup2(fdb[1], 2);
+		dup2(fdb[1], 10);
 		builtins(lst->command, lst->param, data);
 		g_fg_process = -1;
 		exit(0);

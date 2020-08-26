@@ -53,7 +53,7 @@ void	reverse_red_fork2(t_cmd *list, t_data *data, char **mem, int fd)
 		close(fds[0]);
 		dup2(fds[1], 1);
 		dup2(fd, 0);
-		dup2(fdb[1], 2);
+		dup2(fdb[1], 10);
 		builtins(list->command, list->param, data);
 		exit(0);
 	}

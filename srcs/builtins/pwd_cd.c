@@ -28,8 +28,8 @@ void	pwd(char *params)
 	else
 	{
 		errno = 7;
-		ft_putstr_fd(strerror(errno), 2);
-		write(2, "\n", 2);
+		ft_putstr_fd(strerror(errno), 10);
+		write(10, "\n", 2);
 	}
 }
 
@@ -42,7 +42,7 @@ void	cd(char **params_cl)
 	{
 		errno = 0;
 		chdir(params_cl[0]);
-		if (errno != 0)
+		if (errno != 0 && g_fg_process != 0)
 		{
 			write(2, "Minishell: cd: ", 16);
 			ft_putstr_fd(params_cl[0], 2);
@@ -51,7 +51,7 @@ void	cd(char **params_cl)
 			write(2, "\n", 2);
 		}
 	}
-	else
+	else if(g_fg_process != 0)
 	{
 		errno = 7;
 		ft_putstr_fd(strerror(errno), 2);

@@ -37,7 +37,7 @@ void	child_function(int *fd, int *fde, t_cmd *lst, t_data *data)
 	close(fde[0]);
 	close(fd[0]);
 	dup2(fd[1], 1);
-	dup2(fde[1], 2);
+	dup2(fde[1], 10);
 	builtins(lst->command, lst->param, data);
 	exit(0);
 }
