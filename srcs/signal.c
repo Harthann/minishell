@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:46:17 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/06/25 08:55:20 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/08/27 10:09:26 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	sigquit_handler(int signal)
 {
 	if (g_fg_process > -1)
 		kill(g_fg_process, signal);
+	else
+		write(1, "\b\b  \b\b", 6);
 	if (signal == SIGQUIT)
 	{
 		if (g_fg_process > -1)
