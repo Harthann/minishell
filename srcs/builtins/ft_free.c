@@ -6,9 +6,11 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:49:10 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/08/31 09:15:09 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/09/01 11:40:24 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "minishell.h"
 
 void	free_lst(t_env_lst **alst)
 {

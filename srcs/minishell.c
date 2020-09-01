@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:55:18 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/06/25 10:13:34 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/09/01 11:40:53 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@ int	main_loop(t_data *data, char **env)
 		g_fg_process = -1;
 		write(1, "Minishell> ", 11);
 		ret = get_next_line(0, &line);
+		if (ret == 0)
+			line = ft_strdup("exit");
 		data->status = ft_command_parser(line, data);
 		free(line);
 	}
-	free(line);
 	return (0);
 }
 
