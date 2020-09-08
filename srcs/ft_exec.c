@@ -93,4 +93,5 @@ void	ft_exec(char *exec, char *params, t_data *data)
 		ft_putstr_fd(": command not found\n", 1);
 	}
 	free_exec(exec, path, 0, argv);
+	exit(1);
 }

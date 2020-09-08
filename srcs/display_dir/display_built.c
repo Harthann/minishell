@@ -3,6 +3,7 @@
 void	display_b(t_cmd *lst, t_data *data)
 {
 	int		*fde;
+	int		status;
 
 	if (!(fde = malloc(sizeof(int) * 2)))
 		return ;
@@ -17,10 +18,14 @@ void	display_b(t_cmd *lst, t_data *data)
 	}
 	else
 	{
-		wait(NULL);
+		wait(&status);
+		errno = WEXITSTATUS(status);
 		close(fde[1]);
 		unset_export(lst, data);
-		last_return(data, prs_mem(fde[0]));
+		if (errno == 2)
+			data->last_return = errno;
+		else
+			last_return(data, prs_mem(fde[0]));
 		free(fde);
 	}
 }
