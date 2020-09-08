@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   display_built.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/31 09:11:16 by nieyraud          #+#    #+#             */
+/*   Updated: 2020/08/31 09:14:13 by nieyraud         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 void	display_b(t_cmd *lst, t_data *data)
@@ -29,7 +41,6 @@ void	display_b(t_cmd *lst, t_data *data)
 		free(fde);
 	}
 }
-
 
 void	display_parse(t_cmd *list, t_data *data, int *count)
 {

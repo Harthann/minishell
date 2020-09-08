@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/30 16:36:30 by user42            #+#    #+#             */
-/*   Updated: 2020/06/26 09:06:36 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/08/31 09:15:47 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	cd(char **params_cl)
 			write(2, "\n", 2);
 		}
 	}
-	else if(g_fg_process != 0)
+	else if (g_fg_process != 0)
 	{
 		errno = 7;
 		ft_putstr_fd(strerror(errno), 2);
