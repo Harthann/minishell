@@ -85,7 +85,7 @@ void	ft_exec(char *exec, char *params, t_data *data)
 	else
 		exec_params(&exec, exec, params);
 	argv = clean_params(exec, data->env_var, data);
-	execve(argv[0], argv, 0);
+	execve(argv[0], argv, data->env);
 	if (errno != 0)
 	{
 		ft_putstr_fd("Minishell: ", 1);

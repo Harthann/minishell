@@ -52,6 +52,7 @@ typedef struct	s_data
 	t_env_lst		*env_var;
 	int				last_return;
 	int				status;
+	char			**env;
 	unsigned char	exit_code;
 }				t_data;
 

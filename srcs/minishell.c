@@ -19,6 +19,7 @@ int	main_loop(t_data *data, char **env)
 
 	data->status = 1;
 	add_env(env, data);
+	data->env = env;
 	signal(SIGINT, sigquit_handler);
 	signal(SIGQUIT, sigquit_handler);
 	ret = 1;
