@@ -50,4 +50,5 @@ void	redirection_fork(t_cmd *list, char **mem, int *count, t_data *data)
 		write(f, *mem, ft_strlen(*mem));
 		close(f);
 	}
+	data->red = 1;
 }

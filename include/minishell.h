@@ -53,6 +53,7 @@ typedef struct	s_data
 	int				last_return;
 	int				status;
 	char			**env;
+	int				red;
 	unsigned char	exit_code;
 }				t_data;
 

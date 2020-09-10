@@ -23,6 +23,7 @@ void	last_return(t_data *data, char *m)
 		ft_putstr_fd(m, 2);
 		data->last_return = 127;
 	}
+	errno = 0;
 	free(m);
 }
 
