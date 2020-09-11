@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 09:15:39 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/06/24 09:17:26 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/09/11 07:49:08 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,10 @@ void	fork_parsing(t_cmd *list, t_data *data, int *count)
 		else if (params_mem == NULL)
 			normal_fork(list, data, &params_mem, &n);
 		advance_list(&list, count, n);
-		while (right_redir(list) == 1)
+		while (list && right_redir(list) == 1)
 		{
 			redirection_fork(list, &params_mem, &n, data);
 			advance_list(&list, count, n);
-			if (!list)
-				break ;
 		}
 		pipe_loop(&list, &params_mem, data, count);
 		ft_display(list, params_mem, &res, data->red);
