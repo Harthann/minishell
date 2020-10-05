@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 09:14:21 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/05 17:02:16 by stbaleba         ###   ########.fr       */
+/*   Updated: 2020/10/05 19:02:26 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,13 @@ void	redirection_fork(t_cmd *list, char **mem, int *count, t_data *data)
 		if (ft_error_fd(data, f) == -1)
 			return ;
 		if (next_cmd(list) != 1)
+		{
 			write(f, *mem, ft_strlen(*mem));
-		close(f);
-		f = open(list->param, O_RDWR);
-		free(*mem);
-		*mem = prs_mem(f);
+			close(f);
+			f = open(list->param, O_RDWR);
+			free(*mem);
+			*mem = prs_mem(f);
+		}
 		close(f);
 	}
 	else
