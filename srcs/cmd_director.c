@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:51:49 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/06 14:19:10 by stbaleba         ###   ########.fr       */
+/*   Updated: 2020/10/06 18:17:03 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int		cmd_director(t_cmd *list, t_data *data)
 	int count;
 
 	count = 0;
-	(void)data;
 	while (list)
 	{
 		if (ft_memcmp(list->command, "exit", 5) == 0)

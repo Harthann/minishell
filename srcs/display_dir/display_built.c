@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 09:11:16 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/09/10 09:38:54 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/06 18:22:07 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ void	display_b(t_cmd *lst, t_data *data)
 	{
 		wait(&status);
 		close(fde[1]);
-		if ((errno = WEXITSTATUS(status)) == 2)
-			data->last_return = errno;
+		unset_export(lst, data);
+		if ((WEXITSTATUS(status)) == 2)
+			data->last_return = WEXITSTATUS(status);
 		else
 			last_return(data, prs_mem(fde[0]));
-		unset_export(lst, data);
 		free(fde);
 	}
 }
