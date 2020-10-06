@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 16:30:11 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/11/21 08:55:01 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/06 13:17:58 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int		ft_atoi(const char *str)
 
 	nb = 0;
 	sign = 1;
+	if (!str)
+		return (0);
 	while ((*str == 32 || (*str >= 9 && *str <= 13)) && *str)
 		str++;
 	if (*str == '+' || *str == '-')
