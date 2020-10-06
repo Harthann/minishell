@@ -37,3 +37,16 @@ int check_char(char *str)
 	}
 	return (1);
 }
+
+int	ft_memplus(char *name, char *cname)
+{
+	int i;
+
+	i = 0;
+	while(name[i] && cname[i] && name[i] == cname[i])
+		i++;
+	if((name[i] == '\0' && cname[i] == '\0') || 
+		(name[i] == '\0' && cname[i] == '='))
+		return (0);
+	return (1);
+}

@@ -91,7 +91,7 @@ void	fork_parsing(t_cmd *list, t_data *data, int *count)
 		else if (params_mem == NULL)
 			normal_fork(list, data, &params_mem, &n);
 		advance_list(&list, count, n);
-		while (right_redir(list) == 1)
+		while (list && right_redir(list) == 1)
 		{
 			redirection_fork(list, &params_mem, &n, data);
 			advance_list(&list, count, n);
