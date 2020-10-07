@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/31 08:19:05 by user42            #+#    #+#             */
-/*   Updated: 2020/10/05 15:38:26 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/06 14:09:44 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,21 @@ int		file_opener(t_cmd **list)
 	int fd;
 
 	fd = -1;
-	while (!ft_memcmp((*list)->command, ">>", 2)
-		|| !ft_memcmp((*list)->command, ">", 1))
-	{
-		if (fd != -1)
-			close(fd);
-		if (ft_memcmp((*list)->command, ">>", 2) == 0)
-			fd = open((*list)->param, O_CREAT | O_APPEND | O_RDWR, 00600);
-		else
-			fd = open((*list)->param, O_CREAT | O_WRONLY | O_TRUNC, 00600);
-		if (!(*list)->next || (ft_memcmp((*list)->next->command, ">>", 2)
-			&& ft_memcmp((*list)->next->command, ">", 1)))
-			return (fd);
-		*list = (*list)->next;
-	}
+	(void)list;
+	// while (!ft_memcmp((*list)->command, ">>", 2)
+	// 	|| !ft_memcmp((*list)->command, ">", 1))
+	// {
+	// 	if (fd != -1)
+	// 		close(fd);
+	// 	if (ft_memcmp((*list)->command, ">>", 2) == 0)
+	// 		fd = open((*list)->param, O_CREAT | O_APPEND | O_RDWR, 00600);
+	// 	else
+	// 		fd = open((*list)->param, O_CREAT | O_WRONLY | O_TRUNC, 00600);
+	// 	if (!(*list)->next || (ft_memcmp((*list)->next->command, ">>", 2)
+	// 		&& ft_memcmp((*list)->next->command, ">", 1)))
+	// 		return (fd);
+	// 	*list = (*list)->next;
+	// }
 	return (fd);
 }
 

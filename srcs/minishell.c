@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:55:18 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/09/01 11:40:53 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/06 14:11:45 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ int	main_loop(t_data *data, char **env)
 	data->status = 1;
 	add_env(env, data);
 	data->env = env;
-	signal(SIGINT, sigquit_handler);
-	signal(SIGQUIT, sigquit_handler);
+	// signal(SIGINT, sigquit_handler);
+	// signal(SIGQUIT, sigquit_handler);
 	ret = 1;
 	while (data->status && ret > 0)
 	{
 		g_fg_process = -1;
-		write(1, "Minishell> ", 11);
+		write(1, "\nMinishell> ", 11);
 		ret = get_next_line(0, &line);
 		if (ret == 0)
 			line = ft_strdup("exit");

@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_cmd.c                                        :+:      :+:    :+:   */
+/*   ft_strapp_free.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/20 08:52:46 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/06 15:20:18 by nieyraud         ###   ########.fr       */
+/*   Created: 2020/10/07 11:11:46 by nieyraud          #+#    #+#             */
+/*   Updated: 2020/10/07 11:51:49 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 #include <stdio.h>
-#include <stdlib.h>
 
-void	print_cmd(t_cmd *list)
+char	*ft_strapp_free(char *str, char c)
 {
+	char *ret;
 	int i;
+	int length;
 
 	i = 0;
-	while (list)
+	if (!str)
+		length = 1;
+	else
+		length = ft_strlen(str) + 1;
+	if (!(ret = ft_calloc(sizeof(char), (length + 1))))
+		return (NULL);
+	while (str && str[i])
 	{
-		printf("command : %s\n", list->command);
-		while (list->params && list->params[i])
-		{
-			printf("param number : [%d] is : %s\n",i, list->params[i]);
-			i++;
-		}
-		list = list->next;
+		ret[i] = str[i];
+		i++;
 	}
+	free(str);
+	ret[i] = c;
+	return (ret);
 }

@@ -6,75 +6,53 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:48:02 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/06/30 09:08:30 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/07 14:41:52 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		is_separator(char c, t_quote *quote)
+int		is_separator(char *str, int start)
 {
-	if ((c == ';' || c == '<' || c == '|' || c == '>')
-		&& !quote->quote && !quote->dquote && !quote->escp)
+	if ((str[start] == '<' || str[start] == '|' || str[start] == '>') && !is_escape(str, start))
 		return (1);
 	return (0);
 }
 
-void	rmv_escp(char *str, int length, char **res, t_quote quote)
+char	*extract_quote(char *str, int *start)
 {
-	int		i;
+	char *ret;
+	int i;
 
-	i = 0;
-	while (str[length + i])
-	{
-		if (str[length + i] == '\'' && !quote.dquote && !quote.escp)
-		{
-			quote.quote++;
-			quote.quote -= quote.quote == 2 ? 2 : 0;
-		}
-		if (str[length + i] == '"' && !quote.quote && !quote.escp)
-		{
-			quote.dquote++;
-			quote.dquote -= quote.dquote == 2 ? 2 : 0;
-		}
-		if (str[length + i] == '\\' && !quote.quote && !quote.escp)
-			length += ++quote.escp;
-		else
-		{
-			(*res)[i] = str[length + i];
-			i++;
-			quote.escp > 0 ? quote.escp-- : 0;
-		}
-	}
+	i = *start + 1;
+	while (str[i] && str[i] != '\'')
+		i++;
+	ret = ft_substr(str, *start + 1, i - 1 - *start);
+	*start = i;
+	return (ret);
 }
 
-char	*escp_trim(char *str)
+char	*extract_dquote(char *str, int *start)
 {
-	char	*res;
+	char	*ret;
 	int		i;
-	int		escp;
-	t_quote	quote;
 
-	quote.dquote = 0;
-	quote.quote = 0;
-	quote.escp = 0;
-	i = 0;
-	escp = 0;
-	while (str[i])
+	i = *start + 1;
+	ret = NULL;
+	while (str[i] && str[i] != '"')
 	{
-		if (str[i] == '\\' && !i)
-			escp++;
-		else if (i && str[i] == '\\' && str[i - 1] != '\\')
-			escp++;
+		if (str[i] == '\\' && (str[i + 1] == '"' || str[i + 1] == '$'))
+		{
+			ret = ft_strapp_free(ret, str[i + 1]);
+			i++;
+		}
+		else if (str[i] == '$' && !is_escape(str, i))
+			ret = ft_strjoin_free(ret, "extract_dollar()", 1);
+		else
+			ret = ft_strapp_free(ret, str[i]);
 		i++;
 	}
-	if (escp == 0)
-		return (str);
-	if (!(res = ft_calloc(sizeof(char), i - escp + 1)))
-		return (0);
-	rmv_escp(str, 0, &res, quote);
-	free(str);
-	return (res);
+	return (ret);
 }
 
 void	add_back(t_cmd **list, t_cmd *new)
@@ -85,13 +63,11 @@ void	add_back(t_cmd **list, t_cmd *new)
 	tmp = *list;
 	to_free = new->command;
 	new->command = ft_strtrim(to_free, " ");
-	new->command = escp_trim(new->command);
 	free(to_free);
 	to_free = new->param;
 	if (new->param && *new->param)
 	{
 		new->param = ft_strtrim(to_free, " ");
-		new->param = escp_trim(new->param);
 		free(to_free);
 	}
 	while (tmp && tmp->next)

@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 17:02:41 by nieyraud          #+#    #+#             */
-/*   Updated: 2019/12/16 20:53:33 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/07 11:15:41 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,6 @@ char			*ft_ultoa(unsigned long int n);
 char			*ft_ultox(unsigned long int n);
 int				ft_search(char *str, char c);
 void			*ft_ralloc(void *ptr, size_t size, size_t new_size);
+char			*ft_strapp_free(char *str, char c);
 
 #endif
