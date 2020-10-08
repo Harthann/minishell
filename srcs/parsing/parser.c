@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:41:08 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/08 14:29:41 by stbaleba         ###   ########.fr       */
+/*   Updated: 2020/10/08 16:20:44 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ t_cmd	*new_command(char *str, int *start, t_env_lst *env)
 	while (str[*start] == ' ' && str[*start] != '\0')
 		(*start)++;
 	cmd->command = extract_command(str, start, env);
-	if (str[*start] == ' ')
+	while (str[*start] == ' ' && str[*start])
 		(*start)++;
 	cmd->params = parse_param(str, start, env);
 	return (cmd);
@@ -115,7 +115,6 @@ int		ft_command_parser(char *str, t_data *data)
 
 	i = 0;
 	commands = NULL;
-//	printf("Command parser\n");
 	while (str[i] && str[i] == ' ')
 		i++;
 	while (str[i])

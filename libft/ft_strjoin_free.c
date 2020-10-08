@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/10 12:55:41 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/05/19 20:56:22 by blacking         ###   ########.fr       */
+/*   Updated: 2020/10/08 15:09:55 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ char	*ft_strjoin_free(char *s1, char *s2, char state)
 
 	if (!s2)
 		return (s1);
+	if (!s1)
+		return (s2);
 	len_s1 = ft_strlen(s1);
 	len_s2 = ft_strlen(s2);
 	if (!(str = ft_calloc(len_s1 + len_s2 + 2, sizeof(char))))

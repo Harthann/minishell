@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 12:21:59 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/08 11:53:49 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/08 16:21:19 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ char	*extract_param(char *str, int *start, t_env_lst *env)
 
 	i = *start;
 	ret = NULL;
+	
 	while (str[*start])
 	{
 		if (str[*start] == '\\' && !is_escape(str, *start))
@@ -102,12 +103,13 @@ char	*extract_dollar(char *str, int *start, t_env_lst *env)
 	i = *start + 1;
 	if (str[i] == ' ' || str[i] == '\'' || is_separator(str, i))
 		return (ft_strdup("$"));
-	while (str[i] && str[i] != ' ' && str[i] != '\'' && !is_separator(str, i))
+	while (str[i] && str[i + 1] != ' ' && str[i + 1] != '\'' && str[i + 1] != '$'
+			&& str[i + 1] !=  '"' && !is_separator(str, i + 1))
 		i++;
 	tmp = env;
-	(*start) = i;
-	while (tmp && !ft_strncmp(str + *start + 1, tmp->name, i - * start - 1))
+	while (tmp && ft_strncmp(str + *start + 1, tmp->name, i - *start - 1))
 		tmp = tmp->next;
+	(*start) = i;
 	if (!tmp)
 		return (ft_strdup(""));
 	else
