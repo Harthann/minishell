@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/10/07 15:22:47 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/08 11:57:24 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,11 @@ void			add_back(t_cmd **list, t_cmd *new);
 void			sigquit_handler(int signal);
 void			free_command(t_cmd **list);
 char			*extract_quote(char *str, int *start);
-char			*extract_dquote(char *str, int *start);
+char			*extract_dquote(char *str, int *start, t_env_lst *env);
 int				is_escape(char *str, int i);
-char			*extract_param(char *str, int *start);
-char			*extract_command(char *str, int *start);
+char			*extract_param(char *str, int *start, t_env_lst *env);
+char			*extract_command(char *str, int *start, t_env_lst *env);
+char			*extract_dollar(char *str, int *start, t_env_lst *env);
 
 t_env_lst		*ft_envnew(char *name, char *value);
 void			ft_addenv(t_env_lst **alst, t_env_lst *new);

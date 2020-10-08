@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:48:02 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/07 14:41:52 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/08 11:25:12 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int		is_separator(char *str, int start)
 {
-	if ((str[start] == '<' || str[start] == '|' || str[start] == '>') && !is_escape(str, start))
+	if ((str[start] == '<' || str[start] == '|'
+		|| str[start] == '>') && !is_escape(str, start))
 		return (1);
 	return (0);
 }
@@ -32,7 +33,7 @@ char	*extract_quote(char *str, int *start)
 	return (ret);
 }
 
-char	*extract_dquote(char *str, int *start)
+char	*extract_dquote(char *str, int *start, t_env_lst *env)
 {
 	char	*ret;
 	int		i;
@@ -47,11 +48,12 @@ char	*extract_dquote(char *str, int *start)
 			i++;
 		}
 		else if (str[i] == '$' && !is_escape(str, i))
-			ret = ft_strjoin_free(ret, "extract_dollar()", 1);
+			ret = ft_strjoin_free(ret, extract_dollar(str, start, env), 1);
 		else
 			ret = ft_strapp_free(ret, str[i]);
 		i++;
 	}
+	(*start) = i;
 	return (ret);
 }
 
