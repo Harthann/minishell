@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 16:56:11 by user42            #+#    #+#             */
-/*   Updated: 2020/06/25 10:10:31 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/06 17:43:41 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	ft_display_export(t_env_lst *lst, char **tab)
 		{
 			display("declare -x ");
 			display(lst->name);
-			display("=");
 			display(lst->value);
 			display("\n");
 			lst = mem;

@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 09:15:39 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/09/11 07:49:08 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/06 15:15:49 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,14 @@ void	pipe_loop(t_cmd **alist, char **mem, t_data *data, int *count)
 	{
 		data->red = 0;
 		pipe_fork(list->next, data, mem, &n);
-		advance_list(&list, count, n);
+		advance_list(&list, count, n - 1);
+		if (left_redir(list->next) == 1)
+		{
+			reverse_red_fork(list, data, mem, &n);
+			advance_list(&list, count, n);
+		}
+		else
+			advance_list(&list, count, 1);
 	}
 	*alist = list;
 }
@@ -88,6 +95,12 @@ void	fork_parsing(t_cmd *list, t_data *data, int *count)
 		{
 			redirection_fork(list, &params_mem, &n, data);
 			advance_list(&list, count, n);
+			if (!list || right_redir(list) != 1)
+			{
+				free(params_mem);
+				params_mem = NULL;
+				break ;
+			}
 		}
 		pipe_loop(&list, &params_mem, data, count);
 		ft_display(list, params_mem, &res, data->red);

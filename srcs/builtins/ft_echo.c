@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/30 16:34:12 by user42            #+#    #+#             */
-/*   Updated: 2020/06/30 08:59:00 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/06 15:47:21 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int		check_option(char *command)
+int		check_option(char *cmd)
 {
-	while (*command && command)
+	int i;
+
+	i = 0;
+	if (cmd && cmd[i] == '-')
 	{
-		if (ft_memcmp(command, "-n", 3) == 0)
+		i++;
+		while (cmd[i])
+		{
+			if (cmd[i] != 'n')
+				return (1);
+			i++;
+		}
+		if (cmd[i] == '\0')
 			return (0);
-		command++;
 	}
 	return (1);
 }
@@ -34,14 +43,20 @@ void	ft_echo(char **params_cl)
 {
 	int n;
 	int i;
+	int stop;
 
+	stop = 0;
 	n = check_option(params_cl[0]);
 	i = (n == 0) ? 1 : 0;
 	while (params_cl[i])
 	{
-		display(params_cl[i]);
-		if (params_cl[i + 1] != NULL)
-			display(" ");
+		if (stop == 1 || check_option(params_cl[i]) == 1)
+		{
+			stop = 1;
+			display(params_cl[i]);
+			if (params_cl[i + 1] != NULL)
+				display(" ");
+		}
 		i++;
 	}
 	if (n == 1)

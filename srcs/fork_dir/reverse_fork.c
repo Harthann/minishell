@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 09:11:48 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/06/24 09:12:10 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/06 14:04:35 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,11 @@ void	reverse_red_fork(t_cmd *list, t_data *data, char **mem, int *count)
 
 	*count = 2;
 	m = list->next;
+	while((left_redir(m->next) == 1))
+	{
+		m = m->next;
+		*count += 1;
+	}
 	f = open(m->param, O_RDWR);
 	if (ft_error_fd(data, f) == -1)
 		return ;

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/10/08 11:57:24 by nieyraud         ###   ########.fr       */
+/*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */##   ########.fr       */
+/*   Updated: 2020/10/06 18:08:00 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <stdlib.h>
 # include <errno.h>
 # include <stdio.h>
+# define  INT_MAX 2147483647
 
 pid_t			g_fg_process;
 
@@ -117,5 +118,8 @@ void			ft_delst(t_env_lst *lst, t_env_lst *prev_elem,
 					t_env_lst *next_elem, t_env_lst *mem);
 int				unset_export(t_cmd *list, t_data *data);
 void			display_parse(t_cmd *list, t_data *data, int *count);
+int				check_env(t_env_lst *lst);
+int				check_char(char *str);
+int				ft_memplus(char *name, char *cname);
 
 #endif

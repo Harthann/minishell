@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/31 08:19:05 by user42            #+#    #+#             */
-/*   Updated: 2020/10/06 14:09:44 by nieyraud         ###   ########.fr       */
+/*   Created: 2020/06/24 09:14:21 by nieyraud          #+#    #+#             */
+/*   Updated: 2020/10/08 12:21:04 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,17 @@ int		ft_error_fd(t_data *data, int fd)
 	return (1);
 }
 
-int		file_opener(t_cmd **list)
+int		next_cmd(t_cmd *list)
 {
-	int fd;
+	t_cmd *lst;
 
-	fd = -1;
-	(void)list;
-	// while (!ft_memcmp((*list)->command, ">>", 2)
-	// 	|| !ft_memcmp((*list)->command, ">", 1))
-	// {
-	// 	if (fd != -1)
-	// 		close(fd);
-	// 	if (ft_memcmp((*list)->command, ">>", 2) == 0)
-	// 		fd = open((*list)->param, O_CREAT | O_APPEND | O_RDWR, 00600);
-	// 	else
-	// 		fd = open((*list)->param, O_CREAT | O_WRONLY | O_TRUNC, 00600);
-	// 	if (!(*list)->next || (ft_memcmp((*list)->next->command, ">>", 2)
-	// 		&& ft_memcmp((*list)->next->command, ">", 1)))
-	// 		return (fd);
-	// 	*list = (*list)->next;
-	// }
-	return (fd);
+	if(list->next == NULL)
+		return (0);
+	lst = list->next;
+	if (ft_memcmp(lst->command, ">", 1) == 0
+		|| ft_memcmp(lst->command, ">>", 2) == 0)
+		return (1);
+	return (0);
 }
 
 void	redirection_fork(t_cmd *list, char **mem, int *count, t_data *data)
@@ -58,17 +48,22 @@ void	redirection_fork(t_cmd *list, char **mem, int *count, t_data *data)
 	{
 		if (ft_error_fd(data, f) == -1)
 			return ;
-		write(f, *mem, ft_strlen(*mem));
+		if (next_cmd(list) != 1)
+		{
+			write(f, *mem, ft_strlen(*mem));
+			close(f);
+			f = open(list->param, O_RDWR);
+			free(*mem);
+			*mem = prs_mem(f);
+		}
 		close(f);
-		f = open(list->param, O_RDWR);
-		free(*mem);
-		*mem = prs_mem(f);
 	}
 	else
 	{
 		if (ft_error_fd(data, f) == -1)
 			return ;
-		write(f, *mem, ft_strlen(*mem));
+		if (next_cmd(list) != 1)
+			write(f, *mem, ft_strlen(*mem));
 		close(f);
 	}
 	data->red = 1;

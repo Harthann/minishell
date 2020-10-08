@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:49:10 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/09/01 11:40:24 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/06 13:18:43 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void	free_exec(char *exec, char *path, char **env, char **argv)
 
 void	error_exit(t_data *data)
 {
+
+	ft_putstr_fd("exit\n", 1);
 	ft_putstr_fd("Too many arguments\n", 2);
 	errno = 7;
 	data->last_return = 127;
@@ -81,6 +83,12 @@ void	ft_free(t_data *data, char **params)
 	else
 	{
 		str = params[0];
+		if (str && (*str == '+' || *str == '-'))
+		{
+			if (*str == '-')
+				i = -1;
+			str++;
+		}
 		while (str && *str)
 		{
 			if (ft_isdigit(*str) == 0)
@@ -90,8 +98,12 @@ void	ft_free(t_data *data, char **params)
 		if (params[0])
 			data->exit_code = (unsigned char)ft_atoi(params[0]);
 		ft_putstr_fd("exit\n", 1);
-		if (errno != 0)
+		if (errno != 0 || (ft_atoi(params[0]) > 0 && i == -1) ||
+			(ft_atoi(params[0]) < 0 && i == 1))
 			ft_putstr_fd("numeric argument required\n", 2);
+		if ((ft_atoi(params[0]) > 0 && i == -1) || 
+			(ft_atoi(params[0]) < 0 && i == 1))
+			exit(255);
 		exit(data->exit_code);
 	}
 }
