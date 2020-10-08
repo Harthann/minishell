@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/30 16:36:30 by user42            #+#    #+#             */
-/*   Updated: 2020/08/31 09:15:47 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/08 14:20:30 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	pwd(char *params)
 {
 	char *res;
 
-	if (*params == '\0')
+	if (params == NULL)
 	{
 		errno = 0;
 		res = ft_calloc(1000, sizeof(char));

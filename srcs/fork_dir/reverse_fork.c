@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 09:11:48 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/06 14:04:35 by stbaleba         ###   ########.fr       */
+/*   Updated: 2020/10/08 13:19:40 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	reverse_red_fork2(t_cmd *list, t_data *data, char **mem, int fd)
 		dup2(fds[1], 1);
 		dup2(fd, 0);
 		dup2(fdb[1], 10);
-		builtins(list->command, list->param, data);
+		builtins(list->command, list->params, data);
 		exit(0);
 	}
 	else
@@ -75,7 +75,7 @@ void	reverse_red_fork(t_cmd *list, t_data *data, char **mem, int *count)
 		m = m->next;
 		*count += 1;
 	}
-	f = open(m->param, O_RDWR);
+	f = open(m->params[0], O_RDWR);
 	if (ft_error_fd(data, f) == -1)
 		return ;
 	if (!(fd = malloc(sizeof(int) * 2)))

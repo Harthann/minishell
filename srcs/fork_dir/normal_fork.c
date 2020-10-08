@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 09:13:22 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/06/24 09:36:27 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/08 14:33:58 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 int		unset_export(t_cmd *list, t_data *data)
 {
-	if (ft_memcmp(list->command, "export", 7) == 0 && *(list->param) != '\0')
+	if (ft_memcmp(list->command, "export", 7) == 0 && list->params != NULL)
 	{
-		builtins(list->command, list->param, data);
+		builtins(list->command, list->params, data);
 		return (1);
 	}
 	else if (ft_memcmp(list->command, "unset", 5) == 0)
 	{
-		builtins(list->command, list->param, data);
+		builtins(list->command, list->params, data);
 		return (1);
 	}
 	else if (ft_memcmp(list->command, "cd", 3) == 0)
 	{
-		builtins(list->command, list->param, data);
+		builtins(list->command, list->params, data);
 		return (1);
 	}
 	return (0);
@@ -38,7 +38,7 @@ void	child_function(int *fd, int *fde, t_cmd *lst, t_data *data)
 	close(fd[0]);
 	dup2(fd[1], 1);
 	dup2(fde[1], 10);
-	builtins(lst->command, lst->param, data);
+	builtins(lst->command, lst->params, data);
 	exit(0);
 }
 

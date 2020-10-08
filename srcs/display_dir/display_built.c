@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 09:11:16 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/06 18:22:07 by stbaleba         ###   ########.fr       */
+/*   Updated: 2020/10/08 13:14:21 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	display_b(t_cmd *lst, t_data *data)
 	{
 		close(fde[0]);
 		dup2(fde[1], 10);
-		builtins(lst->command, lst->param, data);
+		builtins(lst->command, lst->params, data);
 		exit(0);
 	}
 	else

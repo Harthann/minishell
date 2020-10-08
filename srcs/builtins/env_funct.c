@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/30 16:38:24 by user42            #+#    #+#             */
-/*   Updated: 2020/10/06 18:28:22 by stbaleba         ###   ########.fr       */
+/*   Updated: 2020/10/08 14:12:47 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void		env_list(t_data *data, char *params)
 	t_env_lst *lst;
 
 	lst = data->env_var;
-	if (*params == '\0')
+	if (params == NULL)
 	{
 		while (lst)
 		{

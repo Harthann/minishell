@@ -6,7 +6,7 @@
 #    By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/10 16:28:15 by nieyraud          #+#    #+#              #
-#    Updated: 2020/10/06 17:52:53 by stbaleba         ###   ########.fr        #
+#    Updated: 2020/10/08 13:30:07 by stbaleba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ SRC_FILE = 	minishell.c parser.c print_cmd.c \
 			reverse_fork.c redirection.c pipe_fork.c \
 			signal.c error_utils.c env_funct2.c \
 			clean_params_utils.c env_utils.c \
-			display_built.c
+			display_built.c extract.c
 
 #############################
 #		DIRCTORIES PATH		#

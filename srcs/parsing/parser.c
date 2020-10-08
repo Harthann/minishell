@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:41:08 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/08 11:57:46 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/08 14:29:41 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ int		ft_command_parser(char *str, t_data *data)
 
 	i = 0;
 	commands = NULL;
-	printf("Command parser\n");
+//	printf("Command parser\n");
 	while (str[i] && str[i] == ' ')
 		i++;
 	while (str[i])

@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 09:12:50 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/06/24 09:36:27 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/08 13:17:52 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	pipe_fork2(t_cmd *lst, t_data *data, char **mem, int fd)
 		dup2(fd, 0);
 		dup2(fds[1], 1);
 		dup2(fdb[1], 10);
-		builtins(lst->command, lst->param, data);
+		builtins(lst->command, lst->params, data);
 		g_fg_process = -1;
 		exit(0);
 	}

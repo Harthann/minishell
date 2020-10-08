@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 16:56:11 by user42            #+#    #+#             */
-/*   Updated: 2020/10/06 17:43:41 by stbaleba         ###   ########.fr       */
+/*   Updated: 2020/10/08 14:17:01 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,31 +57,31 @@ void	export_display(t_data *data)
 	free(str);
 }
 
-void	builtins(char *command, char *params, t_data *data)
+void	builtins(char *command, char **params, t_data *data)
 {
-	char **params_cl;
-	char **mem;
-
-	mem = clean_params(command, data->env_var, data);
-	command = mem[0];
-	params_cl = clean_params(params, data->env_var, data);
+//	char **params_cl;
+//	char **mem;
+char *dest;
+//	mem = clean_params(command, data->env_var, data);
+//	command = mem[0];
+	dest = (params == NULL) ? NULL : params[0];
 	if (ft_memcmp(command, "echo", 5) == 0)
-		ft_echo(params_cl);
+		ft_echo(params);
 	else if (ft_memcmp(command, "pwd", 4) == 0)
-		pwd(params);
+		pwd(dest);
 	else if (ft_memcmp(command, "cd", 3) == 0)
-		cd(params_cl);
-	else if ((ft_memcmp(command, "export", 7) == 0 && *params == '\0'))
+		cd(params);
+	else if ((ft_memcmp(command, "export", 7) == 0 && params == NULL))
 		export_display(data);
 	else if (ft_memcmp(command, "env", 4) == 0)
-		env_list(data, params);
+		env_list(data, dest);
 	else if (ft_memcmp(command, "export", 7) == 0)
-		add_env(params_cl, data);
+		add_env(params, data);
 	else if (ft_memcmp(command, "unset", 6) == 0)
-		ft_delenv(&(data->env_var), params_cl);
+		ft_delenv(&(data->env_var), params);
 	else if (ft_memcmp(command, "exit", 5) == 0)
-		ft_free(data, params_cl);
+		ft_free(data, params, dest);
 	else
-		ft_exec(command, params, data);
-	free_builtin(params_cl, mem);
+		ft_exec(command, dest, data);
+//	free_builtin(params, mem);
 }

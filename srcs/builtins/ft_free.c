@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:49:10 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/06 13:18:43 by stbaleba         ###   ########.fr       */
+/*   Updated: 2020/10/08 14:29:08 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	free_lst(t_env_lst **alst)
 	free(alst);
 }
 
-void	free_builtin(char **params_cl, char **mem)
+/*void	free_builtin(char **params_cl, char **mem)
 {
 	int i;
 
@@ -42,7 +42,7 @@ void	free_builtin(char **params_cl, char **mem)
 	free(params_cl);
 	free(mem[0]);
 	free(mem);
-}
+}*/
 
 void	free_exec(char *exec, char *path, char **env, char **argv)
 {
@@ -69,20 +69,20 @@ void	error_exit(t_data *data)
 	data->last_return = 127;
 }
 
-void	ft_free(t_data *data, char **params)
+void	ft_free(t_data *data, char **params, char *dest)
 {
 	int		i;
 	char	*str;
 
 	i = 0;
 	errno = 0;
-	while (params[i])
+	while (params && params[i])
 		i++;
 	if (i > 1)
 		error_exit(data);
 	else
 	{
-		str = params[0];
+		str = dest;
 		if (str && (*str == '+' || *str == '-'))
 		{
 			if (*str == '-')
@@ -95,14 +95,14 @@ void	ft_free(t_data *data, char **params)
 				errno = 1;
 			str++;
 		}
-		if (params[0])
-			data->exit_code = (unsigned char)ft_atoi(params[0]);
+		if (dest)
+			data->exit_code = (unsigned char)ft_atoi(dest);
 		ft_putstr_fd("exit\n", 1);
-		if (errno != 0 || (ft_atoi(params[0]) > 0 && i == -1) ||
-			(ft_atoi(params[0]) < 0 && i == 1))
+		if (errno != 0 || (ft_atoi(dest) > 0 && i == -1) ||
+			(ft_atoi(dest) < 0 && i == 1))
 			ft_putstr_fd("numeric argument required\n", 2);
-		if ((ft_atoi(params[0]) > 0 && i == -1) || 
-			(ft_atoi(params[0]) < 0 && i == 1))
+		if ((ft_atoi(dest) > 0 && i == -1) || 
+			(ft_atoi(dest) < 0 && i == 1))
 			exit(255);
 		exit(data->exit_code);
 	}

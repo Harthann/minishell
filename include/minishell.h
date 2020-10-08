@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */##   ########.fr       */
-/*   Updated: 2020/10/06 18:08:00 by stbaleba         ###   ########.fr       */
+/*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
+/*   Updated: 2020/10/08 14:17:41 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char			*extract_dollar(char *str, int *start, t_env_lst *env);
 t_env_lst		*ft_envnew(char *name, char *value);
 void			ft_addenv(t_env_lst **alst, t_env_lst *new);
 void			ft_delenv(t_env_lst **alst, char **name);
-void			builtins(char *command, char *params, t_data *data);
+void			builtins(char *command, char **params, t_data *data);
 char			**clean_params(char *params, t_env_lst *lst, t_data *data);
 char			*env_value(char *str, int index, t_env_lst *lst);
 char			*env_value2(char *str, t_env_lst *lst);
@@ -88,7 +88,7 @@ void			cd(char **params_cl);
 void			env_list(t_data *data, char *params);
 void			display(char *str);
 void			add_env(char **str, t_data *data);
-void			ft_free(t_data *data, char **params);
+void			ft_free(t_data *data, char **params, char *dest);
 void			ft_exec(char *exec, char *params, t_data *data);
 void			fork_parsing(t_cmd *list, t_data *data, int *count);
 char			*prs_mem(int fd);
