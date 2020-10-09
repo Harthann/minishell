@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:41:08 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/08 16:20:44 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/09 12:11:34 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,8 @@ t_cmd	*new_command(char *str, int *start, t_env_lst *env)
 	cmd->command = extract_command(str, start, env);
 	while (str[*start] == ' ' && str[*start])
 		(*start)++;
-	cmd->params = parse_param(str, start, env);
+	if (ft_strncmp(cmd->command, "|", 1))
+		cmd->params = parse_param(str, start, env);
 	return (cmd);
 }
 
