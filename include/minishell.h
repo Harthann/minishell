@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/10/09 13:19:13 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/09 14:25:08 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void			env_list(t_data *data, char *params);
 void			display(char *str);
 void			add_env(char **str, t_data *data);
 void			ft_free(t_data *data, char **params, char *dest);
-void			ft_exec(char *exec, char *params, t_data *data);
+void			ft_exec(char *exec, char **params, t_data *data);
 void			fork_parsing(t_cmd *list, t_data *data, int *count);
 char			*prs_mem(int fd);
 int				left_redir(t_cmd *list);
@@ -113,5 +113,5 @@ void			display_parse(t_cmd *list, t_data *data, int *count);
 int				check_env(t_env_lst *lst);
 int				check_char(char *str);
 int				ft_memplus(char *name, char *cname);
-
+int				double_tab_length(char **str);
 #endif

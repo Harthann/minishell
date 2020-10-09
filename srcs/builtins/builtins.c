@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 16:56:11 by user42            #+#    #+#             */
-/*   Updated: 2020/10/08 14:17:01 by stbaleba         ###   ########.fr       */
+/*   Updated: 2020/10/09 14:24:07 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,6 @@ char *dest;
 	else if (ft_memcmp(command, "exit", 5) == 0)
 		ft_free(data, params, dest);
 	else
-		ft_exec(command, dest, data);
+		ft_exec(command, params, data);
 //	free_builtin(params, mem);
 }

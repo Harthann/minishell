@@ -6,7 +6,7 @@
 /*   By: stbaleba <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 17:52:17 by stbaleba          #+#    #+#             */
-/*   Updated: 2020/10/06 18:28:36 by stbaleba         ###   ########.fr       */
+/*   Updated: 2020/10/09 14:14:59 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,14 @@ int	ft_memplus(char *name, char *cname)
 		(name[i] == '\0' && cname[i] == '='))
 		return (0);
 	return (1);
+}
+
+int double_tab_length(char **str)
+{
+	int i;
+
+	i = 0;
+	while(str && str[i])
+		i++;
+	return (i);
 }

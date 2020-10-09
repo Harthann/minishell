@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 09:01:47 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/06/26 09:04:05 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/09 14:35:53 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	*get_path(char *exec, t_env_lst *env)
 	return (cmd);
 }
 
-void	exec_params(char **exec, char *temp, char *params)
+/*void	exec_params(char **exec, char *temp, char *params)
 {
 	char *mem;
 
@@ -69,9 +69,29 @@ void	exec_params(char **exec, char *temp, char *params)
 		*exec = ft_strjoin(mem, params);
 		free(mem);
 	}
+}*/
+
+char **create_extab(char **params, char *exec)
+{
+	int count;
+	int i;
+	int j;
+	char **str;
+
+	count = double_tab_length(params);
+	i = 0;
+	j = 0;
+	if(!(str = ft_calloc(count + 2, sizeof(char *))))
+		return (NULL);
+	if(i == 0)
+		str[i++] = exec;
+	while (params && params[j])
+		str[i++] = params[j++];
+	str[i++] = NULL;
+	return (str);
 }
 
-void	ft_exec(char *exec, char *params, t_data *data)
+void	ft_exec(char *exec, char **params, t_data *data)
 {
 	char	**argv;
 	char	*path;
@@ -80,11 +100,7 @@ void	ft_exec(char *exec, char *params, t_data *data)
 	errno = 0;
 	if (*exec != '/' && *exec != '.')
 		path = get_path(exec, data->env_var);
-	if (path)
-		exec_params(&exec, path, params);
-	else
-		exec_params(&exec, exec, params);
-	argv = clean_params(exec, data->env_var, data);
+	argv = create_extab(params, path);
 	execve(argv[0], argv, data->env);
 	if (errno != 0)
 	{
