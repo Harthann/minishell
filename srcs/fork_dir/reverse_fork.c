@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 09:11:48 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/08 13:19:40 by stbaleba         ###   ########.fr       */
+/*   Updated: 2020/10/09 13:55:01 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,18 @@ void	child_function2(int f, int *fd, char **mem)
 
 void	parent_function2(int *fds, int *fdb, char **mem, t_data *data)
 {
-	wait(NULL);
+	int status;
+
+	wait(&status);
 	close(fdb[1]);
 	close(fds[1]);
 	free(*mem);
 	*mem = prs_mem(fds[0]);
-	last_return(data, prs_mem(fdb[0]));
+	if ((WEXITSTATUS(status)) == 2 || WEXITSTATUS(status) == 1)
+		data->last_return = 127;
+	else
+		last_return(data, prs_mem(fdb[0]));
+//	last_return(data, prs_mem(fdb[0]));
 	free(fds);
 	free(fdb);
 }

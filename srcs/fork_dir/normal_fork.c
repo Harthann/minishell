@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 09:13:22 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/08 14:33:58 by stbaleba         ###   ########.fr       */
+/*   Updated: 2020/10/09 13:57:41 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	normal_fork(t_cmd *lst, t_data *data, char **mem, int *count)
 {
 	int		*fd;
 	int		*fde;
+	int		status;
 
 	*count = 1;
 	if (!(fd = malloc(sizeof(int) * 2)))
@@ -59,14 +60,18 @@ void	normal_fork(t_cmd *lst, t_data *data, char **mem, int *count)
 		child_function(fd, fde, lst, data);
 	else
 	{
-		wait(NULL);
+		wait(&status);
 		close(fde[1]);
 		close(fd[1]);
 		free(*mem);
 		*mem = prs_mem(fd[0]);
 		free(fd);
 		unset_export(lst, data);
-		last_return(data, prs_mem(fde[0]));
+		if ((WEXITSTATUS(status)) == 2 || WEXITSTATUS(status) == 1)
+			data->last_return = 127;
+		else
+			last_return(data, prs_mem(fde[0]));
+//		last_return(data, prs_mem(fde[0]));
 		free(fde);
 	}
 }
