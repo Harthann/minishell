@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:48:02 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/08 16:01:19 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/09 13:04:58 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,21 +60,14 @@ char	*extract_dquote(char *str, int *start, t_env_lst *env)
 void	add_back(t_cmd **list, t_cmd *new)
 {
 	t_cmd	*tmp;
-	char	*to_free;
 
-	tmp = *list;
-	to_free = new->command;
-	new->command = ft_strtrim(to_free, " ");
-	free(to_free);
-	to_free = new->param;
-	if (new->param && *new->param)
-	{
-		new->param = ft_strtrim(to_free, " ");
-		free(to_free);
-	}
+	if (list)
+		tmp = *list;
+	else
+		tmp = NULL;
 	while (tmp && tmp->next)
 		tmp = tmp->next;
-	if (*list)
+	if (tmp)
 		tmp->next = new;
 	else
 		*list = new;
@@ -89,7 +82,6 @@ void	free_command(t_cmd **list)
 	while (tmp)
 	{
 		free(tmp->command);
-		free(tmp->param);
 		to_free = tmp;
 		tmp = to_free->next;
 		free(to_free);

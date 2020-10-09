@@ -6,40 +6,11 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:41:08 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/09 12:11:34 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/09 13:06:55 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// char	*extract_param(char *str, t_quote quote, int *i)
-// {
-// 	int		length;
-// 	char	*param;
-
-// 	length = 0;
-// 	quote.escp = 0;
-// 	while (str[length] && !is_separator(str[length], &quote))
-// 	{
-// 		if (str[length] == '\\' && !quote.quote)
-// 			!quote.escp ? quote.escp++ : quote.escp--;
-// 		else if (str[length] == '\'' && !quote.dquote && !quote.escp)
-// 		{
-// 			quote.quote++;
-// 			quote.quote -= quote.quote == 2 ? 2 : 0;
-// 		}
-// 		else if (str[length] == '"' && !quote.quote && !quote.escp)
-// 		{
-// 			quote.dquote++;
-// 			quote.dquote -= quote.dquote == 2 ? 2 : 0;
-// 		}
-// 		else
-// 			quote.escp > 0 ? quote.escp-- : 0;
-// 		length++;
-// 	}
-// 	*i += length;
-// 	return (param = ft_substr(str, 0, length));
-// }
 
 int 	is_escape(char *str, int i)
 {

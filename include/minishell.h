@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/10/08 14:17:41 by stbaleba         ###   ########.fr       */
+/*   Updated: 2020/10/09 12:14:31 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,9 @@
 
 pid_t			g_fg_process;
 
-typedef struct	s_quote
-{
-	int dquote;
-	int quote;
-	int	escp;
-}				t_quote;
-
 typedef struct	s_cmd
 {
 	char	*command;
-	char	*param;
 	char	**params;
 	void	*next;
 }				t_cmd;
