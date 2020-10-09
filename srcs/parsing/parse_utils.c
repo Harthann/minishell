@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:48:02 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/09 13:04:58 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/09 13:18:48 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*extract_quote(char *str, int *start)
 	return (ret);
 }
 
-char	*extract_dquote(char *str, int *start, t_env_lst *env)
+char	*extract_dquote(char *str, int *start, t_data *data)
 {
 	char	*ret;
 	int		i;
@@ -48,7 +48,7 @@ char	*extract_dquote(char *str, int *start, t_env_lst *env)
 			i++;
 		}
 		else if (str[i] == '$' && !is_escape(str, i))
-			ret = ft_strjoin_free(ret, extract_dollar(str, &i, env), 1);
+			ret = ft_strjoin_free(ret, extract_dollar(str, &i, data), 1);
 		else
 			ret = ft_strapp_free(ret, str[i]);
 		i += str[i] == '"' ? 0 : 1;

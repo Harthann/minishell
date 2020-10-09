@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:41:08 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/09 13:06:55 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/09 13:29:19 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char **param_cpy(char **dest, char** src)
 	return (dest);
 }
 
-char **parse_param(char *str, int *i, t_env_lst *env)
+char **parse_param(char *str, int *i, t_data *data)
 {
 	char	**params_list;
 	char	**tmp;
@@ -50,7 +50,7 @@ char **parse_param(char *str, int *i, t_env_lst *env)
 
 	params_list = NULL;
 	nb = 0;
-	while ((param = extract_param(str, i, env)))
+	while ((param = extract_param(str, i, data)))
 	{
 		while (str[*i] && str[*i] == ' ')
 			(*i)++;
@@ -64,7 +64,7 @@ char **parse_param(char *str, int *i, t_env_lst *env)
 	return (params_list);
 }
 
-t_cmd	*new_command(char *str, int *start, t_env_lst *env)
+t_cmd	*new_command(char *str, int *start, t_data *data)
 {
 	t_cmd	*cmd;
 
@@ -72,11 +72,11 @@ t_cmd	*new_command(char *str, int *start, t_env_lst *env)
 		return (NULL);
 	while (str[*start] == ' ' && str[*start] != '\0')
 		(*start)++;
-	cmd->command = extract_command(str, start, env);
+	cmd->command = extract_command(str, start, data);
 	while (str[*start] == ' ' && str[*start])
 		(*start)++;
 	if (ft_strncmp(cmd->command, "|", 1))
-		cmd->params = parse_param(str, start, env);
+		cmd->params = parse_param(str, start, data);
 	return (cmd);
 }
 
@@ -91,7 +91,7 @@ int		ft_command_parser(char *str, t_data *data)
 		i++;
 	while (str[i])
 	{
-		add_back(&commands, new_command(str, &i, data->env_var));
+		add_back(&commands, new_command(str, &i, data));
 		while ((str[i] == ';' || str[i] == ' ') && str[i])
 			i++;
 	}
