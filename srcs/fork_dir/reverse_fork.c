@@ -70,8 +70,8 @@ void	reverse_red_fork2(t_cmd *list, t_data *data, char **mem, int fd)
 void	reverse_red_fork(t_cmd *list, t_data *data, char **mem, int *count)
 {
 	t_cmd	*m;
-	pid_t	p;
-	int		*fd;
+//	pid_t	p;
+//	int		*fd;
 	int		f;
 
 	*count = 2;
@@ -81,21 +81,23 @@ void	reverse_red_fork(t_cmd *list, t_data *data, char **mem, int *count)
 		m = m->next;
 		*count += 1;
 	}
-	f = open(m->params[0], O_RDWR);
+	f = open(m->params[0], O_RDONLY);
 	if (ft_error_fd(data, f) == -1)
 		return ;
-	if (!(fd = malloc(sizeof(int) * 2)))
+/*	if (!(fd = malloc(sizeof(int) * 2)))
 		return ;
 	pipe(fd);
 	p = fork();
 	if (p == 0)
 		child_function2(f, fd, mem);
 	else
-	{
-		wait(NULL);
-		close(fd[1]);
-		close(f);
-		reverse_red_fork2(list, data, mem, fd[0]);
-		free(fd);
-	}
+	{*/
+//		wait(NULL);
+//close(fd[1]);
+//		close(f);
+	reverse_red_fork2(list, data, mem, f);
+	close(f);
+
+//		free(fd);
+//	}
 }

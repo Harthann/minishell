@@ -74,3 +74,38 @@ int		check_pipe(t_cmd *list)
 	else
 		return (0);
 }
+
+int		ft_redirect(t_cmd *lst, p_info *p)
+{
+	int f;
+
+	f = open(lst->params[0], O_RDONLY);
+	while (left_redir(lst->next) == 1)
+	{
+		close(f);
+		lst = lst->next;
+		f = open(lst->params[0], O_RDONLY);
+		p->end_pass += 1;
+	}
+	return (f);
+}
+
+int		ft_redirect2(t_cmd *lst)
+{
+	int f;
+
+	if (ft_memcmp(lst->command, ">>", 2) == 0)
+		f = open(lst->params[0], O_CREAT | O_APPEND | O_WRONLY, 00600);
+	else
+		f = open(lst->params[0], O_CREAT | O_WRONLY | O_TRUNC, 00600);
+	while (right_redir(lst->next) == 1)
+	{
+		close(f);
+		lst = lst->next;
+		if (ft_memcmp(lst->command, ">>", 2) == 0)
+			f = open(lst->params[0], O_CREAT | O_APPEND | O_WRONLY, 00600);
+		else
+			f = open(lst->params[0], O_CREAT | O_WRONLY | O_TRUNC, 00600);
+	}
+	return (f);
+}

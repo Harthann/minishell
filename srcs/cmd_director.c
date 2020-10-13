@@ -41,10 +41,11 @@ int		cmd_director(t_cmd *list, t_data *data)
 			builtins(list->command, list->params, data);
 			count = 1;
 		}
-		else if (check_symbol(list) == 0)
+/*		else if (check_symbol(list) == 0)
 			display_parse(list, data, &count);
 		else
-			fork_parsing(list, data, &count);
+			fork_parsing(list, data, &count);*/
+		main_fork(&list, data);
 		while (count > 0 && list)
 		{
 			list = list->next;

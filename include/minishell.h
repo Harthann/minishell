@@ -51,6 +51,12 @@ typedef struct	s_data
 	unsigned char	exit_code;
 }				t_data;
 
+typedef struct s_info
+{
+	int end_pass;
+	int	pcount;
+	int pnum;
+}				p_info;
 int				ft_command_parser(char *str, t_data *data);
 void			print_cmd(t_cmd *list);
 int				cmd_director(t_cmd *list, t_data *data);
@@ -114,4 +120,9 @@ int				check_env(t_env_lst *lst);
 int				check_char(char *str);
 int				ft_memplus(char *name, char *cname);
 int				double_tab_length(char **str);
+void			main_fork(t_cmd **list, t_data *data);
+void			do_builtin(p_info p, int *fdpipe, t_cmd *lst, t_data *data);
+int				ft_redirect(t_cmd *lst, p_info *p);
+int				ft_redirect2(t_cmd *lst);
+
 #endif
