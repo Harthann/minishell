@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-int		ft_separate(char *command)
+/*int		ft_separate(char *command)
 {
 	if (command == NULL)
 		return (0);
@@ -106,4 +106,4 @@ void	fork_parsing(t_cmd *list, t_data *data, int *count)
 		ft_display(list, params_mem, &res, data->red);
 	}
 	free(params_mem);
-}
+}*/

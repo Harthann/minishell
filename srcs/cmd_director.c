@@ -31,26 +31,30 @@ int		check_symbol(t_cmd *list)
 
 int		cmd_director(t_cmd *list, t_data *data)
 {
-	int count;
+//	int count;
 
-	count = 0;
+//	count = 0;
 	while (list)
 	{
 		if (ft_memcmp(list->command, "exit", 5) == 0)
 		{
 			builtins(list->command, list->params, data);
-			count = 1;
+			list = list->next;
 		}
+		if (check_symbol(list) == 0 && check_unset_export(list) == 1)
+			unset_export(&list, data);
+		else
+			main_fork(&list, data);
+
 /*		else if (check_symbol(list) == 0)
 			display_parse(list, data, &count);
 		else
 			fork_parsing(list, data, &count);*/
-		main_fork(&list, data);
-		while (count > 0 && list)
+/*		while (count > 0 && list)
 		{
 			list = list->next;
 			count--;
-		}
+		}*/
 	}
 	return (data->status);
 }

@@ -12,27 +12,47 @@
 
 #include "minishell.h"
 
-int		unset_export(t_cmd *list, t_data *data)
+int			check_unset_export(t_cmd *lst)
 {
-	if (ft_memcmp(list->command, "export", 7) == 0 && list->params != NULL)
-	{
-		builtins(list->command, list->params, data);
+	if (ft_memcmp(lst->command, "export", 7) == 0 && lst->params != NULL)
 		return (1);
-	}
-	else if (ft_memcmp(list->command, "unset", 5) == 0)
-	{
-		builtins(list->command, list->params, data);
+	else if (ft_memcmp(lst->command, "unset", 5) == 0)
 		return (1);
-	}
-	else if (ft_memcmp(list->command, "cd", 3) == 0)
-	{
-		builtins(list->command, list->params, data);
+	else if (ft_memcmp(lst->command, "cd", 3) == 0)
 		return (1);
-	}
-	return (0);
+	return(0);
 }
 
-void	child_function(int *fd, int *fde, t_cmd *lst, t_data *data)
+void		unset_export(t_cmd **list, t_data *data)
+{
+	t_cmd *lst;
+
+	lst = *list;
+	if (ft_memcmp(lst->command, "export", 7) == 0 && lst->params != NULL)
+	{
+		builtins(lst->command, lst->params, data);
+		lst = lst->next;
+	}
+	else if (ft_memcmp(lst->command, "unset", 5) == 0)
+	{
+		builtins(lst->command, lst->params, data);
+		lst = lst->next;
+
+	}
+	else if (ft_memcmp(lst->command, "cd", 3) == 0)
+	{
+		builtins(lst->command, lst->params, data);
+		lst = lst->next;
+	}
+	if(errno != 0)
+	{
+		data->last_return = 127;
+		errno = 0;
+	}
+	*list = lst;
+}
+
+/*void	child_function(int *fd, int *fde, t_cmd *lst, t_data *data)
 {
 	close(fde[0]);
 	close(fd[0]);
@@ -74,4 +94,4 @@ void	normal_fork(t_cmd *lst, t_data *data, char **mem, int *count)
 //		last_return(data, prs_mem(fde[0]));
 		free(fde);
 	}
-}
+}*/

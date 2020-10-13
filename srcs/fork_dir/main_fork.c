@@ -48,14 +48,12 @@ void	main_fork(t_cmd **list, t_data *data)
 		lst = lst->next;
 	}
 	i = 0;
-
 	while(i < p.pnum)
 		close(fdpipe[i++]);
-  i = 0;
-	while(i <= p.pnum)
-	{
-		wait(&status);
-		i = i + 2;
-	}
+	while((wait(&status)) > 0);
+	if(status != 0)
+		data->last_return = 127;
+	else
+		data->last_return = 0;
 	*list = lst;
 }

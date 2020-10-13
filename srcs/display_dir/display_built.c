@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-void	display_b(t_cmd *lst, t_data *data)
+/*void	display_b(t_cmd *lst, t_data *data)
 {
 	int		*fde;
 	int		status;
@@ -50,4 +50,4 @@ void	display_parse(t_cmd *list, t_data *data, int *count)
 		list = list->next;
 		*count += 1;
 	}
-}
+}*/

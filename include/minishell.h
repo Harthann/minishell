@@ -114,7 +114,7 @@ void			free_builtin(char **params_cl, char **mem);
 int				env_exist(t_env_lst *lst, t_env_lst *new);
 void			ft_delst(t_env_lst *lst, t_env_lst *prev_elem,
 					t_env_lst *next_elem, t_env_lst *mem);
-int				unset_export(t_cmd *list, t_data *data);
+void				unset_export(t_cmd **list, t_data *data);
 void			display_parse(t_cmd *list, t_data *data, int *count);
 int				check_env(t_env_lst *lst);
 int				check_char(char *str);
@@ -124,5 +124,5 @@ void			main_fork(t_cmd **list, t_data *data);
 void			do_builtin(p_info p, int *fdpipe, t_cmd *lst, t_data *data);
 int				ft_redirect(t_cmd *lst, p_info *p);
 int				ft_redirect2(t_cmd *lst);
-
+int				check_unset_export(t_cmd *lst);
 #endif
