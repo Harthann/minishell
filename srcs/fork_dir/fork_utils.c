@@ -80,6 +80,7 @@ int		ft_redirect(t_cmd *lst, p_info *p)
 	int f;
 
 	f = open(lst->params[0], O_RDONLY);
+	p->end_pass += 1;
 	while (left_redir(lst->next) == 1)
 	{
 		close(f);
