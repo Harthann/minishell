@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/30 16:27:50 by user42            #+#    #+#             */
-/*   Updated: 2020/10/06 17:40:26 by stbaleba         ###   ########.fr       */
+/*   Updated: 2020/10/14 15:03:36 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,10 @@ void	ft_delst(t_env_lst *lst, t_env_lst *prev_elem,
 		prev_elem->next = next_elem;
 }
 
-int check_env(t_env_lst *lst)
+int		check_env(t_env_lst *lst)
 {
-	char *str;
-	int i;
+	char	*str;
+	int		i;
 
 	str = lst->name;
 	i = ft_strlen(str);

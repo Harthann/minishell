@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/10/14 11:36:30 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/14 15:23:48 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,4 +126,5 @@ void			do_builtin(t_info p, int *fdpipe, t_cmd *lst, t_data *data);
 int				ft_redirect(t_cmd *lst, t_info *p);
 int				ft_redirect2(t_cmd *lst);
 int				check_unset_export(t_cmd *lst);
+int				ft_free2(char **sr, int i);
 #endif

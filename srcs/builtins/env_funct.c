@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/30 16:38:24 by user42            #+#    #+#             */
-/*   Updated: 2020/10/14 11:57:38 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/14 15:04:23 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void		add_env(char **str, t_data *data)
 			name = ft_substr(*str, 0, i + 1);
 			value = ft_strdup("\0");
 		}
-		if(check_char(name) == 1)
+		if (check_char(name) == 1)
 			ft_addenv(&(data->env_var), ft_envnew(name, value));
 		str++;
 	}
@@ -90,7 +90,7 @@ void		ft_delenv(t_env_lst **alst, char **name)
 		while (lst)
 		{
 			next_elem = lst->next;
-			if(ft_memplus(*name, lst->name) == 0)
+			if (ft_memplus(*name, lst->name) == 0)
 				ft_delst(lst, prev_elem, next_elem, mem);
 			prev_elem = lst;
 			if (lst)

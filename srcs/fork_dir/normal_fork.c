@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 09:13:22 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/14 11:52:26 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/14 15:34:11 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,16 @@
 
 int			check_unset_export(t_cmd *lst)
 {
-	if (ft_memcmp(lst->command, "export", 7) == 0 && lst->params != NULL)
-		return (1);
-	else if (ft_memcmp(lst->command, "unset", 5) == 0)
-		return (1);
-	else if (ft_memcmp(lst->command, "cd", 3) == 0)
-		return (1);
-	return(0);
+	if (lst)
+	{
+		if (ft_memcmp(lst->command, "export", 7) == 0 && lst->params != NULL)
+			return (1);
+		else if (ft_memcmp(lst->command, "unset", 5) == 0)
+			return (1);
+		else if (ft_memcmp(lst->command, "cd", 3) == 0)
+			return (1);
+	}
+	return (0);
 }
 
 void		unset_export(t_cmd **list, t_data *data)
@@ -37,14 +40,13 @@ void		unset_export(t_cmd **list, t_data *data)
 	{
 		builtins(lst->command, lst->params, data);
 		lst = lst->next;
-
 	}
 	else if (ft_memcmp(lst->command, "cd", 3) == 0)
 	{
 		builtins(lst->command, lst->params, data);
 		lst = lst->next;
 	}
-	if(errno != 0)
+	if (errno != 0)
 	{
 		data->last_return = 127;
 		errno = 0;
