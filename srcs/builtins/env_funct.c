@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/30 16:38:24 by user42            #+#    #+#             */
-/*   Updated: 2020/10/08 14:12:47 by stbaleba         ###   ########.fr       */
+/*   Updated: 2020/10/14 11:57:38 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ void		ft_delenv(t_env_lst **alst, char **name)
 		while (lst)
 		{
 			next_elem = lst->next;
-//			if (ft_memcmp(*name, lst->name, ft_strlen(*name) + 1) == 0)
 			if(ft_memplus(*name, lst->name) == 0)
 				ft_delst(lst, prev_elem, next_elem, mem);
 			prev_elem = lst;

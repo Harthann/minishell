@@ -6,7 +6,7 @@
 #    By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/10 16:28:15 by nieyraud          #+#    #+#              #
-#    Updated: 2020/10/08 13:30:07 by stbaleba         ###   ########.fr        #
+#    Updated: 2020/10/14 12:04:54 by nieyraud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,16 +29,17 @@ rouge=\033[31m
 #####################
 NAME = minishell
 
-SRC_FILE = 	minishell.c parser.c print_cmd.c \
+SRC_FILE = 	minishell.c parser.c \
 			builtins.c env_funct.c ft_echo.c \
 			ft_free.c pwd_cd.c ft_exec.c \
-			cmd_director.c clean_params.c \
-			env_file.c ft_quote.c get_next_line.c \
-			parse_utils.c fork_parser.c fork_utils.c normal_fork.c \
-			reverse_fork.c redirection.c pipe_fork.c \
-			signal.c error_utils.c env_funct2.c \
-			clean_params_utils.c env_utils.c \
-			display_built.c extract.c main_fork.c main_fork2.c
+			cmd_director.c \
+			get_next_line.c \
+			parse_utils.c fork_utils.c normal_fork.c \
+			signal.c  env_funct2.c \
+			env_utils.c \
+			extract.c main_fork.c main_fork2.c
+			
+USELESS = pipe_fork.c reverse_fork.c redirection.c  print_cmd.c fork_parser.c clean_params_utils.c clean_params.c ft_quote.c env_file.c display_built.c error_utils.c
 
 #############################
 #		DIRCTORIES PATH		#

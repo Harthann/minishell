@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 09:01:47 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/09 14:35:53 by stbaleba         ###   ########.fr       */
+/*   Updated: 2020/10/14 12:04:10 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ char	*get_path(char *exec, t_env_lst *env)
 	while (env && ft_strncmp("PATH", env->name, 4))
 		env = env->next;
 	fd = -1;
-	path = env->value;
+	if (env)
+		path = env->value;
+	else
+		return (ft_strjoin("./", exec));
 	cmd = path;
 	while (fd < 0 && cmd)
 	{
@@ -49,41 +52,26 @@ char	*get_path(char *exec, t_env_lst *env)
 			cmd = ft_strjoin_free(cmd, "/", 1);
 			cmd = ft_strjoin_free(cmd, exec, 1);
 		}
-		fd = open(cmd, O_RDONLY);
-		if (fd < 0)
+		if ((fd = open(cmd, O_RDONLY)) < 0)
 			free(cmd);
 	}
 	close(fd);
 	return (cmd);
 }
 
-/*void	exec_params(char **exec, char *temp, char *params)
+char	**create_extab(char **params, char *exec)
 {
-	char *mem;
-
-	if (params == NULL)
-		*exec = temp;
-	else
-	{
-		mem = ft_strjoin(temp, " ");
-		*exec = ft_strjoin(mem, params);
-		free(mem);
-	}
-}*/
-
-char **create_extab(char **params, char *exec)
-{
-	int count;
-	int i;
-	int j;
-	char **str;
+	int		count;
+	int		i;
+	int		j;
+	char	**str;
 
 	count = double_tab_length(params);
 	i = 0;
 	j = 0;
-	if(!(str = ft_calloc(count + 2, sizeof(char *))))
+	if (!(str = ft_calloc(count + 2, sizeof(char *))))
 		return (NULL);
-	if(i == 0)
+	if (i == 0)
 		str[i++] = exec;
 	while (params && params[j])
 		str[i++] = params[j++];
@@ -96,7 +84,7 @@ void	ft_exec(char *exec, char **params, t_data *data)
 	char	**argv;
 	char	*path;
 
-	path = NULL;
+	path = exec;
 	errno = 0;
 	if (*exec != '/' && *exec != '.')
 		path = get_path(exec, data->env_var);
@@ -108,6 +96,6 @@ void	ft_exec(char *exec, char **params, t_data *data)
 		write(1, exec, ft_strlen(exec));
 		ft_putstr_fd(": command not found\n", 1);
 	}
-	free_exec(exec, path, 0, argv);
+	free_exec(exec, 0, argv);
 	exit(1);
 }

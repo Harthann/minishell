@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:41:08 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/09 13:29:19 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/14 12:01:58 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ int 	is_escape(char *str, int i)
 	}
 	return (0);
 }
-
-
 
 char **param_cpy(char **dest, char** src)
 {
@@ -59,6 +57,7 @@ char **parse_param(char *str, int *i, t_data *data)
 		if (!(params_list = ft_calloc(nb + 1, sizeof(char *))))
 			return (NULL);
 		params_list = param_cpy(params_list, tmp);
+		free(tmp);
 		params_list[nb - 1] = param;
 	}
 	return (params_list);
@@ -95,7 +94,6 @@ int		ft_command_parser(char *str, t_data *data)
 		while ((str[i] == ';' || str[i] == ' ') && str[i])
 			i++;
 	}
-	// print_cmd(commands);
 	cmd_director(commands, data);
 	free_command(&commands);
 	return (1);

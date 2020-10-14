@@ -6,11 +6,21 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/30 16:36:30 by user42            #+#    #+#             */
-/*   Updated: 2020/10/08 14:20:30 by stbaleba         ###   ########.fr       */
+/*   Updated: 2020/10/14 11:59:55 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int		length(char **params)
+{
+	int count;
+
+	count = 0;
+	while (params[count])
+		count++;
+	return (count);
+}
 
 void	pwd(char *params)
 {

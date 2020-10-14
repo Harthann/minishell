@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 12:21:59 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/09 13:30:13 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/14 11:08:09 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ char	*extract_param(char *str, int *start, t_data *data)
 			(*start)++;
 		}
 		else if (str[*start] == '\'' && !is_escape(str, *start))
-			ret = ft_strjoin_free(ret, extract_quote(str, start), 1);
+			ret = ft_strjoin_free(ret, extract_quote(str, start), 3);
 		else if (str[*start] == '"' && !is_escape(str, *start))
-			ret = ft_strjoin_free(ret, extract_dquote(str, start, data), 1);
+			ret = ft_strjoin_free(ret, extract_dquote(str, start, data), 3);
 		else if (str[*start] == '$' && !is_escape(str, *start))
-			ret = ft_strjoin_free(ret, extract_dollar(str, start, data), 2);
+			ret = ft_strjoin_free(ret, extract_dollar(str, start, data), 3);
 		else if ((str[*start] == ' ' || str[*start] == ';' || is_separator(str, *start)) && !is_escape(str, *start))
 			return (ret);
 		else
@@ -102,7 +102,7 @@ char	*extract_dollar(char *str, int *start, t_data *data)
 	char		*ret;
 
 	i = *start + 1;
-	if (str[i] == ' ' || str[i] == '\'' || is_separator(str, i))
+	if (!str[i] || ft_find_char(str[i], "\\;\' \"<>"))
 		return (ft_strdup("$"));
 	while (str[i] && !ft_find_char(str[i + 1], "\\;\' \"$")  && !is_separator(str, i + 1))
 		i++;

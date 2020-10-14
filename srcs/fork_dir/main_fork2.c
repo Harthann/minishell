@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-int		check_fd(int *fdpipe, p_info *p, t_cmd *cmd)
+int		check_fd(int *fdpipe, t_info *p, t_cmd *cmd)
 {
 	int fd;
 	int pcount;
@@ -14,7 +14,7 @@ int		check_fd(int *fdpipe, p_info *p, t_cmd *cmd)
 	return (fd);
 }
 
-int		check_fd2(int *fdpipe, p_info p, t_cmd *cmd)
+int		check_fd2(int *fdpipe, t_info p, t_cmd *cmd)
 {
 	int fd;
 	int pcount;
@@ -35,7 +35,7 @@ int		check_fd2(int *fdpipe, p_info p, t_cmd *cmd)
 	return (fd);
 }
 
-void	do_builtin(p_info p, int *fdpipe, t_cmd *lst, t_data *data)
+void	do_builtin(t_info p, int *fdpipe, t_cmd *lst, t_data *data)
 {
 	int fd[2];
 	int i;
@@ -47,6 +47,7 @@ void	do_builtin(p_info p, int *fdpipe, t_cmd *lst, t_data *data)
 	fd[1] = check_fd2(fdpipe, p, lst);
 	dup2(fd[0], 0);
 	dup2(fd[1], 1);
+
 	while(i < p.pnum)
 		close(fdpipe[i++]);
 	builtins(lst->command, lst->params, data);

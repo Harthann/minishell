@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/10/14 10:15:51 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/14 11:36:30 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define INT_MAX 2147483647
 
 pid_t			g_fg_process;
+int				g_fd;
 
 typedef struct	s_cmd
 {
@@ -110,7 +111,7 @@ char			*quote_check(char *s, t_env_lst *lst, int index);
 int				count_quotechar(char *str, int index);
 int				ft_error_fd(t_data *data, int fd);
 void			free_exec(char *exec, char **env, char **argv);
-void			free_builtin(char **params_cl, char **mem);
+void			free_builtin(char **params_cl);
 int				env_exist(t_env_lst *lst, t_env_lst *new);
 void			ft_delst(t_env_lst *lst, t_env_lst *prev_elem,
 					t_env_lst *next_elem, t_env_lst *mem);

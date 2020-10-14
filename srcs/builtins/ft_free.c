@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:49:10 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/08 14:29:08 by stbaleba         ###   ########.fr       */
+/*   Updated: 2020/10/14 10:31:54 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	free_lst(t_env_lst **alst)
 	free(alst);
 }
 
-/*void	free_builtin(char **params_cl, char **mem)
+void	free_builtin(char **params_cl)
 {
 	int i;
 
@@ -40,17 +40,14 @@ void	free_lst(t_env_lst **alst)
 		i++;
 	}
 	free(params_cl);
-	free(mem[0]);
-	free(mem);
-}*/
+}
 
-void	free_exec(char *exec, char *path, char **env, char **argv)
+void	free_exec(char *exec, char **env, char **argv)
 {
 	int i;
 
 	i = 0;
 	free(exec);
-	free(path);
 	free(env);
 	while (argv[i])
 	{

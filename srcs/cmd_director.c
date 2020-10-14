@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:51:49 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/08 13:45:56 by stbaleba         ###   ########.fr       */
+/*   Updated: 2020/10/14 10:50:25 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int		check_symbol(t_cmd *list)
 
 int		cmd_director(t_cmd *list, t_data *data)
 {
-//	int count;
+	t_cmd *tmp;
 
-//	count = 0;
+	tmp = list;
 	while (list)
 	{
 		if (ft_memcmp(list->command, "exit", 5) == 0)
@@ -45,16 +45,6 @@ int		cmd_director(t_cmd *list, t_data *data)
 			unset_export(&list, data);
 		else
 			main_fork(&list, data);
-
-/*		else if (check_symbol(list) == 0)
-			display_parse(list, data, &count);
-		else
-			fork_parsing(list, data, &count);*/
-/*		while (count > 0 && list)
-		{
-			list = list->next;
-			count--;
-		}*/
 	}
 	return (data->status);
 }

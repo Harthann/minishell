@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void	p_init(int pnum, p_info *p)
+void	p_init(int pnum, t_info *p)
 {
 	p->end_pass = 0;
 	p->pcount = 0;
@@ -24,7 +24,7 @@ int		pnum_l(t_cmd *list)
 void	main_fork(t_cmd **list, t_data *data)
 {
 	int fdpipe[pnum_l(*list)];
-	p_info p;
+	t_info p;
 	int status;
 	t_cmd *lst;
 	int i;
