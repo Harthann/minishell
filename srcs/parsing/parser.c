@@ -6,13 +6,13 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:41:08 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/14 12:01:58 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/14 13:57:51 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int 	is_escape(char *str, int i)
+int		is_escape(char *str, int i)
 {
 	if (i == 0)
 		return (0);
@@ -26,7 +26,7 @@ int 	is_escape(char *str, int i)
 	return (0);
 }
 
-char **param_cpy(char **dest, char** src)
+char	**param_cpy(char **dest, char **src)
 {
 	int i;
 
@@ -39,7 +39,7 @@ char **param_cpy(char **dest, char** src)
 	return (dest);
 }
 
-char **parse_param(char *str, int *i, t_data *data)
+char	**parse_param(char *str, int *i, t_data *data)
 {
 	char	**params_list;
 	char	**tmp;

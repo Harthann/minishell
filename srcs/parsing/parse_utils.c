@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:48:02 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/14 11:09:08 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/14 13:25:14 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int		is_separator(char *str, int start)
 
 char	*extract_quote(char *str, int *start)
 {
-	char *ret;
-	int i;
+	char	*ret;
+	int		i;
 
 	i = *start + 1;
 	while (str[i] && str[i] != '\'')

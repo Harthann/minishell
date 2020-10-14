@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:55:18 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/14 11:37:21 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/14 13:37:15 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int	main(int ac, char **av, char **env)
 
 	(void)ac;
 	(void)av;
-	(void)env;
 	g_fg_process = -1;
 	write(1, "\n\n\n\n****************", 20);
 	write(1, "********************", 20);

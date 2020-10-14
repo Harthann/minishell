@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 12:21:59 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/14 11:08:09 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/14 13:57:32 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,8 @@
 char	*extract_param(char *str, int *start, t_data *data)
 {
 	char *ret;
-	int i;
 
-	i = *start;
 	ret = NULL;
-	
 	while (str[*start])
 	{
 		if (str[*start] == '\\' && !is_escape(str, *start))
@@ -33,7 +30,7 @@ char	*extract_param(char *str, int *start, t_data *data)
 			ret = ft_strjoin_free(ret, extract_dquote(str, start, data), 3);
 		else if (str[*start] == '$' && !is_escape(str, *start))
 			ret = ft_strjoin_free(ret, extract_dollar(str, start, data), 3);
-		else if ((str[*start] == ' ' || str[*start] == ';' || is_separator(str, *start)) && !is_escape(str, *start))
+		else if (ft_find_char(str[*start], "; |<>") && !is_escape(str, *start))
 			return (ret);
 		else
 			ret = ft_strapp_free(ret, str[*start]);
@@ -66,12 +63,10 @@ char	*extract_separator(char *str, int *start)
 char	*extract_command(char *str, int *start, t_data *data)
 {
 	char *ret;
-	int i;
 
-	i = *start;
 	ret = NULL;
 	if (is_separator(str, *start))
-		return(extract_separator(str, start));
+		return (extract_separator(str, start));
 	while (str[*start])
 	{
 		if (str[*start] == '\\' && !is_escape(str, *start))
@@ -85,8 +80,7 @@ char	*extract_command(char *str, int *start, t_data *data)
 			ret = ft_strjoin_free(ret, extract_dquote(str, start, data), 1);
 		else if (str[*start] == '$' && !is_escape(str, *start))
 			ret = ft_strjoin_free(ret, extract_dollar(str, start, data), 2);
-		else if ((str[*start] == ' ' || str[*start] == ';'
-				|| is_separator(str, *start)) && !is_escape(str, *start))
+		else if (ft_find_char(str[*start], "; |<>") && !is_escape(str, *start))
 			return (ret);
 		else
 			ret = ft_strapp_free(ret, str[*start]);
@@ -104,7 +98,8 @@ char	*extract_dollar(char *str, int *start, t_data *data)
 	i = *start + 1;
 	if (!str[i] || ft_find_char(str[i], "\\;\' \"<>"))
 		return (ft_strdup("$"));
-	while (str[i] && !ft_find_char(str[i + 1], "\\;\' \"$")  && !is_separator(str, i + 1))
+	while (str[i] && !ft_find_char(str[i + 1], "\\;\' \"$")
+			&& !is_separator(str, i + 1))
 		i++;
 	tmp = data->env_var;
 	while (tmp && ft_strncmp(str + *start + 1, tmp->name, i - *start - 1))
