@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:41:08 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/14 13:57:51 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/14 14:38:36 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_cmd	*new_command(char *str, int *start, t_data *data)
 	cmd->command = extract_command(str, start, data);
 	while (str[*start] == ' ' && str[*start])
 		(*start)++;
-	if (ft_strncmp(cmd->command, "|", 1))
+	if (ft_strncmp(cmd->command, "|", 1) && ft_strncmp(cmd->command, ";", 1))
 		cmd->params = parse_param(str, start, data);
 	return (cmd);
 }
@@ -91,7 +91,7 @@ int		ft_command_parser(char *str, t_data *data)
 	while (str[i])
 	{
 		add_back(&commands, new_command(str, &i, data));
-		while ((str[i] == ';' || str[i] == ' ') && str[i])
+		while (str[i] == ' ' && str[i])
 			i++;
 	}
 	cmd_director(commands, data);

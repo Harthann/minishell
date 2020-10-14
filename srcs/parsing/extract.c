@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 12:21:59 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/14 13:57:32 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/14 14:26:03 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ char	*extract_separator(char *str, int *start)
 	int		i;
 
 	length = 0;
+	printf("[%c]\n", str[*start]);
 	while (is_separator(str, *start + length))
 		length++;
 	if (!(ret = ft_calloc(length + 1, sizeof(char))))

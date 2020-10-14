@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:48:02 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/14 13:25:14 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/14 14:19:59 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 int		is_separator(char *str, int start)
 {
-	if ((str[start] == '<' || str[start] == '|'
-		|| str[start] == '>') && !is_escape(str, start))
+	if (ft_find_char(str[start], "<>|;") && !is_escape(str, start))
 		return (1);
 	return (0);
 }
