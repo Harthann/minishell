@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/30 16:34:12 by user42            #+#    #+#             */
-/*   Updated: 2020/10/06 15:47:21 by stbaleba         ###   ########.fr       */
+/*   Updated: 2020/10/14 15:23:19 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,25 @@ void	ft_echo(char **params_cl)
 	}
 	if (n == 1)
 		display("\n");
+}
+
+int		ft_free2(char **sr, int i)
+{
+	char *str;
+
+	str = *sr;
+	if (str && (*str == '+' || *str == '-'))
+	{
+		if (*str == '-')
+			i = -1;
+		str++;
+	}
+	while (str && *str)
+	{
+		if (ft_isdigit(*str) == 0)
+			errno = 1;
+		str++;
+	}
+	*sr = str;
+	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:49:10 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/14 10:31:54 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/14 15:32:32 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	free_exec(char *exec, char **env, char **argv)
 
 void	error_exit(t_data *data)
 {
-
 	ft_putstr_fd("exit\n", 1);
 	ft_putstr_fd("Too many arguments\n", 2);
 	errno = 7;
@@ -80,25 +79,14 @@ void	ft_free(t_data *data, char **params, char *dest)
 	else
 	{
 		str = dest;
-		if (str && (*str == '+' || *str == '-'))
-		{
-			if (*str == '-')
-				i = -1;
-			str++;
-		}
-		while (str && *str)
-		{
-			if (ft_isdigit(*str) == 0)
-				errno = 1;
-			str++;
-		}
+		i = ft_free2(&str, i);
 		if (dest)
 			data->exit_code = (unsigned char)ft_atoi(dest);
 		ft_putstr_fd("exit\n", 1);
 		if (errno != 0 || (ft_atoi(dest) > 0 && i == -1) ||
 			(ft_atoi(dest) < 0 && i == 1))
 			ft_putstr_fd("numeric argument required\n", 2);
-		if ((ft_atoi(dest) > 0 && i == -1) || 
+		if ((ft_atoi(dest) > 0 && i == -1) ||
 			(ft_atoi(dest) < 0 && i == 1))
 			exit(255);
 		exit(data->exit_code);

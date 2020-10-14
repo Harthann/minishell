@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main_fork2.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: stbaleba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/14 15:53:43 by stbaleba          #+#    #+#             */
+/*   Updated: 2020/10/14 15:54:14 by stbaleba         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 int		check_fd(int *fdpipe, t_info *p, t_cmd *cmd, int j)
@@ -23,7 +35,7 @@ int		check_fd2(int *fdpipe, t_info p, t_cmd *cmd)
 	fd = 1;
 	pcount = p.pcount;
 	i = 0;
-	while(i < p.end_pass)
+	while (i < p.end_pass)
 	{
 		cmd = cmd->next;
 		i++;
@@ -43,9 +55,9 @@ void	do_builtin(t_info p, int *fdpipe, t_cmd *lst, t_data *data)
 
 	i = 0;
 	j = 0;
-	if(check_pipe(lst) == 1)
+	if (check_pipe(lst) == 1)
 		lst = lst->next;
-	if(ft_memcmp(lst->command, ";", 2) == 0)
+	if (ft_memcmp(lst->command, ";", 2) == 0)
 	{
 		j = 1;
 		lst = lst->next;
@@ -54,8 +66,7 @@ void	do_builtin(t_info p, int *fdpipe, t_cmd *lst, t_data *data)
 	fd[1] = check_fd2(fdpipe, p, lst);
 	dup2(fd[0], 0);
 	dup2(fd[1], 1);
-
-	while(i < p.pnum)
+	while (i < p.pnum)
 		close(fdpipe[i++]);
 	builtins(lst->command, lst->params, data);
 	exit(0);
