@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 09:01:47 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/14 12:04:10 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/14 16:54:24 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,15 @@ char	*get_path(char *exec, t_env_lst *env)
 		path = env->value;
 	else
 		return (ft_strjoin("./", exec));
-	cmd = path;
-	while (fd < 0 && cmd)
+	while (fd < 0 && (cmd = extract_path(&path)))
 	{
-		cmd = extract_path(&path);
-		if (cmd)
-		{
-			cmd = ft_strjoin_free(cmd, "/", 1);
-			cmd = ft_strjoin_free(cmd, exec, 1);
-		}
+		cmd = ft_strjoin_free(cmd, "/", 1);
+		cmd = ft_strjoin_free(cmd, exec, 1);
 		if ((fd = open(cmd, O_RDONLY)) < 0)
 			free(cmd);
 	}
+	if (!cmd)
+		return (ft_strjoin("./", exec));
 	close(fd);
 	return (cmd);
 }
@@ -88,6 +85,7 @@ void	ft_exec(char *exec, char **params, t_data *data)
 	errno = 0;
 	if (*exec != '/' && *exec != '.')
 		path = get_path(exec, data->env_var);
+	printf("Command is : [%s]\n", path);
 	argv = create_extab(params, path);
 	execve(argv[0], argv, data->env);
 	if (errno != 0)

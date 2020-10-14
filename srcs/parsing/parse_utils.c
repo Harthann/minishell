@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:48:02 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/14 14:19:59 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/14 16:41:34 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*extract_dquote(char *str, int *start, t_data *data)
 			ret = ft_strjoin_free(ret, extract_dollar(str, &i, data), 3);
 		else
 			ret = ft_strapp_free(ret, str[i]);
-		i += str[i] == '"' ? 0 : 1;
+		i += str[i] == '"' && !is_escape(str, i) ? 0 : 1;
 	}
 	(*start) = i;
 	return (ret);

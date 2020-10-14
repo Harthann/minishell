@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_fork.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stbaleba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 15:34:27 by stbaleba          #+#    #+#             */
-/*   Updated: 2020/10/14 15:53:31 by stbaleba         ###   ########.fr       */
+/*   Updated: 2020/10/14 16:18:31 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	pipe_init_close(int **fdpipe, int n, int pnum)
 	{
 		while (i < pnum)
 			close(fd[i++]);
+		free(*fdpipe);
 	}
 	*fdpipe = fd;
 }
@@ -84,6 +85,8 @@ void	main_fork(t_cmd **list, t_data *data)
 		if (p.pcount == 0 || ft_memcmp(lst->command, "|", 2) == 0 ||
 		ft_memcmp(lst->command, ";", 2) == 0)
 		{
+			if (!ft_memcmp(lst->command, ";", 2))
+				wait(NULL);
 			if (fork() == 0)
 				do_builtin(p, fdpipe, lst, data);
 			p.pcount += 1;
@@ -91,7 +94,6 @@ void	main_fork(t_cmd **list, t_data *data)
 		lst = lst->next;
 	}
 	pipe_init_close(&fdpipe, 1, p.pnum);
-	free(fdpipe);
 	wait_child(data);
 	*list = lst;
 }
