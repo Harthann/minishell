@@ -1,13 +1,13 @@
 #include "minishell.h"
 
-int		check_fd(int *fdpipe, t_info *p, t_cmd *cmd)
+int		check_fd(int *fdpipe, t_info *p, t_cmd *cmd, int j)
 {
 	int fd;
 	int pcount;
 
 	fd = 0;
 	pcount = p->pcount;
-	if (pcount != 0 && (pcount - 1) * 2 < p->pnum)
+	if (pcount != 0 && (pcount - 1) * 2 < p->pnum && j == 0)
 		fd = fdpipe[(pcount - 1) * 2];
 	if (left_redir(cmd->next) == 1)
 		fd = ft_redirect(cmd->next, p);
@@ -39,11 +39,18 @@ void	do_builtin(t_info p, int *fdpipe, t_cmd *lst, t_data *data)
 {
 	int fd[2];
 	int i;
+	int j;
 
 	i = 0;
+	j = 0;
 	if(check_pipe(lst) == 1)
 		lst = lst->next;
-	fd[0] = check_fd(fdpipe, &p, lst);
+	if(ft_memcmp(lst->command, ";", 2) == 0)
+	{
+		j = 1;
+		lst = lst->next;
+	}
+	fd[0] = check_fd(fdpipe, &p, lst, j);
 	fd[1] = check_fd2(fdpipe, p, lst);
 	dup2(fd[0], 0);
 	dup2(fd[1], 1);

@@ -39,7 +39,8 @@ void	main_fork(t_cmd **list, t_data *data)
 	}
 	while(lst)
 	{
-		if(p.pcount == 0 || ft_memcmp(lst->command, "|", 2) == 0)
+		if(p.pcount == 0 || ft_memcmp(lst->command, "|", 2) == 0 ||
+		ft_memcmp(lst->command, ";", 2) == 0)
 		{
 			if(fork() == 0)
 				do_builtin(p, fdpipe, lst, data);
