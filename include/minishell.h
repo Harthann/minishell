@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/10/14 15:23:48 by stbaleba         ###   ########.fr       */
+/*   Updated: 2020/10/14 17:14:04 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ char			*ft_quote(char *params, int index, t_env_lst *lst);
 void			ft_echo(char **params_cl);
 void			ft_putstr(char *str);
 void			pwd(char *params);
-void			cd(char **params_cl);
+void			cd(char **params_cl, t_data *data);
 void			env_list(t_data *data, char *params);
 void			display(char *str);
 void			add_env(char **str, t_data *data);

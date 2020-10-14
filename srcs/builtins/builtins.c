@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 16:56:11 by user42            #+#    #+#             */
-/*   Updated: 2020/10/14 10:56:33 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/14 17:13:15 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	builtins(char *command, char **params, t_data *data)
 	else if (ft_memcmp(command, "pwd", 4) == 0)
 		pwd(dest);
 	else if (ft_memcmp(command, "cd", 3) == 0)
-		cd(params);
+		cd(params, data);
 	else if ((ft_memcmp(command, "export", 7) == 0 && params == NULL))
 		export_display(data);
 	else if (ft_memcmp(command, "env", 4) == 0)

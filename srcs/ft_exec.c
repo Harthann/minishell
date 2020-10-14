@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 09:01:47 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/14 16:54:24 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/14 17:21:52 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ void	ft_exec(char *exec, char **params, t_data *data)
 	errno = 0;
 	if (*exec != '/' && *exec != '.')
 		path = get_path(exec, data->env_var);
-	printf("Command is : [%s]\n", path);
 	argv = create_extab(params, path);
 	execve(argv[0], argv, data->env);
 	if (errno != 0)
