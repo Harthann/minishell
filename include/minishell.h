@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/10/09 14:25:08 by stbaleba         ###   ########.fr       */
+/*   Updated: 2020/10/14 10:15:51 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <stdlib.h>
 # include <errno.h>
 # include <stdio.h>
-# define  INT_MAX 2147483647
+# define INT_MAX 2147483647
 
 pid_t			g_fg_process;
 
@@ -51,12 +51,12 @@ typedef struct	s_data
 	unsigned char	exit_code;
 }				t_data;
 
-typedef struct s_info
+typedef struct	s_info
 {
 	int end_pass;
 	int	pcount;
 	int pnum;
-}				p_info;
+}				t_info;
 int				ft_command_parser(char *str, t_data *data);
 void			print_cmd(t_cmd *list);
 int				cmd_director(t_cmd *list, t_data *data);
@@ -109,20 +109,20 @@ int				count_char(char *str);
 char			*quote_check(char *s, t_env_lst *lst, int index);
 int				count_quotechar(char *str, int index);
 int				ft_error_fd(t_data *data, int fd);
-void			free_exec(char *exec, char *path, char **env, char **argv);
+void			free_exec(char *exec, char **env, char **argv);
 void			free_builtin(char **params_cl, char **mem);
 int				env_exist(t_env_lst *lst, t_env_lst *new);
 void			ft_delst(t_env_lst *lst, t_env_lst *prev_elem,
 					t_env_lst *next_elem, t_env_lst *mem);
-void				unset_export(t_cmd **list, t_data *data);
+void			unset_export(t_cmd **list, t_data *data);
 void			display_parse(t_cmd *list, t_data *data, int *count);
 int				check_env(t_env_lst *lst);
 int				check_char(char *str);
 int				ft_memplus(char *name, char *cname);
 int				double_tab_length(char **str);
 void			main_fork(t_cmd **list, t_data *data);
-void			do_builtin(p_info p, int *fdpipe, t_cmd *lst, t_data *data);
-int				ft_redirect(t_cmd *lst, p_info *p);
+void			do_builtin(t_info p, int *fdpipe, t_cmd *lst, t_data *data);
+int				ft_redirect(t_cmd *lst, t_info *p);
 int				ft_redirect2(t_cmd *lst);
 int				check_unset_export(t_cmd *lst);
 #endif
