@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/10/14 17:14:04 by stbaleba         ###   ########.fr       */
+/*   Updated: 2020/10/15 12:13:09 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char			*extract_dollar(char *str, int *start, t_data *data);
 t_env_lst		*ft_envnew(char *name, char *value);
 void			ft_addenv(t_env_lst **alst, t_env_lst *new);
 void			ft_delenv(t_env_lst **alst, char **name);
-void			builtins(char *command, char **params, t_data *data);
+void			builtins(t_cmd *lst, t_data *data);
 char			**clean_params(char *params, t_env_lst *lst, t_data *data);
 char			*env_value(char *str, int index, t_env_lst *lst);
 char			*env_value2(char *str, t_env_lst *lst);

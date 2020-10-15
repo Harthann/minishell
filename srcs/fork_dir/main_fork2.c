@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_fork2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stbaleba <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 15:53:43 by stbaleba          #+#    #+#             */
-/*   Updated: 2020/10/14 15:54:14 by stbaleba         ###   ########.fr       */
+/*   Updated: 2020/10/15 12:13:51 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	do_builtin(t_info p, int *fdpipe, t_cmd *lst, t_data *data)
 	dup2(fd[1], 1);
 	while (i < p.pnum)
 		close(fdpipe[i++]);
-	builtins(lst->command, lst->params, data);
+	builtins(lst, data);
 	i = 0;
 	free_datas(mem, data, fdpipe);
 	exit(0);

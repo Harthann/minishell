@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:51:49 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/14 16:01:12 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/15 12:15:23 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int		cmd_director(t_cmd *list, t_data *data)
 	{
 		if (ft_memcmp(list->command, "exit", 5) == 0)
 		{
-			builtins(list->command, list->params, data);
+			builtins(list, data);
 			list = list->next;
 		}
 		if (check_symbol(list) == 0 && check_unset_export(list) == 1)

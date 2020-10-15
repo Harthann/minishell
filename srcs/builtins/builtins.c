@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 16:56:11 by user42            #+#    #+#             */
-/*   Updated: 2020/10/14 17:13:15 by stbaleba         ###   ########.fr       */
+/*   Updated: 2020/10/15 12:15:12 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,27 +57,27 @@ void	export_display(t_data *data)
 	free(str);
 }
 
-void	builtins(char *command, char **params, t_data *data)
+void	builtins(t_cmd *lst, t_data *data)
 {
 	char *dest;
 
-	dest = (params == NULL) ? NULL : params[0];
-	if (ft_memcmp(command, "echo", 5) == 0)
-		ft_echo(params);
-	else if (ft_memcmp(command, "pwd", 4) == 0)
+	dest = (lst->params == NULL) ? NULL : lst->params[0];
+	if (ft_memcmp(lst->command, "echo", 5) == 0)
+		ft_echo(lst->params);
+	else if (ft_memcmp(lst->command, "pwd", 4) == 0)
 		pwd(dest);
-	else if (ft_memcmp(command, "cd", 3) == 0)
-		cd(params, data);
-	else if ((ft_memcmp(command, "export", 7) == 0 && params == NULL))
+	else if (ft_memcmp(lst->command, "cd", 3) == 0)
+		cd(lst->params, data);
+	else if ((ft_memcmp(lst->command, "export", 7) == 0 && !lst->params))
 		export_display(data);
-	else if (ft_memcmp(command, "env", 4) == 0)
+	else if (ft_memcmp(lst->command, "env", 4) == 0)
 		env_list(data, dest);
-	else if (ft_memcmp(command, "export", 7) == 0)
-		add_env(params, data);
-	else if (ft_memcmp(command, "unset", 6) == 0)
-		ft_delenv(&(data->env_var), params);
-	else if (ft_memcmp(command, "exit", 5) == 0)
-		ft_free(data, params, dest);
+	else if (ft_memcmp(lst->command, "export", 7) == 0)
+		add_env(lst->params, data);
+	else if (ft_memcmp(lst->command, "unset", 6) == 0)
+		ft_delenv(&(data->env_var), lst->params);
+	else if (ft_memcmp(lst->command, "exit", 5) == 0)
+		ft_free(data, lst->params, dest);
 	else
-		ft_exec(command, params, data);
+		ft_exec(lst->command, lst->params, data);
 }

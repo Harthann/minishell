@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 09:13:22 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/14 15:34:11 by stbaleba         ###   ########.fr       */
+/*   Updated: 2020/10/15 12:13:51 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,17 @@ void		unset_export(t_cmd **list, t_data *data)
 	lst = *list;
 	if (ft_memcmp(lst->command, "export", 7) == 0 && lst->params != NULL)
 	{
-		builtins(lst->command, lst->params, data);
+		builtins(lst, data);
 		lst = lst->next;
 	}
 	else if (ft_memcmp(lst->command, "unset", 5) == 0)
 	{
-		builtins(lst->command, lst->params, data);
+		builtins(lst, data);
 		lst = lst->next;
 	}
 	else if (ft_memcmp(lst->command, "cd", 3) == 0)
 	{
-		builtins(lst->command, lst->params, data);
+		builtins(lst, data);
 		lst = lst->next;
 	}
 	if (errno != 0)
