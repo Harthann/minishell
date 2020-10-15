@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/30 16:36:30 by user42            #+#    #+#             */
-/*   Updated: 2020/10/14 11:59:55 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/14 17:24:28 by stbaleba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		length(char **params)
 	int count;
 
 	count = 0;
-	while (params[count])
+	while (params && params[count])
 		count++;
 	return (count);
 }
@@ -44,7 +44,18 @@ void	pwd(char *params)
 	}
 }
 
-void	cd(char **params_cl)
+char	*home_dir(t_env_lst *lst)
+{
+	while (lst)
+	{
+		if (ft_memplus("HOME", lst->name) == 0)
+			return (lst->value);
+		lst = lst->next;
+	}
+	return (NULL);
+}
+
+void	cd(char **params_cl, t_data *data)
 {
 	int n;
 
@@ -62,7 +73,9 @@ void	cd(char **params_cl)
 			write(2, "\n", 2);
 		}
 	}
-	else if (g_fg_process != 0)
+	else if (n == 0)
+		chdir(home_dir(data->env_var));
+	else
 	{
 		errno = 7;
 		ft_putstr_fd(strerror(errno), 2);
