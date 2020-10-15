@@ -95,6 +95,7 @@ int		ft_command_parser(char *str, t_data *data)
 			i++;
 	}
 	// print_cmd(commands);
+	data->line = str;
 	cmd_director(commands, data);
 	free_command(&commands);
 	return (1);

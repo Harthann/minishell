@@ -31,7 +31,7 @@ NAME = minishell
 
 SRC_FILE = 	minishell.c parser.c \
 			builtins.c env_funct.c ft_echo.c \
-			ft_free.c pwd_cd.c ft_exec.c \
+			ft_free.c ft_free2.c pwd_cd.c ft_exec.c \
 			cmd_director.c \
 			get_next_line.c \
 			parse_utils.c fork_utils.c normal_fork.c \

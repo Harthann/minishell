@@ -45,11 +45,12 @@ typedef	struct	s_env_list
 typedef struct	s_data
 {
 	t_env_lst		*env_var;
-	int				last_return;
-	int				status;
+	int			last_return;
+	int			status;
 	char			**env;
-	int				red;
-	unsigned char	exit_code;
+	int			red;
+	unsigned char		exit_code;
+	char			*line;
 }				t_data;
 
 typedef struct	s_info
@@ -127,4 +128,8 @@ int				ft_redirect(t_cmd *lst, t_info *p);
 int				ft_redirect2(t_cmd *lst);
 int				check_unset_export(t_cmd *lst);
 int				ft_free2(char **sr, int i);
+void				free_lst(t_env_lst **alst);
+void				free_cmd(t_cmd **alst);
+void				free_datas(t_cmd **alst, t_data *data, int *fd);
+
 #endif

@@ -18,7 +18,6 @@ int	main_loop(t_data *data, char **env)
 	int		ret;
 
 	data->status = 1;
-	g_fd = 10;
 	add_env(env, data);
 	data->env = env;
 	signal(SIGINT, sigquit_handler);
@@ -26,6 +25,7 @@ int	main_loop(t_data *data, char **env)
 	ret = 1;
 	while (data->status && ret > 0)
 	{
+		line = NULL;
 		g_fg_process = -1;
 		write(1, "Minishell> ", 11);
 		ret = get_next_line(0, &line);

@@ -47,14 +47,39 @@ int		check_fd2(int *fdpipe, t_info p, t_cmd *cmd)
 	return (fd);
 }
 
+void	free_cmd(t_cmd **alst)
+{
+	t_cmd	*lst;
+	t_cmd	*mem;
+	int	i;
+
+	lst = *alst;
+	while (lst)
+	{
+		i = 0; 
+		free (lst->command);
+		while (lst->params && lst->params[i])
+		{
+			free(lst->params[i]);
+			i++;
+		}
+		free(lst->params);	
+		mem = lst;
+		lst = lst->next;
+		free(mem);
+	}
+}
+
 void	do_builtin(t_info p, int *fdpipe, t_cmd *lst, t_data *data)
 {
-	int fd[2];
-	int i;
-	int j;
+	int	fd[2];
+	int	i;
+	int	j;
+	t_cmd	**mem;
 
 	i = 0;
 	j = 0;
+	mem = &lst;
 	if (check_pipe(lst) == 1)
 		lst = lst->next;
 	if (ft_memcmp(lst->command, ";", 2) == 0)
@@ -62,6 +87,7 @@ void	do_builtin(t_info p, int *fdpipe, t_cmd *lst, t_data *data)
 		j = 1;
 		lst = lst->next;
 	}
+
 	fd[0] = check_fd(fdpipe, &p, lst, j);
 	fd[1] = check_fd2(fdpipe, p, lst);
 	dup2(fd[0], 0);
@@ -69,5 +95,7 @@ void	do_builtin(t_info p, int *fdpipe, t_cmd *lst, t_data *data)
 	while (i < p.pnum)
 		close(fdpipe[i++]);
 	builtins(lst->command, lst->params, data);
+	i = 0;
+	free_datas(mem, data, fdpipe);
 	exit(0);
 }
