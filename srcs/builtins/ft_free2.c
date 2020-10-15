@@ -6,4 +6,5 @@ void	free_datas(t_cmd **alst, t_data *data, int *fd)
         free_lst(&(data->env_var));
         free_cmd(alst);
         free(fd);
+	free(data);
 }

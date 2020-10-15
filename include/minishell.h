@@ -88,7 +88,7 @@ void			cd(char **params_cl, t_data *data);
 void			env_list(t_data *data, char *params);
 void			display(char *str);
 void			add_env(char **str, t_data *data);
-void			ft_free(t_data *data, char **params, char *dest);
+void			ft_free(t_data *data, char **params, char *dest, t_cmd *lst);
 void			ft_exec(char *exec, char **params, t_data *data);
 void			fork_parsing(t_cmd *list, t_data *data, int *count);
 char			*prs_mem(int fd);

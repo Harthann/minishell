@@ -26,7 +26,7 @@ void	free_lst(t_env_lst **alst)
 		lst = lst->next;
 		free(mem);
 	}
-	free(alst);
+//	free(alst);
 }
 
 void	free_builtin(char **params_cl)
@@ -65,7 +65,7 @@ void	error_exit(t_data *data)
 	data->last_return = 127;
 }
 
-void	ft_free(t_data *data, char **params, char *dest)
+void	ft_free(t_data *data, char **params, char *dest, t_cmd *lst)
 {
 	int		i;
 	char	*str;
@@ -89,6 +89,8 @@ void	ft_free(t_data *data, char **params, char *dest)
 		if ((ft_atoi(dest) > 0 && i == -1) ||
 			(ft_atoi(dest) < 0 && i == 1))
 			exit(255);
-		exit(data->exit_code);
+		i = data->exit_code;
+		free_datas(&lst, data, NULL);
+		exit(i);
 	}
 }

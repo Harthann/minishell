@@ -77,7 +77,7 @@ void	builtins(t_cmd *lst, t_data *data)
 	else if (ft_memcmp(lst->command, "unset", 6) == 0)
 		ft_delenv(&(data->env_var), lst->params);
 	else if (ft_memcmp(lst->command, "exit", 5) == 0)
-		ft_free(data, lst->params, dest);
+		ft_free(data, lst->params, dest, lst);
 	else
 		ft_exec(lst->command, lst->params, data);
 }
