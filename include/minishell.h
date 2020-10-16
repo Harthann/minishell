@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/10/16 08:30:51 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/16 09:06:21 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,5 +131,8 @@ int				ft_free2(char **sr, int i);
 void			free_lst(t_env_lst **alst);
 void			free_cmd(t_cmd **alst);
 int				free_datas(t_cmd **alst, t_data *data, int *fd);
+
+
+void	print_addr(t_cmd *list, t_data *data);
 
 #endif
