@@ -29,11 +29,31 @@ int		check_symbol(t_cmd *list)
 	return (0);
 }
 
+int		check_first_cmd(t_cmd **list, t_data *data)
+{
+	t_cmd *lst;
+
+	lst = *list;
+	if (lst && (ft_memcmp(lst->command, ";", 2) == 0 ||
+		ft_memcmp(lst->command, "|", 2) == 0))
+	{
+		if (ft_memcmp(lst->command, ";", 2) == 0)
+			ft_putstr_fd("bash: erreur de syntaxe près du symbole inattendu « ; »\n", 2);
+		else if (ft_memcmp(lst->command, "|", 2) == 0)
+			ft_putstr_fd("bash: erreur de syntaxe près du symbole inattendu « | »\n", 2);
+		data->last_return = 2;
+		return (0);
+	}
+	return (1);
+}
+
 int		cmd_director(t_cmd *list, t_data *data)
 {
 	t_cmd *tmp;
 
 	tmp = list;
+	if (check_first_cmd(&tmp, data) == 0)
+		return (data->status);
 	while (list)
 	{
 		if (ft_memcmp(list->command, "exit", 5) == 0)
