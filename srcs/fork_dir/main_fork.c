@@ -12,11 +12,12 @@
 
 #include "minishell.h"
 
-void	p_init(int pnum, t_info *p)
+void	p_init(int pnum, t_info *p, t_cmd **mem)
 {
 	p->end_pass = 0;
 	p->pcount = 0;
 	p->pnum = pnum;
+	p->cmd = mem;
 }
 
 int		pnum_l(t_cmd *list)
@@ -75,7 +76,7 @@ void	main_fork(t_cmd **list, t_data *data)
 	t_info	p;
 	t_cmd	*lst;
 
-	p_init(pnum_l(*list), &p);
+	p_init(pnum_l(*list), &p, list);
 	lst = *list;
 	if (!(fdpipe = (int *)malloc(sizeof(int) * p.pnum)))
 		return ;

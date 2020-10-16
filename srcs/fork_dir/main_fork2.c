@@ -75,11 +75,11 @@ void	do_builtin(t_info p, int *fdpipe, t_cmd *lst, t_data *data)
 	int		fd[2];
 	int		i;
 	int		j;
-	t_cmd	**mem;
+//	t_cmd	*mem;
 
 	i = 0;
 	j = 0;
-	mem = &lst;
+//	mem = lst;
 	if (check_pipe(lst) == 1)
 		lst = lst->next;
 	if (ft_memcmp(lst->command, ";", 2) == 0)
@@ -95,6 +95,6 @@ void	do_builtin(t_info p, int *fdpipe, t_cmd *lst, t_data *data)
 		close(fdpipe[i++]);
 	builtins(lst, data);
 	i = 0;
-	free_datas(mem, data, fdpipe);
+	free_datas(p.cmd, data, fdpipe);
 	exit(0);
 }
