@@ -78,16 +78,14 @@ void	ft_free(t_data *data, char **params, char *dest, t_cmd *lst)
 	else
 	{
 		str = dest;
-		i = ft_free2(&str, i);
+//		i = ft_free2(&str, i);
 		if (dest)
 			data->exit_code = (unsigned char)ft_atoi(dest);
 		ft_putstr_fd("exit\n", 1);
-		if (errno != 0 || (ft_atoi(dest) > 0 && i == -1) ||
-			(ft_atoi(dest) < 0 && i == 1))
+//		if (errno != 0 || (ft_atoi(dest) > 0 && i == -1) ||
+//			(ft_atoi(dest) < 0 && i == 1))
+		if (check_numeric(str) == 0 || check_numeric(str) == 2)
 			ft_putstr_fd("numeric argument required\n", 2);
-		if ((ft_atoi(dest) > 0 && i == -1) ||
-			(ft_atoi(dest) < 0 && i == 1))
-			exit(255);
 		exit(free_datas(&lst, data, NULL));
 	}
 }
