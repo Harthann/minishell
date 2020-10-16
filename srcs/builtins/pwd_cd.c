@@ -60,7 +60,9 @@ void	cd(char **params_cl, t_data *data)
 	int n;
 
 	n = length(params_cl);
-	if (n == 1)
+	if (n == 0 || ft_memcmp(params_cl[0], "~", 2) == 0)
+		chdir(home_dir(data->env_var));
+	else if (n == 1)
 	{
 		errno = 0;
 		chdir(params_cl[0]);
@@ -73,8 +75,6 @@ void	cd(char **params_cl, t_data *data)
 			write(2, "\n", 2);
 		}
 	}
-	else if (n == 0)
-		chdir(home_dir(data->env_var));
 	else
 	{
 		errno = 7;
