@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 15:40:36 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/15 11:48:03 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/16 08:21:22 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int		get_next_line(int fd, char **line)
 {
-	char *buffer;
-	int buff;
+	char	*buffer;
+	int		buff;
 
 	if (!(buffer = malloc(2)))
 		return (-1);
@@ -26,6 +26,13 @@ int		get_next_line(int fd, char **line)
 			*line = ft_strdup(buffer);
 		else
 			*line = ft_strjoin_free(*line, buffer, 1);
+	}
+	if (*line == NULL && buff == 1)
+		*line = ft_strdup("");
+	if (!buff && ft_strlen(buffer))
+	{
+		buff = ft_strlen(buffer);
+		write(1, "\n", 1);
 	}
 	free(buffer);
 	return (buff);

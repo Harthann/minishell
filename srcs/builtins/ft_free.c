@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 08:49:10 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/14 15:32:32 by stbaleba         ###   ########.fr       */
+/*   Updated: 2020/10/16 08:27:47 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	free_lst(t_env_lst **alst)
 		lst = lst->next;
 		free(mem);
 	}
-//	free(alst);
 }
 
 void	free_builtin(char **params_cl)
@@ -89,8 +88,6 @@ void	ft_free(t_data *data, char **params, char *dest, t_cmd *lst)
 		if ((ft_atoi(dest) > 0 && i == -1) ||
 			(ft_atoi(dest) < 0 && i == 1))
 			exit(255);
-		i = data->exit_code;
-		free_datas(&lst, data, NULL);
-		exit(i);
+		exit(free_datas(&lst, data, NULL));
 	}
 }

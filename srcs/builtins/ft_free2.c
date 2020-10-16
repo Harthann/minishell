@@ -1,10 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_free2.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/16 08:28:17 by nieyraud          #+#    #+#             */
+/*   Updated: 2020/10/16 08:29:32 by nieyraud         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-void	free_datas(t_cmd **alst, t_data *data, int *fd)
+int		free_datas(t_cmd **alst, t_data *data, int *fd)
 {
+	int tmp;
+
+	tmp = data->exit_code;
 	free(data->line);
-        free_lst(&(data->env_var));
-        free_cmd(alst);
-        free(fd);
+	free_lst(&(data->env_var));
+	free_cmd(alst);
+	free(fd);
 	free(data);
+	return (tmp);
 }

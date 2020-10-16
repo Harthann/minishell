@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 12:21:59 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/14 16:34:47 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/16 08:33:07 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ char	*extract_dollar(char *str, int *start, t_data *data)
 	char		*ret;
 
 	i = *start + 1;
-	if (!str[i] || ft_find_char(str[i], "\\;\' \"<>"))
+	if (!str[i] || ft_find_char(str[i], "\\;\' \"<>~"))
 		return (ft_strdup("$"));
 	while (str[i] && ft_isalnum(str[i + 1]))
 		i++;

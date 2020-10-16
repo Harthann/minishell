@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 15:53:43 by stbaleba          #+#    #+#             */
-/*   Updated: 2020/10/15 12:13:51 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/16 08:24:53 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,19 @@ void	free_cmd(t_cmd **alst)
 {
 	t_cmd	*lst;
 	t_cmd	*mem;
-	int	i;
+	int		i;
 
 	lst = *alst;
 	while (lst)
 	{
-		i = 0; 
-		free (lst->command);
+		i = 0;
+		free(lst->command);
 		while (lst->params && lst->params[i])
 		{
 			free(lst->params[i]);
 			i++;
 		}
-		free(lst->params);	
+		free(lst->params);
 		mem = lst;
 		lst = lst->next;
 		free(mem);
@@ -72,9 +72,9 @@ void	free_cmd(t_cmd **alst)
 
 void	do_builtin(t_info p, int *fdpipe, t_cmd *lst, t_data *data)
 {
-	int	fd[2];
-	int	i;
-	int	j;
+	int		fd[2];
+	int		i;
+	int		j;
 	t_cmd	**mem;
 
 	i = 0;
@@ -87,7 +87,6 @@ void	do_builtin(t_info p, int *fdpipe, t_cmd *lst, t_data *data)
 		j = 1;
 		lst = lst->next;
 	}
-
 	fd[0] = check_fd(fdpipe, &p, lst, j);
 	fd[1] = check_fd2(fdpipe, p, lst);
 	dup2(fd[0], 0);

@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/10/15 12:13:09 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/16 08:30:51 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 # define INT_MAX 2147483647
 
 pid_t			g_fg_process;
-int				g_fd;
 
 typedef struct	s_cmd
 {
@@ -45,11 +44,11 @@ typedef	struct	s_env_list
 typedef struct	s_data
 {
 	t_env_lst		*env_var;
-	int			last_return;
-	int			status;
+	int				last_return;
+	int				status;
 	char			**env;
-	int			red;
-	unsigned char		exit_code;
+	int				red;
+	unsigned char	exit_code;
 	char			*line;
 }				t_data;
 
@@ -59,6 +58,7 @@ typedef struct	s_info
 	int	pcount;
 	int pnum;
 }				t_info;
+
 int				ft_command_parser(char *str, t_data *data);
 void			print_cmd(t_cmd *list);
 int				cmd_director(t_cmd *list, t_data *data);
@@ -128,8 +128,8 @@ int				ft_redirect(t_cmd *lst, t_info *p);
 int				ft_redirect2(t_cmd *lst);
 int				check_unset_export(t_cmd *lst);
 int				ft_free2(char **sr, int i);
-void				free_lst(t_env_lst **alst);
-void				free_cmd(t_cmd **alst);
-void				free_datas(t_cmd **alst, t_data *data, int *fd);
+void			free_lst(t_env_lst **alst);
+void			free_cmd(t_cmd **alst);
+int				free_datas(t_cmd **alst, t_data *data, int *fd);
 
 #endif
