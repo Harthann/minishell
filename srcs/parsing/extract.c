@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 12:21:59 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/16 09:37:19 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/16 13:42:09 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,4 +113,11 @@ char	*extract_dollar(char *str, int *start, t_data *data)
 		ret = ft_strdup(tmp->value);
 	(*start) = i;
 	return (ret);
+}
+
+char	*last_commands(t_cmd *commands)
+{
+	while (commands && commands->next)
+		commands = commands->next;
+	return (commands->command);
 }

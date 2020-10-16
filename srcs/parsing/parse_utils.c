@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:48:02 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/14 16:41:34 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/16 11:54:13 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*extract_dquote(char *str, int *start, t_data *data)
 	int		i;
 
 	i = *start + 1;
-	ret = NULL;
+	ret = ft_strdup("");
 	while (str[i] && str[i] != '"')
 	{
 		if (str[i] == '\\' && (str[i + 1] == '"' || str[i + 1] == '$'))
