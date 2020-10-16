@@ -58,6 +58,7 @@ typedef struct	s_info
 	int	pcount;
 	int pnum;
 	t_cmd **cmd;
+	pid_t child;
 }				t_info;
 
 int				ft_command_parser(char *str, t_data *data);

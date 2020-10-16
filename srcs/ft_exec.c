@@ -80,18 +80,22 @@ void	ft_exec(char *exec, char **params, t_data *data)
 {
 	char	**argv;
 	char	*path;
+	long int i;
 
 	path = ft_strdup(exec);
 	errno = 0;
+	i = 0;
 	if (*exec != '/' && *exec != '.')
 		path = get_path(exec, data->env_var);
 	argv = create_extab(params, path);
 	execve(argv[0], argv, data->env);
+	while(i < 10000000000000)
+		i++;
 	if (errno != 0)
 	{
-		ft_putstr_fd("Minishell: ", 1);
-		write(1, exec, ft_strlen(exec));
-		ft_putstr_fd(": command not found\n", 1);
+		ft_putstr_fd("Minishell: ", 2);
+		write(2, exec, ft_strlen(exec));
+		ft_putstr_fd(": command not found\n", 2);
 	}
 	free_exec(exec, 0, argv);
 	exit(1);
