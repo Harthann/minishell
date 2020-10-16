@@ -57,6 +57,7 @@ typedef struct	s_info
 	int end_pass;
 	int	pcount;
 	int pnum;
+	t_cmd **cmd;
 }				t_info;
 
 int				ft_command_parser(char *str, t_data *data);
@@ -133,7 +134,7 @@ void			free_lst(t_env_lst **alst);
 void			free_cmd(t_cmd **alst);
 int				free_datas(t_cmd **alst, t_data *data, int *fd);
 
-
+int	check_numeric(char *str);
 void	print_addr(t_cmd *list, t_data *data);
 
 #endif

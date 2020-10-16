@@ -84,7 +84,7 @@ void		ft_delenv(t_env_lst **alst, char **name)
 	prev_elem = 0;
 	if (name == NULL)
 		return ;
-	while (*name)
+	while (name && *name)
 	{
 		lst = mem;
 		while (lst)
@@ -93,8 +93,7 @@ void		ft_delenv(t_env_lst **alst, char **name)
 			if (ft_memplus(*name, lst->name) == 0)
 				ft_delst(lst, prev_elem, next_elem, mem);
 			prev_elem = lst;
-			if (lst)
-				lst = lst->next;
+			lst = next_elem;
 		}
 		name++;
 	}
