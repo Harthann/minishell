@@ -38,7 +38,7 @@ char	*extract_dquote(char *str, int *start, t_data *data)
 	int		i;
 
 	i = *start + 1;
-	ret = NULL;
+	ret = ft_strdup("");
 	while (str[i] && str[i] != '"')
 	{
 		if (str[i] == '\\' && (str[i + 1] == '"' || str[i + 1] == '$'))

@@ -47,7 +47,7 @@ void	ft_echo(char **params_cl)
 
 	stop = 0;
 	n = 0;
-	if(params_cl)
+	if (params_cl)
 		n = check_option(params_cl[0]);
 	i = (n == 0) ? 1 : 0;
 	while (params_cl && params_cl[i])

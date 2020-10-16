@@ -103,7 +103,7 @@ char	*extract_dollar(char *str, int *start, t_data *data)
 		i++;
 	tmp = data->env_var;
 	length = i == *start + 1 ? 1 : i - *start - 1;
-	while (tmp && ft_strncmp(str + *start + 1, tmp->name, length))
+	while (tmp && ft_strncmp(str + *start + 1, tmp->name, length + 1))
 		tmp = tmp->next;
 	if (!ft_strncmp(str + *start + 1, "?", 1))
 		ret = ft_itoa(data->last_return);
