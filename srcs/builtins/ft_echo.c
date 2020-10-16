@@ -22,7 +22,7 @@ int		check_option(char *cmd)
 	if (cmd && cmd[i] == '-')
 	{
 		i++;
-		while (cmd[i])
+		while (cmd && cmd[i])
 		{
 			if (cmd[i] != 'n')
 				return (1);
@@ -46,9 +46,11 @@ void	ft_echo(char **params_cl)
 	int stop;
 
 	stop = 0;
-	n = check_option(params_cl[0]);
+	n = 0;
+	if(params_cl)
+		n = check_option(params_cl[0]);
 	i = (n == 0) ? 1 : 0;
-	while (params_cl[i])
+	while (params_cl && params_cl[i])
 	{
 		if (stop == 1 || check_option(params_cl[i]) == 1)
 		{
