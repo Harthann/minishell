@@ -121,7 +121,7 @@ void			ft_delst(t_env_lst *lst, t_env_lst *prev_elem,
 void			unset_export(t_cmd **list, t_data *data);
 void			display_parse(t_cmd *list, t_data *data, int *count);
 int				check_env(t_env_lst *lst);
-int				check_char(char *str);
+int				check_char(char *name, char *value);
 int				ft_memplus(char *name, char *cname);
 int				double_tab_length(char **str);
 void			main_fork(t_cmd **list, t_data *data);
