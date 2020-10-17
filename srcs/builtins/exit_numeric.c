@@ -83,14 +83,22 @@ int	is_below_long_min(char *str)
 	return (1);
 }
 
-int	check_numeric(char *str)
+int	check_numeric(char *str, t_data *data)
 {
+	int i;
+
+	i = 0;
 	if (str == NULL)
 		return (1);
 	if (str_is_num(str) == 0)
-		return (2);
+		i = 2;
 	if (is_above_long_max(str) == 0
 	&& is_below_long_min(str) == 0)
-		return (0);
+		i = 0;
+	if (i == 0 || i == 2)
+	{
+		data->exit_code = 2;
+		return (2);
+	}
 	return (1);
 }
