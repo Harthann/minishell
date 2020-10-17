@@ -96,7 +96,7 @@ int		ft_command_parser(char *str, t_data *data)
 		{
 			if (data->status || commands)
 				break ;
-			printf("ERROR\n");
+			write(2, "bash: erreur de syntaxe près du symbole inattendu « | \n", 56);
 			free(commands);
 			return(ft_strlen(str));
 		}
