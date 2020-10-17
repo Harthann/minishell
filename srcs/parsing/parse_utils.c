@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:48:02 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/16 11:54:13 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/17 14:53:41 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*extract_dquote(char *str, int *start, t_data *data)
 	ret = ft_strdup("");
 	while (str[i] && str[i] != '"')
 	{
-		if (str[i] == '\\' && (str[i + 1] == '"' || str[i + 1] == '$'))
+		if (str[i] == '\\' && ft_find_char(str[i + 1], "\"\\$"))
 		{
 			ret = ft_strapp_free(ret, str[i + 1]);
 			i++;
@@ -56,10 +56,10 @@ char	*extract_dquote(char *str, int *start, t_data *data)
 	return (ret);
 }
 
-int	add_back(t_cmd **list, t_cmd *new)
+int		add_back(t_cmd **list, t_cmd *new)
 {
 	t_cmd	*tmp;
-	int	i;
+	int		i;
 
 	i = 0;
 	if (!ft_strncmp(new->command, ";", 2))

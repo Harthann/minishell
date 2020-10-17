@@ -43,24 +43,17 @@ void	free_builtin(char **params_cl)
 
 void	free_exec(char **env, char **argv)
 {
-	int i;
-
-	i = 0;
 	free(env);
-	while (argv[i])
-	{
-		free(argv[i]);
-		i++;
-	}
+	free(argv[0]);
 	free(argv);
 }
 
-void	error_exit(t_data *data)
+void	error_exit(void)
 {
 	ft_putstr_fd("exit\n", 1);
 	ft_putstr_fd("Too many arguments\n", 2);
 	errno = 7;
-	data->last_return = 127;
+	g_last_return = 127;
 }
 
 void	ft_free(t_data *data, char **params, char *dest, t_cmd *lst)
@@ -73,7 +66,7 @@ void	ft_free(t_data *data, char **params, char *dest, t_cmd *lst)
 	while (params && params[i])
 		i++;
 	if (i > 1)
-		error_exit(data);
+		error_exit();
 	else
 	{
 		str = dest;

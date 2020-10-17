@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_fork.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 15:34:27 by stbaleba          #+#    #+#             */
-/*   Updated: 2020/10/14 16:18:31 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/17 14:55:37 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,22 +59,24 @@ void	pipe_init_close(int **fdpipe, int n, int pnum)
 	*fdpipe = fd;
 }
 
-void	wait_child(t_data *data, pid_t child, int n)
+void	wait_child(pid_t child, int n)
 {
 	int status;
 	int i;
 
 	i = 0;
 	waitpid(child, &status, 0);
-	while(i < n)
+	while (i < n)
 	{
 		wait(NULL);
 		i++;
 	}
 	if (WEXITSTATUS(status) != 0)
-		data->last_return = 127;
+		g_last_return = 127;
+	else if (WTERMSIG(status) == 0)
+		g_last_return = 0;
 	else
-		data->last_return = 0;
+		g_last_return = 128 + WTERMSIG(status);
 }
 
 void	main_fork(t_cmd **list, t_data *data)
@@ -95,14 +97,13 @@ void	main_fork(t_cmd **list, t_data *data)
 		{
 			if (!ft_memcmp(lst->command, ";", 2))
 				wait(NULL);
-			p.child = fork();
-			if (p.child == 0)
+			if (!(p.child = fork()))
 				do_builtin(p, fdpipe, lst, data);
 			p.pcount += 1;
 		}
 		lst = lst->next;
 	}
 	pipe_init_close(&fdpipe, 1, p.pnum);
-	wait_child(data, p.child, p.pcount);
+	wait_child(p.child, p.pcount);
 	*list = lst;
 }

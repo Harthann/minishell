@@ -28,6 +28,9 @@ void	sigquit_handler(int signal)
 		if (g_fg_process >= 0)
 			write(1, "\n", 1);
 		else
+		{
 			write(1, "\nMinishell> ", 12);
+			g_last_return = 130;
+		}
 	}
 }

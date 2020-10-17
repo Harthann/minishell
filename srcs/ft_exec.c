@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exec.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 09:01:47 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/16 09:16:14 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/17 15:01:25 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ char	**create_extab(char **params, char *exec)
 
 void	ft_exec(char *exec, char **params, t_data *data)
 {
-	char	**argv;
-	char	*path;
-	long int i;
+	char		**argv;
+	char		*path;
+	long int	i;
 
 	path = ft_strdup(exec);
 	errno = 0;
@@ -92,7 +92,7 @@ void	ft_exec(char *exec, char **params, t_data *data)
 	}
 	argv = create_extab(params, path);
 	execve(argv[0], argv, data->env);
-	while(i < 10000000000000)
+	while (i < 10000000000000)
 		i++;
 	if (errno != 0)
 	{

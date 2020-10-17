@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:41:08 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/16 13:56:12 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/17 14:59:28 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,9 @@ int		ft_command_parser(char *str, t_data *data)
 		{
 			if (data->status || commands)
 				break ;
-			write(2, "bash: erreur de syntaxe près du symbole inattendu « | \n", 56);
+			ft_putstr_fd(SYNERROR, 2);
 			free(commands);
-			return(ft_strlen(str));
+			return (ft_strlen(str));
 		}
 		while (str[i] == ' ' && str[i])
 			i++;

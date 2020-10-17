@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/10/16 13:42:48 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/17 15:00:42 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,11 @@
 # include <errno.h>
 # include <stdio.h>
 # define INT_MAX 2147483647
+# define SYNERRORP "bash: erreur de syntaxe près du symbole inattendu « | »\n"
+# define SYNERROR "bash: erreur de syntaxe près du symbole inattendu « ; »\n"
 
 pid_t			g_fg_process;
+int				g_last_return;
 
 typedef struct	s_cmd
 {
@@ -54,18 +57,18 @@ typedef struct	s_data
 
 typedef struct	s_info
 {
-	int end_pass;
-	int	pcount;
-	int pnum;
-	t_cmd **cmd;
-	pid_t child;
+	int		end_pass;
+	int		pcount;
+	int		pnum;
+	t_cmd	**cmd;
+	pid_t	child;
 }				t_info;
 
 int				ft_command_parser(char *str, t_data *data);
 void			print_cmd(t_cmd *list);
 int				cmd_director(t_cmd *list, t_data *data);
 int				is_separator(char *str, int start);
-void			add_back(t_cmd **list, t_cmd *new);
+int				add_back(t_cmd **list, t_cmd *new);
 void			sigquit_handler(int signal);
 void			free_command(t_cmd **list);
 char			*extract_quote(char *str, int *start);
@@ -86,7 +89,7 @@ char			*env_value2(char *str, t_env_lst *lst);
 char			*ft_quote(char *params, int index, t_env_lst *lst);
 void			ft_echo(char **params_cl);
 void			ft_putstr(char *str);
-void			pwd(char *params);
+void			pwd(void);
 void			cd(char **params_cl, t_data *data);
 void			env_list(t_data *data, char *params);
 void			display(char *str);
@@ -135,7 +138,6 @@ void			free_lst(t_env_lst **alst);
 void			free_cmd(t_cmd **alst);
 int				free_datas(t_cmd **alst, t_data *data, int *fd);
 
-int	check_numeric(char *str);
-void	print_addr(t_cmd *list, t_data *data);
+int				check_numeric(char *str);
 
 #endif

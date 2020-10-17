@@ -22,26 +22,16 @@ int		length(char **params)
 	return (count);
 }
 
-void	pwd(char *params)
+void	pwd(void)
 {
 	char *res;
 
-	if (params == NULL)
-	{
-		errno = 0;
-		res = ft_calloc(1000, sizeof(char));
-		res = getcwd(res, 1000);
-		ft_putstr_fd(res, 1);
-		write(1, "\n", 2);
-		free(res);
-	}
-	else
-	{
-		errno = 7;
-		ft_putstr_fd(strerror(errno), 2);
-		write(2, "\n", 2);
-		exit(2);
-	}
+	errno = 0;
+	res = ft_calloc(1000, sizeof(char));
+	res = getcwd(res, 1000);
+	ft_putstr_fd(res, 1);
+	write(1, "\n", 2);
+	free(res);
 }
 
 char	*home_dir(t_env_lst *lst)

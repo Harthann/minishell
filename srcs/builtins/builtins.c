@@ -65,7 +65,7 @@ void	builtins(t_cmd *lst, t_data *data)
 	if (ft_memcmp(lst->command, "echo", 5) == 0)
 		ft_echo(lst->params);
 	else if (ft_memcmp(lst->command, "pwd", 4) == 0)
-		pwd(dest);
+		pwd();
 	else if (ft_memcmp(lst->command, "cd", 3) == 0)
 		cd(lst->params, data);
 	else if ((ft_memcmp(lst->command, "export", 7) == 0 && !lst->params))

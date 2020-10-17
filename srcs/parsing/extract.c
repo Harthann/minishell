@@ -106,7 +106,7 @@ char	*extract_dollar(char *str, int *start, t_data *data)
 	while (tmp && ft_strncmp(str + *start + 1, tmp->name, length + 1))
 		tmp = tmp->next;
 	if (!ft_strncmp(str + *start + 1, "?", 1))
-		ret = ft_itoa(data->last_return);
+		ret = ft_itoa(g_last_return);
 	else if (!tmp)
 		ret = ft_strdup("");
 	else

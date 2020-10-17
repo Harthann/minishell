@@ -29,7 +29,7 @@ void		add_env(char **str, t_data *data)
 {
 	char	*name;
 	char	*value;
-	int	i;
+	int		i;
 
 	while (*str)
 	{
@@ -123,6 +123,5 @@ void		env_list(t_data *data, char *params)
 		errno = 2;
 		ft_putstr_fd(strerror(errno), 2);
 		write(2, "\n", 2);
-		exit(2);
 	}
 }

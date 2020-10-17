@@ -29,9 +29,9 @@ int		get_next_line(int fd, char **line)
 	}
 	if (*line == NULL && buff == 1)
 		*line = ft_strdup("");
-	if (!buff && ft_strlen(buffer))
+	if (!buff && ft_strlen(*line))
 	{
-		buff = ft_strlen(buffer);
+		buff = ft_strlen(*line);
 		write(1, "\n", 1);
 	}
 	free(buffer);

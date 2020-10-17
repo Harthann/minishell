@@ -48,7 +48,7 @@ void		unset_export(t_cmd **list, t_data *data)
 	}
 	if (errno != 0)
 	{
-		data->last_return = 127;
+		g_last_return = 127;
 		errno = 0;
 	}
 	*list = lst;
