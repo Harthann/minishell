@@ -46,7 +46,6 @@ void	free_exec(char *exec, char **env, char **argv)
 	int i;
 
 	i = 0;
-	free(exec);
 	free(env);
 	while (argv[i])
 	{

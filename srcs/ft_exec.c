@@ -86,7 +86,10 @@ void	ft_exec(char *exec, char **params, t_data *data)
 	errno = 0;
 	i = 0;
 	if (*exec != '/' && *exec != '.')
+	{
+		free(path);
 		path = get_path(exec, data->env_var);
+	}
 	argv = create_extab(params, path);
 	execve(argv[0], argv, data->env);
 	while(i < 10000000000000)
@@ -97,6 +100,6 @@ void	ft_exec(char *exec, char **params, t_data *data)
 		write(2, exec, ft_strlen(exec));
 		ft_putstr_fd(": command not found\n", 2);
 	}
+	errno = 1;
 	free_exec(exec, 0, argv);
-	exit(1);
 }

@@ -94,5 +94,7 @@ void	do_builtin(t_info p, int *fdpipe, t_cmd *lst, t_data *data)
 	builtins(lst, data);
 	i = 0;
 	free_datas(p.cmd, data, fdpipe);
+	if (errno != 0)
+		exit(1);
 	exit(0);
 }
