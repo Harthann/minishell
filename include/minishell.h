@@ -113,7 +113,7 @@ int				count_char(char *str);
 char			*quote_check(char *s, t_env_lst *lst, int index);
 int				count_quotechar(char *str, int index);
 int				ft_error_fd(t_data *data, int fd);
-void			free_exec(char *exec, char **env, char **argv);
+void			free_exec(char **env, char **argv);
 void			free_builtin(char **params_cl);
 int				env_exist(t_env_lst *lst, t_env_lst *new);
 void			ft_delst(t_env_lst *lst, t_env_lst *prev_elem,

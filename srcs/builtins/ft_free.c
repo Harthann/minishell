@@ -41,7 +41,7 @@ void	free_builtin(char **params_cl)
 	free(params_cl);
 }
 
-void	free_exec(char *exec, char **env, char **argv)
+void	free_exec(char **env, char **argv)
 {
 	int i;
 
