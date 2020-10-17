@@ -50,7 +50,6 @@ void	free_exec(char **env, char **argv)
 
 void	error_exit(void)
 {
-	ft_putstr_fd("exit\n", 1);
 	ft_putstr_fd("Too many arguments\n", 2);
 	errno = 7;
 	g_last_return = 127;
@@ -65,16 +64,16 @@ void	ft_free(t_data *data, char **params, char *dest, t_cmd *lst)
 	errno = 0;
 	while (params && params[i])
 		i++;
-	if (i > 1)
-		error_exit();
-	else
+	str = dest;
+	if (dest)
+		data->exit_code = (unsigned char)ft_atoi(dest);
+	ft_putstr_fd("exit\n", 1);
+	if (check_numeric(str, data) == 0 || check_numeric(str, data) == 2)
 	{
-		str = dest;
-		if (dest)
-			data->exit_code = (unsigned char)ft_atoi(dest);
-		ft_putstr_fd("exit\n", 1);
-		if (check_numeric(str, data) == 0 || check_numeric(str, data) == 2)
-			ft_putstr_fd("numeric argument required\n", 2);
+		ft_putstr_fd("numeric argument required\n", 2);
 		exit(free_datas(&lst, data, NULL));
 	}
+	if (i <= 1)
+		exit(free_datas(&lst, data, NULL));
+	error_exit();
 }

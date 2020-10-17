@@ -87,7 +87,7 @@ int	check_numeric(char *str, t_data *data)
 {
 	int i;
 
-	i = 0;
+	i = 1;
 	if (str == NULL)
 		return (1);
 	if (str_is_num(str) == 0)
