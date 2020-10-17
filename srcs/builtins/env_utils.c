@@ -12,28 +12,31 @@
 
 #include "minishell.h"
 
-int	check_char(char *str)
+int	check_char(char *name, char *value)
 {
-	if (*str == '+' || *str == '-' || *str == '['
-	|| *str == '{' || *str == '(' || *str == ']'
-	|| *str == '}' || *str == ')' || *str == '=')
+	int i;
+
+	i = 0;
+	if (ft_find_char(name[i], "+{}-[]()=") == 1)
 	{
-		ft_putstr_fd("bash: syntax error\n", 10);
+		ft_putstr_fd("bash: syntax error\n", 2);
+		free(name);
+		free(value);
 		errno = 1;
 		return (0);
 	}
-	str++;
-	while (str && *str)
+	i++;
+	while (name && name[i])
 	{
-		if (*str == '+' || *str == '-' || *str == '['
-		|| *str == '{' || *str == '(' || *str == ']'
-		|| *str == '}' || *str == ')')
+		if (ft_find_char(name[i], "+{}-[]()") == 1)
 		{
-			ft_putstr_fd("bash: syntax error\n", 10);
+			ft_putstr_fd("bash: syntax error\n", 2);
+			free(name);
+			free(value);
 			errno = 1;
 			return (0);
 		}
-		str++;
+		i++;
 	}
 	return (1);
 }

@@ -58,6 +58,7 @@ typedef struct	s_info
 	int	pcount;
 	int pnum;
 	t_cmd **cmd;
+	pid_t child;
 }				t_info;
 
 int				ft_command_parser(char *str, t_data *data);
@@ -113,7 +114,7 @@ int				count_char(char *str);
 char			*quote_check(char *s, t_env_lst *lst, int index);
 int				count_quotechar(char *str, int index);
 int				ft_error_fd(t_data *data, int fd);
-void			free_exec(char *exec, char **env, char **argv);
+void			free_exec(char **env, char **argv);
 void			free_builtin(char **params_cl);
 int				env_exist(t_env_lst *lst, t_env_lst *new);
 void			ft_delst(t_env_lst *lst, t_env_lst *prev_elem,
@@ -121,7 +122,7 @@ void			ft_delst(t_env_lst *lst, t_env_lst *prev_elem,
 void			unset_export(t_cmd **list, t_data *data);
 void			display_parse(t_cmd *list, t_data *data, int *count);
 int				check_env(t_env_lst *lst);
-int				check_char(char *str);
+int				check_char(char *name, char *value);
 int				ft_memplus(char *name, char *cname);
 int				double_tab_length(char **str);
 void			main_fork(t_cmd **list, t_data *data);

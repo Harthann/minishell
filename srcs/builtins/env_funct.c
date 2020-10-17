@@ -29,7 +29,7 @@ void		add_env(char **str, t_data *data)
 {
 	char	*name;
 	char	*value;
-	int		i;
+	int	i;
 
 	while (*str)
 	{
@@ -46,7 +46,7 @@ void		add_env(char **str, t_data *data)
 			name = ft_substr(*str, 0, i + 1);
 			value = ft_strdup("\0");
 		}
-		if (check_char(name) == 1)
+		if (check_char(name, value) == 1)
 			ft_addenv(&(data->env_var), ft_envnew(name, value));
 		str++;
 	}

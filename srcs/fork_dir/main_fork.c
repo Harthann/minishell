@@ -18,6 +18,7 @@ void	p_init(int pnum, t_info *p, t_cmd **mem)
 	p->pcount = 0;
 	p->pnum = pnum;
 	p->cmd = mem;
+	p->child = 0;
 }
 
 int		pnum_l(t_cmd *list)
@@ -58,13 +59,19 @@ void	pipe_init_close(int **fdpipe, int n, int pnum)
 	*fdpipe = fd;
 }
 
-void	wait_child(t_data *data)
+void	wait_child(t_data *data, pid_t child, int n)
 {
 	int status;
+	int i;
 
-	while ((wait(&status)) > 0)
-		;
-	if (status != 0)
+	i = 0;
+	waitpid(child, &status, 0);
+	while(i < n)
+	{
+		wait(NULL);
+		i++;
+	}
+	if (WEXITSTATUS(status) != 0)
 		data->last_return = 127;
 	else
 		data->last_return = 0;
@@ -88,13 +95,14 @@ void	main_fork(t_cmd **list, t_data *data)
 		{
 			if (!ft_memcmp(lst->command, ";", 2))
 				wait(NULL);
-			if (fork() == 0)
+			p.child = fork();
+			if (p.child == 0)
 				do_builtin(p, fdpipe, lst, data);
 			p.pcount += 1;
 		}
 		lst = lst->next;
 	}
 	pipe_init_close(&fdpipe, 1, p.pnum);
-	wait_child(data);
+	wait_child(data, p.child, p.pcount);
 	*list = lst;
 }
