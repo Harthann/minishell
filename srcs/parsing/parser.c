@@ -72,9 +72,11 @@ t_cmd	*new_command(char *str, int *start, t_data *data)
 	while (str[*start] == ' ' && str[*start] != '\0')
 		(*start)++;
 	cmd->command = extract_command(str, start, data);
+	if (!(ft_strncmp(cmd->command, ";", 2)))
+		return (cmd);
 	while (str[*start] == ' ' && str[*start])
 		(*start)++;
-	if (ft_strncmp(cmd->command, "|", 1) && ft_strncmp(cmd->command, ";", 1))
+	if (ft_strncmp(cmd->command, "|", 1))
 		cmd->params = parse_param(str, start, data);
 	return (cmd);
 }
@@ -88,20 +90,21 @@ int		ft_command_parser(char *str, t_data *data)
 	commands = NULL;
 	while (str[i] && str[i] == ' ')
 		i++;
-	data->line = str;
 	while (str[i])
 	{
-		add_back(&commands, new_command(str, &i, data));
+		if (add_back(&commands, new_command(str, &i, data)) == 1)
+		{
+			if (data->status || commands)
+				break ;
+			printf("ERROR\n");
+			free(commands);
+			return(ft_strlen(str));
+		}
 		while (str[i] == ' ' && str[i])
 			i++;
-		if (!ft_strncmp(last_commands(commands), ";", 2))
-		{
-			cmd_director(commands, data);
-			free_command(&commands);
-			commands = NULL;
-		}
 	}
+	data->status++;
 	cmd_director(commands, data);
 	free_command(&commands);
-	return (1);
+	return (i);
 }

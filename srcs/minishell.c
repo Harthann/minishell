@@ -16,22 +16,26 @@ int	main_loop(t_data *data, char **env)
 {
 	char	*line;
 	int		ret;
+	int i;
 
-	data->status = 1;
 	add_env(env, data);
 	data->env = env;
-	signal(SIGINT, sigquit_handler);
-	signal(SIGQUIT, sigquit_handler);
+//	signal(SIGINT, sigquit_handler);
+//	signal(SIGQUIT, sigquit_handler);
 	ret = 1;
-	while (data->status && ret > 0)
+	while (ret > 0)
 	{
+		data->status = 0;
+		i = 0;
 		line = NULL;
 		g_fg_process = -1;
 		write(1, "Minishell> ", 11);
 		ret = get_next_line(0, &line);
 		if (ret == 0)
 			line = ft_strdup("exit");
-		data->status = ft_command_parser(line, data);
+		data->line = line;
+		while ((i += ft_command_parser(line + i, data)) < (int)ft_strlen(line))
+			;
 		free(line);
 	}
 	return (0);

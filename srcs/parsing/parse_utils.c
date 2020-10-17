@@ -56,20 +56,27 @@ char	*extract_dquote(char *str, int *start, t_data *data)
 	return (ret);
 }
 
-void	add_back(t_cmd **list, t_cmd *new)
+int	add_back(t_cmd **list, t_cmd *new)
 {
 	t_cmd	*tmp;
+	int	i;
 
-	if (list)
-		tmp = *list;
-	else
-		tmp = NULL;
+	i = 0;
+	if (!ft_strncmp(new->command, ";", 2))
+	{
+		free(new->command);
+		free(new);
+		new = NULL;
+		i = 1;
+	}
+	tmp = *list;
 	while (tmp && tmp->next)
 		tmp = tmp->next;
 	if (tmp)
 		tmp->next = new;
 	else
 		*list = new;
+	return (i);
 }
 
 void	free_command(t_cmd **list)
