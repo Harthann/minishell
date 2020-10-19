@@ -15,9 +15,9 @@
 
 char	*ft_strapp_free(char *str, char c)
 {
-	char *ret;
-	int i;
-	int length;
+	char	*ret;
+	int	i;
+	int	length;
 
 	i = 0;
 	if (!str)
