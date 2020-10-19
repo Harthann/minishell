@@ -1,6 +1,6 @@
 segfault : export test; unset test; export test=oui
 parse error : ;; ;| syntax '>>' '<' '>'
-
+stocked str need to be removed qhene ctrl+c is send
 return value : too much argument {exit 53 sfdsdfsd}
 return value : after exit error "too many arguemnt"
 redirection : echo salut >>
