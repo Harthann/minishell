@@ -3,14 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:55:18 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/17 15:01:58 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/19 12:01:50 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	check_parser_error(char *str)
+{
+	int i;
+	int tmp;
+
+	i = 0;
+	tmp = 0;
+	while (str[i])
+	{
+		while (str[i] && !is_separator(str, i))
+			i++;
+		if (is_separator(str, i))
+		{
+			while (str[i] && str[i] == ' ')
+				i++;
+			if (is_separator(str, i))
+				return (ft_strlen(str));
+		}
+	}
+	return (0);
+}
 
 int	main_loop(t_data *data, char **env)
 {
@@ -34,6 +56,7 @@ int	main_loop(t_data *data, char **env)
 		if (ret == 0)
 			line = ft_strdup("exit");
 		data->line = line;
+		i += check_parser_error(line);
 		while ((i += ft_command_parser(line + i, data)) < (int)ft_strlen(line))
 			;
 		free(line);
