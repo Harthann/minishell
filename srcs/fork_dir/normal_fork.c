@@ -31,6 +31,7 @@ void		unset_export(t_cmd **list, t_data *data)
 	t_cmd *lst;
 
 	lst = *list;
+	errno = 0;
 	if (ft_memcmp(lst->command, "export", 7) == 0 && lst->params != NULL)
 	{
 		builtins(lst, data);
@@ -48,7 +49,7 @@ void		unset_export(t_cmd **list, t_data *data)
 	}
 	if (errno != 0)
 	{
-		g_last_return = 127;
+		g_last_return = errno;
 		errno = 0;
 	}
 	*list = lst;

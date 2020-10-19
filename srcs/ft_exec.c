@@ -100,6 +100,6 @@ void	ft_exec(char *exec, char **params, t_data *data)
 		write(2, exec, ft_strlen(exec));
 		ft_putstr_fd(": command not found\n", 2);
 	}
-	errno = 1;
+	errno = 127;
 	free_exec(0, argv);
 }

@@ -120,8 +120,8 @@ void		env_list(t_data *data, char *params)
 	}
 	else
 	{
-		errno = 2;
-		ft_putstr_fd(strerror(errno), 2);
+		errno = 127;
+		ft_putstr_fd(strerror(2), 2);
 		write(2, "\n", 2);
 	}
 }

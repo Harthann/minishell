@@ -72,8 +72,8 @@ void	wait_child(pid_t child, int n)
 		i++;
 	}
 	if (WEXITSTATUS(status) != 0)
-		g_last_return = 127;
-	else if (WTERMSIG(status) == 0)
+		g_last_return = WEXITSTATUS(status);
+	else if (WIFSIGNALED(status) == 0)
 		g_last_return = 0;
 	else
 		g_last_return = 128 + WTERMSIG(status);
