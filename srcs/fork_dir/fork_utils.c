@@ -49,7 +49,7 @@ int		ft_redirect(t_cmd *lst, t_info *p)
 
 	f = open(lst->params[0], O_RDONLY);
 	p->end_pass += 1;
-	while (left_redir(lst->next) == 1)
+	while (f != -1 && left_redir(lst->next) == 1)
 	{
 		close(f);
 		lst = lst->next;

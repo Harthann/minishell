@@ -15,10 +15,13 @@
 int		free_datas(t_cmd **alst, t_data *data, int *fd)
 {
 	int tmp;
+	t_cmd *redirection;
 
+	redirection = (*alst)->redirection;
 	tmp = data->exit_code;
 	free(data->line);
 	free_lst(&(data->env_var));
+	free_cmd(&redirection);
 	free_cmd(alst);
 	free(fd);
 	free(data);
