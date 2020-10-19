@@ -61,9 +61,6 @@ void		ft_addenv(t_env_lst **alst, t_env_lst *new)
 		*alst = new;
 	else
 	{
-		printf("TEST\n");
-		if(lst == NULL)
-			printf("TRUE3");
 		if (env_exist(lst, new) == 1)
 			return ;
 		else
