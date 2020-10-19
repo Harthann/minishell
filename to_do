@@ -1,0 +1,7 @@
+segfault : export test; unset test; export test=oui
+parse error : ;; ;| syntax '>>' '<' '>'
+
+return value : too much argument {exit 53 sfdsdfsd}
+return value : after exit error "too many arguemnt"
+redirection : echo salut >>
+ 
