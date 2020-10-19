@@ -78,6 +78,7 @@ void	do_builtin(t_info p, int *fdpipe, t_cmd *lst, t_data *data)
 
 	i = 0;
 	j = 0;
+	errno = 0;
 	if (check_pipe(lst) == 1)
 		lst = lst->next;
 	if (ft_memcmp(lst->command, ";", 2) == 0)
@@ -92,9 +93,8 @@ void	do_builtin(t_info p, int *fdpipe, t_cmd *lst, t_data *data)
 	while (i < p.pnum)
 		close(fdpipe[i++]);
 	builtins(lst, data);
-	i = 0;
 	free_datas(p.cmd, data, fdpipe);
 	if (errno != 0)
-		exit(1);
+		exit(errno);
 	exit(0);
 }

@@ -54,21 +54,21 @@ void	cd(char **params_cl, t_data *data)
 		chdir(home_dir(data->env_var));
 	else if (n == 1)
 	{
-		errno = 0;
 		chdir(params_cl[0]);
 		if (errno != 0 && g_fg_process != 0)
 		{
+			errno = 1;
 			write(2, "Minishell: cd: ", 16);
 			ft_putstr_fd(params_cl[0], 2);
 			write(2, ": ", 2);
-			ft_putstr_fd(strerror(errno), 2);
+			ft_putstr_fd(strerror(2), 2);
 			write(2, "\n", 2);
 		}
 	}
 	else
 	{
-		errno = 7;
-		ft_putstr_fd(strerror(errno), 2);
+		errno = 1;
+		ft_putstr_fd(strerror(7), 2);
 		write(2, "\n", 2);
 	}
 }
