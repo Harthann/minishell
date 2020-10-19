@@ -97,13 +97,13 @@ void	main_fork(t_cmd **list, t_data *data)
 		{
 			if (!ft_memcmp(lst->command, ";", 2))
 				wait(NULL);
-			if (!(p.child = fork()))
+			if (!(g_fg_process = fork()))
 				do_builtin(p, fdpipe, lst, data);
 			p.pcount += 1;
 		}
 		lst = lst->next;
 	}
 	pipe_init_close(&fdpipe, 1, p.pnum);
-	wait_child(p.child, p.pcount);
+	wait_child(g_fg_process, p.pcount);
 	*list = lst;
 }

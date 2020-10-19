@@ -97,6 +97,7 @@ int		ft_command_parser(char *str, t_data *data)
 			if (data->status || commands)
 				break ;
 			ft_putstr_fd(SYNERROR, 2);
+			g_last_return = 2;
 			free(commands);
 			return (ft_strlen(str));
 		}
