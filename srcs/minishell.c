@@ -6,11 +6,13 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:55:18 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/19 12:01:50 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/19 12:05:58 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	print_
 
 int	check_parser_error(char *str)
 {
@@ -28,7 +30,13 @@ int	check_parser_error(char *str)
 			while (str[i] && str[i] == ' ')
 				i++;
 			if (is_separator(str, i))
-				return (ft_strlen(str));
+			{
+				ft_putstr_fd(SYNERROR, 2);
+				write(2, str + i, 1);
+				ft_putstr_fd(" >", 2);
+				g_last_return = 2;
+				return (print_synerror(str, i));
+			}
 		}
 	}
 	return (0);
