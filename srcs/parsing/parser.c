@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:41:08 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/17 14:59:28 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/19 15:05:22 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,32 @@ t_cmd	*new_command(char *str, int *start, t_data *data)
 	while (str[*start] == ' ' && str[*start] != '\0')
 		(*start)++;
 	cmd->command = extract_command(str, start, data);
-	if (!(ft_strncmp(cmd->command, ";", 2)))
+	if (!cmd->command)
 		return (cmd);
 	while (str[*start] == ' ' && str[*start])
 		(*start)++;
-	if (ft_strncmp(cmd->command, "|", 1))
+	if (!ft_strncmp(cmd->command, "|", 1))
+		return (cmd);
+	if (!ft_strncmp(cmd->command, "<", 1) || !ft_strncmp(cmd->command, ">", 1))
+		cmd->params = parse_file(str, start, data);
+	else
 		cmd->params = parse_param(str, start, data);
 	return (cmd);
 }
+
+void	print_cmd(t_cmd *cmd)
+{
+	while (cmd)
+	{
+		printf("Commands is : [%s]\n", cmd->command);
+		for (int i = 0; cmd->params && cmd->params[i]; i++)
+			printf("Params[%d] is : [%s]\n", i, cmd->params[i]);
+		for(t_cmd *tmp = cmd->redirection; tmp; tmp = tmp->next)
+			printf("Redirection of type : [%s] to file [%s]\n", tmp->command, tmp->params[0]);
+		cmd = cmd->next;
+	}
+}
+
 
 int		ft_command_parser(char *str, t_data *data)
 {
@@ -92,19 +110,13 @@ int		ft_command_parser(char *str, t_data *data)
 		i++;
 	while (str[i])
 	{
-		if (add_back(&commands, new_command(str, &i, data)) == 1)
-		{
-			if (data->status || commands)
-				break ;
-			ft_putstr_fd(SYNERROR, 2);
-			g_last_return = 2;
-			free(commands);
-			return (ft_strlen(str));
-		}
+		if (create_commands(&commands, str, data, &i))
+			break ;
 		while (str[i] == ' ' && str[i])
 			i++;
 	}
 	data->status++;
+	print_cmd(commands);
 	cmd_director(commands, data);
 	free_command(&commands);
 	return (i);

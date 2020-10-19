@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/10/17 15:00:42 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/19 14:50:56 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ int				g_last_return;
 
 typedef struct	s_cmd
 {
-	char	*command;
-	char	**params;
-	void	*next;
+	char			*command;
+	char			**params;
+	struct s_cmd	*redirection;
+	void			*next;
 }				t_cmd;
 
 typedef	struct	s_env_list
@@ -78,6 +79,11 @@ char			*extract_param(char *str, int *start, t_data *data);
 char			*extract_command(char *str, int *start, t_data *data);
 char			*extract_dollar(char *str, int *start, t_data *data);
 char			*last_commands(t_cmd *commands);
+t_data			*singleton(void);
+int				create_commands(t_cmd **cmd, char *str, t_data *data, int *i);
+t_cmd			*new_command(char *str, int *start, t_data *data);
+char			**parse_param(char *str, int *i, t_data *data);
+char			**parse_file(char *str, int *i, t_data *data);
 
 t_env_lst		*ft_envnew(char *name, char *value);
 void			ft_addenv(t_env_lst **alst, t_env_lst *new);
