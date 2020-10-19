@@ -34,12 +34,9 @@ int		check_first_cmd(t_cmd **list)
 	t_cmd *lst;
 
 	lst = *list;
-	if (lst && (ft_memcmp(lst->command, ";", 2) == 0 ||
-		ft_memcmp(lst->command, "|", 2) == 0))
+	if (lst && ft_memcmp(lst->command, "|", 2) == 0)
 	{
-		if (ft_memcmp(lst->command, ";", 2) == 0)
-			ft_putstr_fd(SYNERROR, 2);
-		else if (ft_memcmp(lst->command, "|", 2) == 0)
+		if (ft_memcmp(lst->command, "|", 2) == 0)
 			ft_putstr_fd(SYNERRORP, 2);
 		g_last_return = 2;
 		return (0);

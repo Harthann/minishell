@@ -92,11 +92,8 @@ void	main_fork(t_cmd **list, t_data *data)
 	pipe_init_close(&fdpipe, 0, p.pnum);
 	while (lst)
 	{
-		if (p.pcount == 0 || ft_memcmp(lst->command, "|", 2) == 0 ||
-		ft_memcmp(lst->command, ";", 2) == 0)
+		if (p.pcount == 0 || ft_memcmp(lst->command, "|", 2) == 0 )
 		{
-			if (!ft_memcmp(lst->command, ";", 2))
-				wait(NULL);
 			if (!(g_fg_process = fork()))
 				do_builtin(p, fdpipe, lst, data);
 			p.pcount += 1;
