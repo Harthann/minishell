@@ -52,7 +52,7 @@ void	error_exit(void)
 {
 	ft_putstr_fd("Too many arguments\n", 2);
 	errno = 7;
-	g_last_return = 127;
+	g_last_return = 1;
 }
 
 void	ft_free(t_data *data, char **params, char *dest, t_cmd *lst)
