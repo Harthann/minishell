@@ -6,13 +6,12 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:55:18 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/19 12:05:58 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/19 12:06:37 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	print_
 
 int	check_parser_error(char *str)
 {
