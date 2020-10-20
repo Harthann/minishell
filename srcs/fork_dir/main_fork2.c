@@ -27,7 +27,7 @@ int		check_fd(int *fdpipe, t_info *p, t_cmd *cmd, int j)
 		fd = ft_redirect(cmd, p);
 	if (fd == -1)
 	{
-		while(i < 1000000)
+		while (i < 1000000)
 			i++;
 		ft_putstr_fd("No such file or directory\n", 2);
 		errno = 1;
