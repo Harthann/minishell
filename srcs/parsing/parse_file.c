@@ -6,12 +6,11 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 14:50:17 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/19 15:12:22 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/20 11:28:38 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
 
 char	**parse_file(char *str, int *i, t_data *data)
 {

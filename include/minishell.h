@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/10/19 14:50:56 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/20 11:32:41 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@
 # include <errno.h>
 # include <stdio.h>
 # define INT_MAX 2147483647
-# define SYNERRORP "bash: erreur de syntaxe près du symbole inattendu « | »\n"
-# define SYNERROR "bash: erreur de syntaxe près du symbole inattendu « ; »\n"
+# define SYNERROR "bash: erreur de syntaxe près du symbole inattendu « "
 
 pid_t			g_fg_process;
 int				g_last_return;
@@ -71,6 +70,7 @@ int				cmd_director(t_cmd *list, t_data *data);
 int				is_separator(char *str, int start);
 int				add_back(t_cmd **list, t_cmd *new);
 void			sigquit_handler(int signal);
+void			sigint_handler(int signal);
 void			free_command(t_cmd **list);
 char			*extract_quote(char *str, int *start);
 char			*extract_dquote(char *str, int *start, t_data *data);

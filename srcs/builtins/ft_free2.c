@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 08:28:17 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/16 08:29:32 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/20 10:06:13 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int		free_datas(t_cmd **alst, t_data *data, int *fd)
 {
-	int tmp;
-	t_cmd *redirection;
+	int		tmp;
+	t_cmd	*redirection;
 
 	redirection = (*alst)->redirection;
 	tmp = data->exit_code;

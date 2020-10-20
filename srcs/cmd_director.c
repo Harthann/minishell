@@ -6,12 +6,11 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:51:49 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/19 14:54:36 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/20 10:05:53 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
 
 int		check_symbol(t_cmd *list)
 {
