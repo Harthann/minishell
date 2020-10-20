@@ -6,13 +6,13 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:55:18 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/19 14:00:53 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/20 10:21:32 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	print_synerror(char *str, char sep)
+int		print_synerror(char *str, char sep)
 {
 	ft_putstr_fd(SYNERROR, 2);
 	if (sep)
@@ -24,14 +24,19 @@ int	print_synerror(char *str, char sep)
 	return (ft_strlen(str));
 }
 
-int	check_parser_error(char *str)
+void	skip_space(char *str, int *i)
 {
-	int i;
-	char sep;
+	while (str[*i] && str[*i] == ' ')
+		(*i)++;
+}
+
+int		check_parser_error(char *str)
+{
+	int		i;
+	char	sep;
 
 	i = 0;
-	while (str[i] && str[i] == ' ')
-		i++;
+	skip_space(str, &i);
 	if (ft_find_char(str[i], "|;"))
 		return (print_synerror(str, i));
 	while (str[i])
@@ -41,20 +46,20 @@ int	check_parser_error(char *str)
 		if (is_separator(str, i))
 		{
 			sep = str[i];
-			if (str[i] == '>' || str[i] == '<')
+			if (str[i] == '>' && str[i + 1] == '>')
 				i += 2;
 			else if (is_separator(str, i))
 				i++;
-			while (str[i] && str[i] == ' ')
-				i++;
-			if (ft_find_char(str[i], "|;") || (!str[i] && ft_find_char(sep, "<>")))
+			skip_space(str, &i);
+			if (ft_find_char(str[i], "|;")
+				|| (!str[i] && ft_find_char(sep, "<>")))
 				return (print_synerror(str, str[i]));
 		}
 	}
 	return (0);
 }
 
-int	main_loop(t_data *data, char **env)
+int		main_loop(t_data *data, char **env)
 {
 	char	*line;
 	int		ret;
@@ -62,8 +67,6 @@ int	main_loop(t_data *data, char **env)
 
 	add_env(env, data);
 	data->env = env;
-	signal(SIGINT, sigquit_handler);
-	signal(SIGQUIT, sigquit_handler);
 	ret = 1;
 	while (ret > 0)
 	{
@@ -84,7 +87,7 @@ int	main_loop(t_data *data, char **env)
 	return (0);
 }
 
-int	main(int ac, char **av, char **env)
+int		main(int ac, char **av, char **env)
 {
 	t_data	*data;
 
@@ -96,6 +99,8 @@ int	main(int ac, char **av, char **env)
 	write(1, "\n\n\n\t****MINISHELL****", 21);
 	write(1, "\n\n\n\n****************", 20);
 	write(1, "********************\n\n\n\n", 24);
+	signal(SIGINT, sigquit_handler);
+	signal(SIGQUIT, sigquit_handler);
 	data = singleton();
 	main_loop(data, env);
 	return (0);

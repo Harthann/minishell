@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_fork.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 15:34:27 by stbaleba          #+#    #+#             */
-/*   Updated: 2020/10/17 14:55:37 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/20 10:06:40 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	main_fork(t_cmd **list, t_data *data)
 	pipe_init_close(&fdpipe, 0, p.pnum);
 	while (lst)
 	{
-		if (p.pcount == 0 || ft_memcmp(lst->command, "|", 2) == 0 )
+		if (p.pcount == 0 || ft_memcmp(lst->command, "|", 2) == 0)
 		{
 			if (!(g_fg_process = fork()))
 				do_builtin(p, fdpipe, lst, data);

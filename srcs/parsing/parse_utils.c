@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:48:02 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/19 13:43:44 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/20 09:43:46 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,6 @@ int		add_back(t_cmd **list, t_cmd *new)
 	int		i;
 
 	i = 0;
-	// if (!ft_strncmp(new->command, ";", 2))
-	// {
-	// 	free(new->command);
-	// 	free(new);
-	// 	new = NULL;
-	// 	i = 1;
-	// }
 	tmp = *list;
 	while (tmp && tmp->next)
 		tmp = tmp->next;

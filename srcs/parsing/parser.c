@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:41:08 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/19 15:05:22 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/20 10:25:56 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,10 @@ t_cmd	*new_command(char *str, int *start, t_data *data)
 		(*start)++;
 	cmd->command = extract_command(str, start, data);
 	if (!cmd->command)
-		return (cmd);
+	{
+		free(cmd);
+		return (NULL);
+	}
 	while (str[*start] == ' ' && str[*start])
 		(*start)++;
 	if (!ft_strncmp(cmd->command, "|", 1))
@@ -84,20 +87,6 @@ t_cmd	*new_command(char *str, int *start, t_data *data)
 		cmd->params = parse_param(str, start, data);
 	return (cmd);
 }
-
-void	print_cmd(t_cmd *cmd)
-{
-	while (cmd)
-	{
-		printf("Commands is : [%s]\n", cmd->command);
-		for (int i = 0; cmd->params && cmd->params[i]; i++)
-			printf("Params[%d] is : [%s]\n", i, cmd->params[i]);
-		for(t_cmd *tmp = cmd->redirection; tmp; tmp = tmp->next)
-			printf("Redirection of type : [%s] to file [%s]\n", tmp->command, tmp->params[0]);
-		cmd = cmd->next;
-	}
-}
-
 
 int		ft_command_parser(char *str, t_data *data)
 {
@@ -116,8 +105,8 @@ int		ft_command_parser(char *str, t_data *data)
 			i++;
 	}
 	data->status++;
-	print_cmd(commands);
-	cmd_director(commands, data);
+	if (commands && commands->command)
+		cmd_director(commands, data);
 	free_command(&commands);
 	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 15:53:43 by stbaleba          #+#    #+#             */
-/*   Updated: 2020/10/16 08:24:53 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/20 10:23:06 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		check_fd(int *fdpipe, t_info *p, t_cmd *cmd, int j)
 		fd = fdpipe[(pcount - 1) * 2];
 	if (left_redir(cmd) == 1)
 		fd = ft_redirect(cmd, p);
-	if(fd == -1)
+	if (fd == -1)
 		errno = 1;
 	return (fd);
 }
@@ -83,11 +83,6 @@ void	do_builtin(t_info p, int *fdpipe, t_cmd *lst, t_data *data)
 	errno = 0;
 	if (check_pipe(lst) == 1)
 		lst = lst->next;
-	/*if (ft_memcmp(lst->command, ";", 2) == 0)
-	{
-		j = 1;
-		lst = lst->next;
-	}*/
 	i = 0;
 	fd[0] = check_fd(fdpipe, &p, lst->redirection, j);
 	if (fd[0] == -1)

@@ -6,13 +6,13 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 13:39:49 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/19 15:23:45 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/20 10:22:21 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_data *singleton(void)
+t_data	*singleton(void)
 {
 	static t_data *data = NULL;
 
@@ -60,6 +60,13 @@ void	move_redir(t_cmd **cmd)
 		*cmd = NULL;
 }
 
+t_cmd	*last_cmd(t_cmd *cmd)
+{
+	while (cmd && cmd->next)
+		cmd = cmd->next;
+	return (cmd);
+}
+
 int		create_commands(t_cmd **cmd, char *str, t_data *data, int *i)
 {
 	t_cmd *news;
@@ -67,8 +74,8 @@ int		create_commands(t_cmd **cmd, char *str, t_data *data, int *i)
 	news = new_command(str, i, data);
 	if (!news)
 		return (1);
-	if (!ft_strncmp(news->command, "<", 1)
-		|| !ft_strncmp(news->command, ">", 1))
+	if (news->command && (!ft_strncmp(news->command, "<", 1)
+		|| !ft_strncmp(news->command, ">", 1)))
 	{
 		if (*cmd)
 			append_params(str, i, data, *cmd);
@@ -76,7 +83,7 @@ int		create_commands(t_cmd **cmd, char *str, t_data *data, int *i)
 			create_commands(cmd, str, data, i);
 		if (!*cmd)
 			*cmd = ft_calloc(sizeof(t_cmd), 1);
-		add_back(&(*cmd)->redirection, news);
+		add_back(&(last_cmd(*cmd)->redirection), news);
 	}
 	else
 		add_back(cmd, news);
