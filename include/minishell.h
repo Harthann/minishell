@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/10/20 11:08:49 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/20 11:32:41 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@
 # include <errno.h>
 # include <stdio.h>
 # define INT_MAX 2147483647
-# define SYNERRORP "bash: erreur de syntaxe près du symbole inattendu « | »\n"
-# define SYNERROR "bash: erreur de syntaxe près du symbole inattendu « ; »\n"
+# define SYNERROR "bash: erreur de syntaxe près du symbole inattendu « "
 
 pid_t			g_fg_process;
 int				g_last_return;
