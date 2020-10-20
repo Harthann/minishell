@@ -24,7 +24,10 @@ int		check_fd(int *fdpipe, t_info *p, t_cmd *cmd, int j)
 	if (left_redir(cmd) == 1)
 		fd = ft_redirect(cmd, p);
 	if(fd == -1)
+	{
+		ft_putstr_fd("No such file or directory\n", 2);
 		errno = 1;
+	}
 	return (fd);
 }
 
@@ -83,16 +86,8 @@ void	do_builtin(t_info p, int *fdpipe, t_cmd *lst, t_data *data)
 	errno = 0;
 	if (check_pipe(lst) == 1)
 		lst = lst->next;
-	/*if (ft_memcmp(lst->command, ";", 2) == 0)
-	{
-		j = 1;
-		lst = lst->next;
-	}*/
-	i = 0;
 	fd[0] = check_fd(fdpipe, &p, lst->redirection, j);
-	if (fd[0] == -1)
-		ft_putstr_fd("No such file or directory\n", 2);
-	else
+	if (fd[0] != -1)
 	{
 		fd[1] = check_fd2(fdpipe, p, lst->redirection);
 		dup2(fd[0], 0);
