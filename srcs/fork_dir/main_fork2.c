@@ -16,8 +16,10 @@ int		check_fd(int *fdpipe, t_info *p, t_cmd *cmd, int j)
 {
 	int fd;
 	int pcount;
+	int i;
 
 	fd = 0;
+	i = 0;
 	pcount = p->pcount;
 	if (pcount != 0 && (pcount - 1) * 2 < p->pnum && j == 0)
 		fd = fdpipe[(pcount - 1) * 2];
@@ -25,6 +27,8 @@ int		check_fd(int *fdpipe, t_info *p, t_cmd *cmd, int j)
 		fd = ft_redirect(cmd, p);
 	if (fd == -1)
 	{
+		while(i < 1000000)
+			i++;
 		ft_putstr_fd("No such file or directory\n", 2);
 		errno = 1;
 	}
