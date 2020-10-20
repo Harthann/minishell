@@ -23,7 +23,7 @@ int		check_fd(int *fdpipe, t_info *p, t_cmd *cmd, int j)
 		fd = fdpipe[(pcount - 1) * 2];
 	if (left_redir(cmd) == 1)
 		fd = ft_redirect(cmd, p);
-	if(fd == -1)
+	if (fd == -1)
 	{
 		ft_putstr_fd("No such file or directory\n", 2);
 		errno = 1;
