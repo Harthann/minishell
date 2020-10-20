@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:55:18 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/20 10:21:32 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/20 11:27:36 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int		check_parser_error(char *str)
 
 int		main_loop(t_data *data, char **env)
 {
-	char	*line;
 	int		ret;
 	int		i;
 
@@ -72,17 +71,17 @@ int		main_loop(t_data *data, char **env)
 	{
 		data->status = 0;
 		i = 0;
-		line = NULL;
+		data->line = NULL;
 		g_fg_process = -1;
 		write(1, "Minishell> ", 11);
-		ret = get_next_line(0, &line);
+		ret = get_next_line(0, &data->line);
 		if (ret == 0)
-			line = ft_strdup("exit");
-		data->line = line;
-		i += check_parser_error(line);
-		while ((i += ft_command_parser(line + i, data)) < (int)ft_strlen(line))
+			data->line = ft_strdup("exit");
+		i += check_parser_error(data->line);
+		while ((i += ft_command_parser(data->line + i, data))
+				< (int)ft_strlen(data->line))
 			;
-		free(line);
+		free(data->line);
 	}
 	return (0);
 }
@@ -99,7 +98,7 @@ int		main(int ac, char **av, char **env)
 	write(1, "\n\n\n\t****MINISHELL****", 21);
 	write(1, "\n\n\n\n****************", 20);
 	write(1, "********************\n\n\n\n", 24);
-	signal(SIGINT, sigquit_handler);
+	signal(SIGINT, sigint_handler);
 	signal(SIGQUIT, sigquit_handler);
 	data = singleton();
 	main_loop(data, env);

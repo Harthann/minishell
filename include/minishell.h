@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/10/20 10:26:26 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/20 11:08:49 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int				cmd_director(t_cmd *list, t_data *data);
 int				is_separator(char *str, int start);
 int				add_back(t_cmd **list, t_cmd *new);
 void			sigquit_handler(int signal);
+void			sigint_handler(int signal);
 void			free_command(t_cmd **list);
 char			*extract_quote(char *str, int *start);
 char			*extract_dquote(char *str, int *start, t_data *data);
@@ -145,6 +146,5 @@ void			free_cmd(t_cmd **alst);
 int				free_datas(t_cmd **alst, t_data *data, int *fd);
 
 int				check_numeric(char *str, t_data *data);
-void			print_cmd(t_cmd *cmd);
 
 #endif

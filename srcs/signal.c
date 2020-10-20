@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:46:17 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/19 09:39:06 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/20 11:28:20 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,24 @@ void	sigquit_handler(int signal)
 		kill(g_fg_process, signal);
 	else
 		write(1, "\b\b  \b\b", 6);
-	if (signal == SIGQUIT)
+	if (g_fg_process > -1)
+		write(1, "Quit: 3\n", 9);
+}
+
+void	sigint_handler(int signal)
+{
+	if (g_fg_process > -1)
+		kill(g_fg_process, signal);
+	if (g_fg_process == -1)
 	{
-		if (g_fg_process > -1)
-			write(1, "Quit: 3\n", 9);
+		write(1, "\b\b  \b\b\nMinishell> ", 19);
+		g_last_return = 130;
 	}
-	else if (signal == SIGINT)
+	else
+		write(1, "\n", 1);
+	if (singleton()->line)
 	{
-		if (g_fg_process >= 0)
-			write(1, "\n", 1);
-		else
-		{
-			write(1, "\nMinishell> ", 12);
-			g_last_return = 130;
-		}
+		free(singleton()->line);
+		singleton()->line = NULL;
 	}
 }
