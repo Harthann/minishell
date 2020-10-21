@@ -38,7 +38,7 @@ int		check_parser_error(char *str)
 	i = 0;
 	skip_space(str, &i);
 	if (ft_find_char(str[i], "|;"))
-		return (print_synerror(str, i));
+		return (print_synerror(str, str[i]));
 	while (str[i])
 	{
 		while (str[i] && !is_separator(str, i))
@@ -52,7 +52,7 @@ int		check_parser_error(char *str)
 				i++;
 			skip_space(str, &i);
 			if (ft_find_char(str[i], "|;")
-				|| (!str[i] && ft_find_char(sep, "<>")))
+				|| (!str[i] && ft_find_char(sep, "<>|")))
 				return (print_synerror(str, str[i]));
 		}
 	}

@@ -89,6 +89,7 @@ void	free_command(t_cmd **list)
 			j++;
 		}
 		free(tmp->params);
+		free_command(&tmp->redirection);
 		to_free = tmp;
 		tmp = to_free->next;
 		free(to_free);
