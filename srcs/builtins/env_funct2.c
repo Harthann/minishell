@@ -61,11 +61,12 @@ int		env_exist(t_env_lst *lst, t_env_lst *new)
 	name = new->name;
 	while (lst)
 	{
-		if (ft_memcmp(name, lst->name, ft_strlen(name) + 1) == 0)
+		if (ft_memplus(lst->name, name) == 0)
 		{
 			free(lst->value);
 			lst->value = new->value;
-			free(new->name);
+			free(lst->name);
+			lst->name = new->name;
 			free(new);
 			return (1);
 		}
