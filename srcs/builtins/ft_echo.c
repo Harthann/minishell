@@ -61,7 +61,7 @@ void	ft_echo(char **params_cl)
 		}
 		i++;
 	}
-	if (n == 1)
+	if (n == 1 || params_cl == NULL)
 		display("\n");
 }
 
