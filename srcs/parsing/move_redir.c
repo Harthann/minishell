@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 13:39:49 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/22 13:46:39 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/22 14:08:31 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,10 @@ int		create_commands(t_cmd **cmd, char *str, t_data *data, int *i)
 			append_params(str, i, data, last_cmd(*cmd));
 		else
 			create_commands(cmd, str, data, i);
-		if (!*cmd || !ft_strncmp(last_commands(*cmd), "|", 1))
+		if (!*cmd)
 			*cmd = ft_calloc(sizeof(t_cmd), 1);
+		else if (!ft_strncmp(last_commands(*cmd), "|", 1))
+			add_back(cmd, ft_calloc(sizeof(t_cmd), 1));
 		add_back(&(last_cmd(*cmd)->redirection), news);
 	}
 	else
