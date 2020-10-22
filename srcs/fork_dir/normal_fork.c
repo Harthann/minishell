@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 09:13:22 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/15 12:13:51 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/22 14:28:13 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int			check_unset_export(t_cmd *lst)
 {
-	if (lst)
+	if (lst && lst->command)
 	{
 		if (ft_memcmp(lst->command, "export", 7) == 0 && lst->params != NULL)
 			return (1);

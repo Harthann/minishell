@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 09:00:19 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/14 12:01:35 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/22 14:35:59 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		check_pipe(t_cmd *list)
 {
 	if (!list)
 		return (0);
-	else if (ft_memcmp(list->command, "|", 1) == 0)
+	else if (list->command && (!ft_memcmp(list->command, "|", 1)))
 		return (1);
 	else
 		return (0);
