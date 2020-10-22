@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 15:34:27 by stbaleba          #+#    #+#             */
-/*   Updated: 2020/10/20 10:06:40 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/22 14:34:01 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		pnum_l(t_cmd *list)
 	count = 0;
 	while (list)
 	{
-		if (ft_memcmp(list->command, "|", 2) == 0)
+		if (list->command && ft_memcmp(list->command, "|", 2) == 0)
 			count++;
 		list = list->next;
 	}
@@ -92,7 +92,7 @@ void	main_fork(t_cmd **list, t_data *data)
 	pipe_init_close(&fdpipe, 0, p.pnum);
 	while (lst)
 	{
-		if (p.pcount == 0 || ft_memcmp(lst->command, "|", 2) == 0)
+		if (!p.pcount || (lst->command && !ft_memcmp(lst->command, "|", 2)))
 		{
 			if (!(g_fg_process = fork()))
 				do_builtin(p, fdpipe, lst, data);

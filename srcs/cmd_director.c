@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:51:49 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/20 11:47:30 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/22 14:29:40 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		check_symbol(t_cmd *list)
 {
 	char *cmd;
 
-	while (list)
+	while (list && list->command)
 	{
 		cmd = list->command;
 		if ((ft_memcmp(cmd, ">", 1) == 0) ||
@@ -29,31 +29,14 @@ int		check_symbol(t_cmd *list)
 	return (0);
 }
 
-int		check_first_cmd(t_cmd **list)
-{
-	t_cmd *lst;
-
-	lst = *list;
-	if (lst && ft_memcmp(lst->command, "|", 2) == 0)
-	{
-		// if (ft_memcmp(lst->command, "|", 2) == 0)
-		// 	ft_putstr_fd(SYNERRORP, 2);
-		g_last_return = 2;
-		return (0);
-	}
-	return (1);
-}
-
 int		cmd_director(t_cmd *list, t_data *data)
 {
 	t_cmd *tmp;
 
 	tmp = list;
-	// if (check_first_cmd(&tmp) == 0)
-	// 	return (data->status);
 	while (list)
 	{
-		if (ft_memcmp(list->command, "exit", 5) == 0)
+		if (list->command && ft_memcmp(list->command, "exit", 5) == 0)
 		{
 			builtins(list, data);
 			list = list->next;
