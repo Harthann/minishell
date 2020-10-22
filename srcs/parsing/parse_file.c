@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free2.c                                         :+:      :+:    :+:   */
+/*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/16 08:28:17 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/20 10:06:13 by nieyraud         ###   ########.fr       */
+/*   Created: 2020/10/19 14:50:17 by nieyraud          #+#    #+#             */
+/*   Updated: 2020/10/20 11:28:38 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		free_datas(t_cmd **alst, t_data *data, int *fd)
+char	**parse_file(char *str, int *i, t_data *data)
 {
-	int		tmp;
+	char	**params_list;
+	int		nb;
 
-	tmp = data->exit_code;
-	free(data->line);
-	free_lst(&(data->env_var));
-	free_command(alst);
-	free(fd);
-	free(data);
-	return (tmp);
+	params_list = NULL;
+	nb = 0;
+	if (!(params_list = ft_calloc(2, sizeof(char *))))
+		return (NULL);
+	params_list[0] = extract_param(str, i, data);
+	while (str[*i] == ' ')
+		(*i)++;
+	return (params_list);
 }

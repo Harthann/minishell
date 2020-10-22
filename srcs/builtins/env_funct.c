@@ -80,7 +80,7 @@ void		ft_delenv(t_env_lst **alst, char **name)
 	t_env_lst *next_elem;
 
 	lst = *alst;
-	mem = lst;
+	mem = *alst;
 	prev_elem = 0;
 	if (name == NULL)
 		return ;
@@ -91,7 +91,7 @@ void		ft_delenv(t_env_lst **alst, char **name)
 		{
 			next_elem = lst->next;
 			if (ft_memplus(*name, lst->name) == 0)
-				ft_delst(lst, prev_elem, next_elem, mem);
+				ft_delst(lst, prev_elem, next_elem, &mem);
 			prev_elem = lst;
 			lst = next_elem;
 		}

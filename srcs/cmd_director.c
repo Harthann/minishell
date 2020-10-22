@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_director.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:51:49 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/17 14:59:08 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/20 11:47:30 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,10 @@ int		check_first_cmd(t_cmd **list)
 	t_cmd *lst;
 
 	lst = *list;
-	if (lst && (ft_memcmp(lst->command, ";", 2) == 0 ||
-		ft_memcmp(lst->command, "|", 2) == 0))
+	if (lst && ft_memcmp(lst->command, "|", 2) == 0)
 	{
-		if (ft_memcmp(lst->command, ";", 2) == 0)
-			ft_putstr_fd(SYNERROR, 2);
-		else if (ft_memcmp(lst->command, "|", 2) == 0)
-			ft_putstr_fd(SYNERRORP, 2);
+		// if (ft_memcmp(lst->command, "|", 2) == 0)
+		// 	ft_putstr_fd(SYNERRORP, 2);
 		g_last_return = 2;
 		return (0);
 	}
@@ -52,8 +49,8 @@ int		cmd_director(t_cmd *list, t_data *data)
 	t_cmd *tmp;
 
 	tmp = list;
-	if (check_first_cmd(&tmp) == 0)
-		return (data->status);
+	// if (check_first_cmd(&tmp) == 0)
+	// 	return (data->status);
 	while (list)
 	{
 		if (ft_memcmp(list->command, "exit", 5) == 0)

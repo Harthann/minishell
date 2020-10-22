@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 17:02:41 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/09 13:27:43 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/19 14:12:19 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,6 @@ int				ft_search(char *str, char c);
 void			*ft_ralloc(void *ptr, size_t size, size_t new_size);
 char			*ft_strapp_free(char *str, char c);
 int				ft_find_char(const char c, const char *str);
+char			**ft_tab_append(char **t1, int l1, char **t2, int l2);
 
 #endif

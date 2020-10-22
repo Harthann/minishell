@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/10/17 15:00:42 by user42           ###   ########.fr       */
+/*   Updated: 2020/10/20 11:32:41 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@
 # include <errno.h>
 # include <stdio.h>
 # define INT_MAX 2147483647
-# define SYNERRORP "bash: erreur de syntaxe près du symbole inattendu « | »\n"
-# define SYNERROR "bash: erreur de syntaxe près du symbole inattendu « ; »\n"
+# define SYNERROR "bash: erreur de syntaxe près du symbole inattendu « "
 
 pid_t			g_fg_process;
 int				g_last_return;
 
 typedef struct	s_cmd
 {
-	char	*command;
-	char	**params;
-	void	*next;
+	char			*command;
+	char			**params;
+	struct s_cmd	*redirection;
+	void			*next;
 }				t_cmd;
 
 typedef	struct	s_env_list
@@ -70,6 +70,7 @@ int				cmd_director(t_cmd *list, t_data *data);
 int				is_separator(char *str, int start);
 int				add_back(t_cmd **list, t_cmd *new);
 void			sigquit_handler(int signal);
+void			sigint_handler(int signal);
 void			free_command(t_cmd **list);
 char			*extract_quote(char *str, int *start);
 char			*extract_dquote(char *str, int *start, t_data *data);
@@ -78,6 +79,11 @@ char			*extract_param(char *str, int *start, t_data *data);
 char			*extract_command(char *str, int *start, t_data *data);
 char			*extract_dollar(char *str, int *start, t_data *data);
 char			*last_commands(t_cmd *commands);
+t_data			*singleton(void);
+int				create_commands(t_cmd **cmd, char *str, t_data *data, int *i);
+t_cmd			*new_command(char *str, int *start, t_data *data);
+char			**parse_param(char *str, int *i, t_data *data);
+char			**parse_file(char *str, int *i, t_data *data);
 
 t_env_lst		*ft_envnew(char *name, char *value);
 void			ft_addenv(t_env_lst **alst, t_env_lst *new);
@@ -121,7 +127,7 @@ void			free_exec(char **env, char **argv);
 void			free_builtin(char **params_cl);
 int				env_exist(t_env_lst *lst, t_env_lst *new);
 void			ft_delst(t_env_lst *lst, t_env_lst *prev_elem,
-					t_env_lst *next_elem, t_env_lst *mem);
+					t_env_lst *next_elem, t_env_lst **mem);
 void			unset_export(t_cmd **list, t_data *data);
 void			display_parse(t_cmd *list, t_data *data, int *count);
 int				check_env(t_env_lst *lst);

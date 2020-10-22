@@ -61,11 +61,12 @@ int		env_exist(t_env_lst *lst, t_env_lst *new)
 	name = new->name;
 	while (lst)
 	{
-		if (ft_memcmp(name, lst->name, ft_strlen(name) + 1) == 0)
+		if (ft_memplus(lst->name, name) == 0)
 		{
 			free(lst->value);
 			lst->value = new->value;
-			free(new->name);
+			free(lst->name);
+			lst->name = new->name;
 			free(new);
 			return (1);
 		}
@@ -75,7 +76,7 @@ int		env_exist(t_env_lst *lst, t_env_lst *new)
 }
 
 void	ft_delst(t_env_lst *lst, t_env_lst *prev_elem,
-				t_env_lst *next_elem, t_env_lst *mem)
+				t_env_lst *next_elem, t_env_lst **mem)
 {
 	free(lst->name);
 	free(lst->value);
@@ -84,7 +85,7 @@ void	ft_delst(t_env_lst *lst, t_env_lst *prev_elem,
 	if (prev_elem == 0)
 	{
 		lst = next_elem;
-		mem = next_elem;
+		*mem = next_elem;
 	}
 	else
 		prev_elem->next = next_elem;
