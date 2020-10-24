@@ -28,43 +28,21 @@ void	pwd(void)
 	t_data *data;
 
 	data = singleton();
-/*	int i;
-
-	i = 1;
-	errno = ERANGE;
-	res = NULL;
-	while (res == NULL)
+	if (data->path)
 	{
-		if (errno == ERANGE)
-		{
-			i *= 10;
-			free(res);
-			res = ft_calloc(1000 * i, sizeof(char));
-		}
-		else if(errno == ENAMETOOLONG)
-		{
-			ft_putstr_fd(strerror(errno), 2);
-			free(res);
-			return ;
-		}
-		res = getcwd(res, 1000 * i);
-	}
-	errno = 0;
-	ft_putstr_fd(res, 1);
-	write(1, "\n", 2);
-	free(res);*/
-	if(data->path)
 		ft_putstr_fd(data->path, 1);
+		write(1, "\n", 2);
+	}
 	else
 	{
-		errno = 0;
-		res = ft_calloc(1000, sizeof(char));
-		res = getcwd(res, 1000);
-		ft_putstr_fd(res, 1);
-		free(res);
+		res = get_cwd(1, NULL);
+		if(res != NULL)
+		{
+			ft_putstr_fd(res, 1);
+			write(1, "\n", 2);
+			free(res);
+		}
 	}
-	write(1, "\n", 2);
-
 }
 
 char	*home_dir(t_env_lst *lst)
@@ -81,7 +59,6 @@ char	*home_dir(t_env_lst *lst)
 void	cd(char **params_cl, t_data *data)
 {
 	int n;
-	char *res;
 
 	n = length(params_cl);
 	if (n == 0 || ft_memcmp(params_cl[0], "~", 2) == 0)
@@ -107,10 +84,7 @@ void	cd(char **params_cl, t_data *data)
 		write(2, "\n", 2);
 		return ;
 	}
-	res = ft_calloc(1000, sizeof(char));
-	res = getcwd(res, 1000);
 	if(data->path)
 		free(data->path);
-	data->path = res;
-
+	data->path = get_cwd(1, NULL);
 }

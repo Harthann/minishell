@@ -150,4 +150,5 @@ int				check_str(char c1, char c2);
 void			name_value(char **name, char **value, char *str, int *tab);
 void			p_init(int pnum, t_info *p, t_cmd **mem);
 int				pnum_l(t_cmd *list);
+char			*get_cwd(int i, char *res);
 #endif
