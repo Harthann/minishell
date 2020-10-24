@@ -53,6 +53,7 @@ typedef struct	s_data
 	int				red;
 	unsigned char	exit_code;
 	char			*line;
+	char 			*path;
 }				t_data;
 
 typedef struct	s_info
