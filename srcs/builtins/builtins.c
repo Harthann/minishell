@@ -25,7 +25,9 @@ void	ft_display_export(t_env_lst *lst, char **tab)
 		{
 			display("declare -x ");
 			display(lst->name);
+			display("\"");
 			display(lst->value);
+			display("\"");
 			display("\n");
 			lst = mem;
 			i++;
