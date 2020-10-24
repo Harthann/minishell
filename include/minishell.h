@@ -86,7 +86,7 @@ char			**parse_param(char *str, int *i, t_data *data);
 char			**parse_file(char *str, int *i, t_data *data);
 
 t_env_lst		*ft_envnew(char *name, char *value);
-void			ft_addenv(t_env_lst **alst, t_env_lst *new);
+void			ft_addenv(t_env_lst **alst, t_env_lst *new, int n);
 void			ft_delenv(t_env_lst **alst, char **name);
 void			builtins(t_cmd *lst, t_data *data);
 char			**clean_params(char *params, t_env_lst *lst, t_data *data);
@@ -125,7 +125,7 @@ int				count_quotechar(char *str, int index);
 int				ft_error_fd(t_data *data, int fd);
 void			free_exec(char **env, char **argv);
 void			free_builtin(char **params_cl);
-int				env_exist(t_env_lst *lst, t_env_lst *new);
+int				env_exist(t_env_lst *lst, t_env_lst *new, int n);
 void			ft_delst(t_env_lst *lst, t_env_lst *prev_elem,
 					t_env_lst *next_elem, t_env_lst **mem);
 void			unset_export(t_cmd **list, t_data *data);
@@ -145,5 +145,6 @@ void			free_cmd(t_cmd **alst);
 int				free_datas(t_cmd **alst, t_data *data, int *fd);
 
 int				check_numeric(char *str, t_data *data);
-
+int				check_str(char c1, char c2);
+void			name_value(char **name, char **value, char *str, int *tab);
 #endif

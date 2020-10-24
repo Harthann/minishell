@@ -54,7 +54,7 @@ void	order_tab(char ***tab, int length)
 	*tab = tab1;
 }
 
-int		env_exist(t_env_lst *lst, t_env_lst *new)
+int		env_exist(t_env_lst *lst, t_env_lst *new, int n)
 {
 	char *name;
 
@@ -63,8 +63,20 @@ int		env_exist(t_env_lst *lst, t_env_lst *new)
 	{
 		if (ft_memplus(lst->name, name) == 0)
 		{
-			free(lst->value);
-			lst->value = new->value;
+			if(n != 2 && (ft_memcmp(new->value, "\0", 1)) == 0)
+			{
+				free(new->name);
+				free(new->value);
+				free(new);
+				return (1);
+			}
+			if(n != 2)
+			{
+					free(lst->value);
+			 		lst->value = new->value;
+			}
+			else
+				lst->value = ft_strjoin_free(lst->value, new->value, 3);
 			free(lst->name);
 			lst->name = new->name;
 			free(new);
