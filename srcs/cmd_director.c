@@ -29,6 +29,43 @@ int		check_symbol(t_cmd *list)
 	return (0);
 }
 
+int		check_lst_exit(t_cmd *list)
+{
+	t_info	p;
+	t_cmd *cmd;
+	int fd;
+	int n;
+	int i;
+
+	n = 0;
+	i = 0;
+	p_init(pnum_l(list), &p, &list);
+	if (list->command && ft_memcmp(list->command, "exit", 5) == 0)
+	{
+		i = 1;
+		cmd = list->redirection;
+		if (left_redir(cmd) == 1)
+		{
+			fd = ft_redirect(cmd, &p);
+			if (fd == -1)
+				return (0);
+		}
+		while (n < p.end_pass)
+		{
+			cmd = cmd->next;
+			n++;
+		}
+		if (right_redir(cmd) == 1)
+			ft_redirect2(cmd);
+		list = list->next;
+	}
+	if(i == 0)
+		return (0);
+	if (list == NULL || (list->command && ft_memcmp(list->command, "|", 2) != 0))
+		return (1);
+	return (0);
+}
+
 int		cmd_director(t_cmd *list, t_data *data)
 {
 	t_cmd *tmp;
@@ -36,7 +73,7 @@ int		cmd_director(t_cmd *list, t_data *data)
 	tmp = list;
 	while (list)
 	{
-		if (list->command && ft_memcmp(list->command, "exit", 5) == 0)
+		if (check_lst_exit(list) != 0)
 		{
 			builtins(list, data);
 			list = list->next;
