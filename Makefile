@@ -6,7 +6,7 @@
 #    By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/10 16:28:15 by nieyraud          #+#    #+#              #
-#    Updated: 2020/10/19 14:53:40 by nieyraud         ###   ########.fr        #
+#    Updated: 2020/10/25 11:18:22 by nieyraud         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ SRC_FILE = 	minishell.c parser.c builtins.c env_funct.c ft_echo.c \
 			get_next_line.c parse_utils.c fork_utils.c normal_fork.c \
 			signal.c  env_funct2.c env_utils.c exit_numeric.c \
 			extract.c main_fork.c main_fork2.c move_redir.c \
-			parse_file.c
+			parse_file.c sort_redirection.c
 			
 USELESS = pipe_fork.c reverse_fork.c redirection.c  print_cmd.c fork_parser.c clean_params_utils.c clean_params.c ft_quote.c env_file.c display_built.c error_utils.c
 

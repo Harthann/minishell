@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 08:41:08 by nieyraud          #+#    #+#             */
-/*   Updated: 2020/10/22 14:36:45 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/25 11:28:46 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ int		ft_command_parser(char *str, t_data *data)
 			i++;
 	}
 	data->status++;
+	sort_redirection(commands);
 	if (commands)
 		cmd_director(commands, data);
 	free_command(&commands);
