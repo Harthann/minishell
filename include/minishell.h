@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/13 15:51:08 by blacking          #+#    #+#             */
-/*   Updated: 2020/10/20 11:32:41 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/25 11:17:55 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ int				create_commands(t_cmd **cmd, char *str, t_data *data, int *i);
 t_cmd			*new_command(char *str, int *start, t_data *data);
 char			**parse_param(char *str, int *i, t_data *data);
 char			**parse_file(char *str, int *i, t_data *data);
+void			order_redir(t_cmd **cmd);
+void			sort_redirection(t_cmd *cmd);
 
 t_env_lst		*ft_envnew(char *name, char *value);
 void			ft_addenv(t_env_lst **alst, t_env_lst *new, int n);
