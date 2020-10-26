@@ -55,6 +55,7 @@ typedef struct	s_data
 	pid_t			pid;
 	unsigned char	exit_code;
 	char			*line;
+	char 			*path;
 }				t_data;
 
 typedef struct	s_info
@@ -92,7 +93,7 @@ t_cmd			*last_cmd(t_cmd *cmd);
 void			add_front(t_cmd **cmd, t_cmd *new);
 
 t_env_lst		*ft_envnew(char *name, char *value);
-void			ft_addenv(t_env_lst **alst, t_env_lst *new);
+void			ft_addenv(t_env_lst **alst, t_env_lst *new, int n);
 void			ft_delenv(t_env_lst **alst, char **name);
 void			builtins(t_cmd *lst, t_data *data);
 char			**clean_params(char *params, t_env_lst *lst, t_data *data);
@@ -131,7 +132,7 @@ int				count_quotechar(char *str, int index);
 int				ft_error_fd(t_data *data, int fd);
 void			free_exec(char **env, char **argv);
 void			free_builtin(char **params_cl);
-int				env_exist(t_env_lst *lst, t_env_lst *new);
+int				env_exist(t_env_lst *lst, t_env_lst *new, int n);
 void			ft_delst(t_env_lst *lst, t_env_lst *prev_elem,
 					t_env_lst *next_elem, t_env_lst **mem);
 void			unset_export(t_cmd **list, t_data *data);
@@ -151,5 +152,9 @@ void			free_cmd(t_cmd **alst);
 int				free_datas(t_cmd **alst, t_data *data, int *fd);
 
 int				check_numeric(char *str, t_data *data);
-
+int				check_str(char c1, char c2);
+void			name_value(char **name, char **value, char *str, int *tab);
+void			p_init(int pnum, t_info *p, t_cmd **mem);
+int				pnum_l(t_cmd *list);
+char			*get_cwd(int i, char *res);
 #endif

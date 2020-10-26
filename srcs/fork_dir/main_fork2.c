@@ -99,6 +99,8 @@ void	do_builtin(t_info p, int *fdpipe, t_cmd *lst, t_data *data)
 	}
 	while (i < p.pnum)
 		close(fdpipe[i++]);
+	if (lst->command && !ft_memcmp(lst->command, "exit", 5))
+			free(fdpipe);
 	if (lst->command != NULL && fd[0] != -1)
 		builtins(lst, data);
 	free_datas(p.cmd, data, fdpipe);

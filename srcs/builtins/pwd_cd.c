@@ -25,13 +25,24 @@ int		length(char **params)
 void	pwd(void)
 {
 	char *res;
+	t_data *data;
 
-	errno = 0;
-	res = ft_calloc(1000, sizeof(char));
-	res = getcwd(res, 1000);
-	ft_putstr_fd(res, 1);
-	write(1, "\n", 2);
-	free(res);
+	data = singleton();
+	if (data->path)
+	{
+		ft_putstr_fd(data->path, 1);
+		write(1, "\n", 2);
+	}
+	else
+	{
+		res = get_cwd(1, NULL);
+		if(res != NULL)
+		{
+			ft_putstr_fd(res, 1);
+			write(1, "\n", 2);
+			free(res);
+		}
+	}
 }
 
 char	*home_dir(t_env_lst *lst)
@@ -63,6 +74,7 @@ void	cd(char **params_cl, t_data *data)
 			write(2, ": ", 2);
 			ft_putstr_fd(strerror(2), 2);
 			write(2, "\n", 2);
+			return ;
 		}
 	}
 	else
@@ -70,5 +82,9 @@ void	cd(char **params_cl, t_data *data)
 		errno = 1;
 		ft_putstr_fd(strerror(7), 2);
 		write(2, "\n", 2);
+		return ;
 	}
+	if(data->path)
+		free(data->path);
+	data->path = get_cwd(1, NULL);
 }

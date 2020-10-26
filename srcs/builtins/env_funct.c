@@ -29,30 +29,28 @@ void		add_env(char **str, t_data *data)
 {
 	char	*name;
 	char	*value;
-	int		i;
+	int		tab[2];
+	char 	*src;
 
 	while (*str)
 	{
-		i = 0;
-		while (*(*str + i) != '=' && *(*str + i))
-			i++;
-		if (*(*str + i) == '=')
+		tab[0] = 0;
+		tab[1] = 0;
+		src = *str;
+		while (src[tab[0]] && tab[1] == 0)
 		{
-			name = ft_substr(*str, 0, i + 1);
-			value = ft_strdup(*str + i + 1);
+			tab[0] = tab[0] + 1;
+			if (src[tab[0]])
+				tab[1] = check_str(src[tab[0]], src[tab[0] + 1]);
 		}
-		else
-		{
-			name = ft_substr(*str, 0, i + 1);
-			value = ft_strdup("\0");
-		}
+		name_value(&name, &value, src, tab);
 		if (check_char(name, value) == 1)
-			ft_addenv(&(data->env_var), ft_envnew(name, value));
+			ft_addenv(&(data->env_var), ft_envnew(name, value), tab[1]);
 		str++;
 	}
 }
 
-void		ft_addenv(t_env_lst **alst, t_env_lst *new)
+void		ft_addenv(t_env_lst **alst, t_env_lst *new, int n)
 {
 	t_env_lst *lst;
 
@@ -61,7 +59,7 @@ void		ft_addenv(t_env_lst **alst, t_env_lst *new)
 		*alst = new;
 	else
 	{
-		if (env_exist(lst, new) == 1)
+		if (env_exist(lst, new, n) == 1)
 			return ;
 		else
 		{
