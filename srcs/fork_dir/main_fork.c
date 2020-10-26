@@ -6,7 +6,7 @@
 /*   By: nieyraud <nieyraud@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 15:34:27 by stbaleba          #+#    #+#             */
-/*   Updated: 2020/10/22 14:34:01 by nieyraud         ###   ########.fr       */
+/*   Updated: 2020/10/26 14:52:01 by nieyraud         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,13 @@ void	pipe_init_close(int **fdpipe, int n, int pnum)
 
 void	wait_child(pid_t child, int n)
 {
-	int status;
-	int i;
+	int		status;
+	int		i;
 
 	i = 0;
 	waitpid(child, &status, 0);
+	if (singleton()->statuspid != -1)
+		status = singleton()->statuspid;
 	while (i < n)
 	{
 		wait(NULL);
@@ -77,6 +79,7 @@ void	wait_child(pid_t child, int n)
 		g_last_return = 0;
 	else
 		g_last_return = 128 + WTERMSIG(status);
+	singleton()->statuspid = -1;
 }
 
 void	main_fork(t_cmd **list, t_data *data)
