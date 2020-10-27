@@ -18,6 +18,7 @@ int		free_datas(t_cmd **alst, t_data *data, int *fd)
 
 	tmp = data->exit_code;
 	free(data->line);
+	free(data->path);
 	free_lst(&(data->env_var));
 	free_command(alst);
 	free(fd);

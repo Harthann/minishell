@@ -89,7 +89,6 @@ int		ft_free2(char **sr, int i)
 char	*get_cwd(int i, char *res)
 {
 	errno = ERANGE;
-
 	while (res == NULL)
 	{
 		if (errno == ERANGE)

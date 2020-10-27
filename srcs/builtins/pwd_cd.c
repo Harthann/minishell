@@ -84,7 +84,6 @@ void	cd(char **params_cl, t_data *data)
 		write(2, "\n", 2);
 		return ;
 	}
-	if(data->path)
-		free(data->path);
+	free(data->path);
 	data->path = get_cwd(1, NULL);
 }

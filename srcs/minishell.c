@@ -66,6 +66,7 @@ int		main_loop(t_data *data, char **env)
 
 	add_env(env, data);
 	data->env = env;
+	data->path = NULL;
 	ret = 1;
 	while (ret > 0)
 	{
