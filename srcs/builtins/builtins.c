@@ -83,3 +83,9 @@ void	builtins(t_cmd *lst, t_data *data)
 	else
 		ft_exec(lst->command, lst->params, data);
 }
+
+void	free_fd(int **fd)
+{
+	free(*fd);
+	*fd = NULL;
+}

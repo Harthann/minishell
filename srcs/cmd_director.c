@@ -32,36 +32,23 @@ int		check_symbol(t_cmd *list)
 int		check_lst_exit(t_cmd *list)
 {
 	t_info	p;
-	t_cmd *cmd;
-	int fd;
-	int n;
-	int i;
+	t_cmd	*cmd;
+	int		i;
 
-	n = 0;
 	i = 0;
 	p_init(pnum_l(list), &p, &list);
 	if (list->command && ft_memcmp(list->command, "exit", 5) == 0)
 	{
 		i = 1;
 		cmd = list->redirection;
-		if (left_redir(cmd) == 1)
-		{
-			fd = ft_redirect(cmd, &p);
-			if (fd == -1)
-				return (0);
-		}
-		while (n < p.end_pass)
-		{
-			cmd = cmd->next;
-			n++;
-		}
-		if (right_redir(cmd) == 1)
-			ft_redirect2(cmd);
+		if (!redirect_exit(p, cmd))
+			return (0);
 		list = list->next;
 	}
-	if(i == 0)
+	if (i == 0)
 		return (0);
-	if (list == NULL || (list->command && ft_memcmp(list->command, "|", 2) != 0))
+	if (list == NULL ||
+	(list->command && ft_memcmp(list->command, "|", 2) != 0))
 		return (1);
 	return (0);
 }

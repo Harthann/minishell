@@ -21,7 +21,8 @@ int		free_datas(t_cmd **alst, t_data *data, int *fd)
 	free(data->path);
 	free_lst(&(data->env_var));
 	free_command(alst);
-	free(fd);
+	if (fd != NULL)
+		free(fd);
 	free(data);
 	return (tmp);
 }
@@ -41,4 +42,26 @@ void	free_newlst(t_env_lst *new)
 	free(new->name);
 	free(new->value);
 	free(new);
+}
+
+int		redirect_exit(t_info p, t_cmd *cmd)
+{
+	int n;
+	int fd;
+
+	n = 0;
+	if (left_redir(cmd) == 1)
+	{
+		fd = ft_redirect(cmd, &p);
+		if (fd == -1)
+			return (0);
+	}
+	while (n < p.end_pass)
+	{
+		cmd = cmd->next;
+		n++;
+	}
+	if (right_redir(cmd) == 1)
+		ft_redirect2(cmd);
+	return (1);
 }

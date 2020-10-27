@@ -155,4 +155,6 @@ int				pnum_l(t_cmd *list);
 char			*get_cwd(int i, char *res);
 void			error_cd(char *params);
 void			free_newlst(t_env_lst *new);
+int				redirect_exit(t_info p, t_cmd *cmd);
+void			free_fd(int **fd);
 #endif
