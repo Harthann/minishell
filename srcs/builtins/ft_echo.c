@@ -88,18 +88,15 @@ int		ft_free2(char **sr, int i)
 
 char	*get_cwd(int i, char *res)
 {
-	errno = ERANGE;
 	while (res == NULL)
 	{
-		if (errno == ERANGE)
-		{
-			i *= 10;
-			free(res);
-			res = ft_calloc(1000 * i, sizeof(char));
-		}
-		else if (errno == ENAMETOOLONG)
+		i *= 10;
+		free(res);
+		res = ft_calloc(1000 * i, sizeof(char));
+		if (errno != ERANGE && errno != 0)
 		{
 			ft_putstr_fd(strerror(errno), 2);
+			ft_putstr_fd("\n", 2);
 			free(res);
 			return (NULL);
 		}
@@ -111,6 +108,5 @@ char	*get_cwd(int i, char *res)
 		else
 			res = getcwd(res, 1000 * i);
 	}
-	errno = 0;
 	return (res);
 }

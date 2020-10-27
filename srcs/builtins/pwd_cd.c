@@ -58,7 +58,7 @@ char	*home_dir(t_env_lst *lst)
 
 void	cd(char **params_cl, t_data *data)
 {
-	int n;
+	int	n;
 
 	n = length(params_cl);
 	if (n == 0 || ft_memcmp(params_cl[0], "~", 2) == 0)
@@ -79,6 +79,5 @@ void	cd(char **params_cl, t_data *data)
 		write(2, "\n", 2);
 		return ;
 	}
-	free(data->path);
-	data->path = get_cwd(1, NULL);
+	set_strpath(data, get_cwd(1, NULL));
 }

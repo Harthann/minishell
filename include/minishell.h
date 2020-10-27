@@ -162,4 +162,6 @@ void			error_cd(char *params);
 void			free_newlst(t_env_lst *new);
 int				redirect_exit(t_info p, t_cmd *cmd);
 void			free_fd(int **fd);
+void			set_strpath(t_data *data, char *newpath);
+
 #endif

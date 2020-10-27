@@ -12,6 +12,15 @@
 
 #include "minishell.h"
 
+void	set_strpath(t_data *data, char *newpath)
+{
+	if (newpath != NULL)
+	{
+		free(data->path);
+		data->path = newpath;
+	}
+}
+
 int		check_symbol(t_cmd *list)
 {
 	char *cmd;
