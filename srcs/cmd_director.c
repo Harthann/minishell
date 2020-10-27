@@ -79,7 +79,7 @@ int		cmd_director(t_cmd *list, t_data *data)
 		else if (list && (list->command || list->params || list->redirection))
 			main_fork(&list, data);
 		if (list && !list->command && !list->params && !list->redirection)
-			break;
+			break ;
 	}
 	return (data->status);
 }
