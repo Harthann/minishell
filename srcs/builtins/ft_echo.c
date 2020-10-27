@@ -97,7 +97,7 @@ char	*get_cwd(int i, char *res)
 			free(res);
 			res = ft_calloc(1000 * i, sizeof(char));
 		}
-		else if(errno == ENAMETOOLONG)
+		else if (errno == ENAMETOOLONG)
 		{
 			ft_putstr_fd(strerror(errno), 2);
 			free(res);

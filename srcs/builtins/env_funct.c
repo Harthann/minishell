@@ -27,10 +27,10 @@ t_env_lst	*ft_envnew(char *name, char *value)
 
 void		add_env(char **str, t_data *data)
 {
+	int		tab[2];
 	char	*name;
 	char	*value;
-	int		tab[2];
-	char 	*src;
+	char	*src;
 
 	while (*str)
 	{

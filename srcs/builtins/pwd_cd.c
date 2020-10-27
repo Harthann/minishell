@@ -24,8 +24,8 @@ int		length(char **params)
 
 void	pwd(void)
 {
-	char *res;
-	t_data *data;
+	char	*res;
+	t_data	*data;
 
 	data = singleton();
 	if (data->path)
@@ -36,7 +36,7 @@ void	pwd(void)
 	else
 	{
 		res = get_cwd(1, NULL);
-		if(res != NULL)
+		if (res != NULL)
 		{
 			ft_putstr_fd(res, 1);
 			write(1, "\n", 2);
@@ -68,12 +68,7 @@ void	cd(char **params_cl, t_data *data)
 		chdir(params_cl[0]);
 		if (errno != 0 && g_fg_process != 0)
 		{
-			errno = 1;
-			write(2, "Minishell: cd: ", 16);
-			ft_putstr_fd(params_cl[0], 2);
-			write(2, ": ", 2);
-			ft_putstr_fd(strerror(2), 2);
-			write(2, "\n", 2);
+			error_cd(params_cl[0]);
 			return ;
 		}
 	}

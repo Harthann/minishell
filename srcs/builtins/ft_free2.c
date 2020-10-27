@@ -25,3 +25,20 @@ int		free_datas(t_cmd **alst, t_data *data, int *fd)
 	free(data);
 	return (tmp);
 }
+
+void	error_cd(char *params)
+{
+	errno = 1;
+	write(2, "Minishell: cd: ", 16);
+	ft_putstr_fd(params, 2);
+	write(2, ": ", 2);
+	ft_putstr_fd(strerror(2), 2);
+	write(2, "\n", 2);
+}
+
+void	free_newlst(t_env_lst *new)
+{
+	free(new->name);
+	free(new->value);
+	free(new);
+}

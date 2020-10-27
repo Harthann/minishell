@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-int	check_char(char *name, char *value)
+int		check_char(char *name, char *value)
 {
 	int i;
 
@@ -41,7 +41,7 @@ int	check_char(char *name, char *value)
 	return (1);
 }
 
-int	ft_memplus(char *name, char *cname)
+int		ft_memplus(char *name, char *cname)
 {
 	int i;
 
@@ -55,7 +55,7 @@ int	ft_memplus(char *name, char *cname)
 	return (1);
 }
 
-int	double_tab_length(char **str)
+int		double_tab_length(char **str)
 {
 	int i;
 
@@ -65,7 +65,7 @@ int	double_tab_length(char **str)
 	return (i);
 }
 
-int	check_str(char c1, char c2)
+int		check_str(char c1, char c2)
 {
 	if (c1 == '+' && c2 == '=')
 		return (2);
@@ -81,8 +81,7 @@ void	name_value(char **name, char **value, char *str, int *tab)
 
 	tname = *name;
 	tvalue = *value;
-//	printf("tab %d\n", tab[1]);
-	if(tab[1] == 1)
+	if (tab[1] == 1)
 	{
 		tname = ft_substr(str, 0, tab[0] + 1);
 		tvalue = ft_strdup(str + tab[0] + 1);

@@ -153,4 +153,6 @@ void			name_value(char **name, char **value, char *str, int *tab);
 void			p_init(int pnum, t_info *p, t_cmd **mem);
 int				pnum_l(t_cmd *list);
 char			*get_cwd(int i, char *res);
+void			error_cd(char *params);
+void			free_newlst(t_env_lst *new);
 #endif
