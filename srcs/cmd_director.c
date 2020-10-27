@@ -76,8 +76,10 @@ int		cmd_director(t_cmd *list, t_data *data)
 		}
 		if (check_symbol(list) == 0 && check_unset_export(list) == 1)
 			unset_export(&list, data);
-		else if (list)
+		else if (list && (list->command || list->params || list->redirection))
 			main_fork(&list, data);
+		if (list && !list->command && !list->params && !list->redirection)
+			break;
 	}
 	return (data->status);
 }
