@@ -12,13 +12,6 @@
 
 #include "minishell.h"
 
-void	id_info(void) __attribute__((constructor));
-
-void id_info(void)
-{
-	printf("This is process with id : [%d]\n", g_fg_process);
-}
-
 void	sigquit_handler(int signal)
 {
 	int status;

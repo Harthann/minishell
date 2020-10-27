@@ -55,7 +55,7 @@ typedef struct	s_data
 	pid_t			pid;
 	unsigned char	exit_code;
 	char			*line;
-	char 			*path;
+	char			*path;
 }				t_data;
 
 typedef struct	s_info
