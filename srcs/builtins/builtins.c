@@ -12,6 +12,18 @@
 
 #include "minishell.h"
 
+int		finish_name(char *name)
+{
+	int i;
+
+	i = 0;
+	while (name[i])
+		i++;
+	if (name[i - 1] == '=')
+		return (1);
+	return (0);
+}
+
 void	ft_display_export(t_env_lst *lst, char **tab)
 {
 	int			i;
@@ -25,9 +37,12 @@ void	ft_display_export(t_env_lst *lst, char **tab)
 		{
 			display("declare -x ");
 			display(lst->name);
-			display("\"");
-			display(lst->value);
-			display("\"");
+			if (finish_name(lst->name) == 1)
+			{
+				display("\"");
+				display(lst->value);
+				display("\"");
+			}
 			display("\n");
 			lst = mem;
 			i++;
