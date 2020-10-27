@@ -82,25 +82,24 @@ void	free_cmd(t_cmd **alst)
 void	do_builtin(t_info p, int *fdpipe, t_cmd *lst, t_data *data)
 {
 	int		fd[2];
-	int		i;
-	int		j;
+	int		ij[2];
 
-	i = 0;
-	j = 0;
+	ij[0] = 0;
+	ij[1] = 0;
 	errno = 0;
 	if (check_pipe(lst) == 1)
 		lst = lst->next;
-	fd[0] = check_fd(fdpipe, &p, lst->redirection, j);
+	fd[0] = check_fd(fdpipe, &p, lst->redirection, ij[1]);
 	if (fd[0] != -1)
 	{
 		fd[1] = check_fd2(fdpipe, p, lst->redirection);
 		dup2(fd[0], 0);
 		dup2(fd[1], 1);
 	}
-	while (i < p.pnum)
-		close(fdpipe[i++]);
+	while (ij[0] < p.pnum)
+		close(fdpipe[ij[0]++]);
 	if (lst->command && !ft_memcmp(lst->command, "exit", 5))
-			free(fdpipe);
+		free(fdpipe);
 	if (lst->command != NULL && fd[0] != -1)
 		builtins(lst, data);
 	free_datas(p.cmd, data, fdpipe);
