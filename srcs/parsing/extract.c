@@ -107,7 +107,7 @@ char	*extract_dollar(char *str, int *start, t_data *data)
 	while (str[i] && (ft_isalnum(str[i + 1]) || str[i + 1] == '_'))
 		i++;
 	tmp = data->env_var;
-	length = i == *start + 1 ? 1 : i - *start - 1;
+	length = i - *start - 1;
 	while (tmp && ft_strncmp(str + *start + 1, tmp->name, length + 1))
 		tmp = tmp->next;
 	if (!ft_strncmp(str + *start + 1, "?", 1))
